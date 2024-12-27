@@ -1,0 +1,7 @@
+CORRER SERVIDOR: npm run dev
+
+CORRER LA WEB: npm start
+
+Accede al Frontend en: http://localhost:3000
+
+Accede al Backend en: http://localhost:5000 (o el puerto configurado).

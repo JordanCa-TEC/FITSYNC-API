@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "name": "Proteína Whey",
+      "image": "https://via.placeholder.com/150",
+      "subCategory": "Suplementos",
+      "price": 50.0,
+      "info": "Proteína de suero de leche ideal para ganar masa muscular."
+    },
+    {
+      "id": 2,
+      "name": "Mancuernas",
+      "image": "https://via.placeholder.com/150",
+      "subCategory": "Equipamiento",
+      "price": 25.0,
+      "info": "Par de mancuernas de 5kg."
+    }
+  ]
+  
