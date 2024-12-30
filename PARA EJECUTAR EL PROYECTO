@@ -1,4 +1,4 @@
-CORRER SERVIDOR: npm run dev
+CORRER backend + frontend: npm run dev
 
 CORRER LA WEB: npm start
 
