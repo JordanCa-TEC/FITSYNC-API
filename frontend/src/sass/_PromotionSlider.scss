@@ -1,0 +1,137 @@
+@import 'variables';
+
+.promotion-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 40px;
+  align-items: flex-start;
+
+  .promotion-slider__box {
+    display: flex;
+    width: 50%;
+  }
+
+  /* Caja de texto: título, beneficios y botón de contacto */
+  &__text-box {
+    flex: 1;
+    h2 {
+      font-size: 2.7em;
+      font-weight: bold;
+      margin-bottom: 30px;
+      .highlight {
+        color: $secondary-color;
+      }
+    }
+    .promotion-slider__benefits {
+      padding: 0 5rem;
+      font-size: 1em;
+      margin-bottom: 20px;
+
+      li {
+        text-align: left;
+        font-weight: 600;
+        margin-bottom: 1em;
+        color: $primary-color; 
+        font-size: 1rem; 
+        margin-bottom: 0.5rem; 
+
+        &::marker {
+          color: rgb(212, 212, 212); /* Color de los puntos */
+        }
+      }
+    }
+    .promotion-slider__button {
+      font-size: 1.5em;
+      margin: 20px 0;
+      padding: 20px 30px;
+      background-color: $secondary-color;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+
+  /* Caja de tarjetas y puntos de navegación */
+  &__card-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .promotion-slider__image-container {
+      position: relative;
+      width: 450px;
+      height: 250px;
+      perspective: 1000px;
+      margin: auto;
+      cursor: pointer;
+
+      .promotion-slider__card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 40px;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 1.2em;
+        color: #333;
+        transform-origin: center; // Rotación desde el centro
+        transition: transform 0.6s ease, z-index 0.3s ease;
+        //backface-visibility: hidden; // Oculta la parte trasera durante la rotación
+    
+        &:nth-child(1) {
+          background: #f0f0f0;
+          transform: translateZ(50px) rotateY(0deg); // Tarjeta frontal
+          z-index: 2; // En frente
+        }
+    
+        &:nth-child(2) {
+          background: #333;
+          color: #ffc107; // Cambia el color según tu diseño
+          transform: translateZ(-50px) rotateY(0deg); // Tarjeta trasera
+          z-index: 1; // Detrás
+        }
+    
+        &.active {
+          transform: translateZ(50px) translateX(50px) translateY(40px) rotateY(0deg); // Tarjeta activa en frente
+          z-index: 2;
+        }
+    
+        &:not(.active) {
+          transform: translateX(200px) translateY(120px) translateZ(-50px) rotateY(-180deg); // Tarjeta detrás girada
+          z-index: 1;
+        }
+        .promotion-slider__image {
+          width: 50%; 
+        }
+      }    
+    }
+    .promotion-slider__dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 150px;
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &.active {
+          background-color: $secondary-color;
+        }
+      }
+    }
+  }
+}

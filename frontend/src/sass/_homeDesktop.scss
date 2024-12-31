@@ -1,0 +1,87 @@
+@import 'variables';
+
+.home {
+
+  &__hero {
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/Gymnasio-Fitsync.jpg');
+    background-size: cover;
+    background-position: center;
+    color: $text-color;
+    text-align: center;
+    display: flex;
+    h1 {
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+      text-align: left;
+      padding-left: 0.5em;
+    }
+    p {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__hero--box{
+    width: 70%;
+    margin-top: 18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .highcolor_Gold {
+    color:$secondary-color;
+  }
+
+  &__phone-image{
+    width: 30%;
+  }
+
+  &__services {
+    background-color: $background-light;
+    text-align: center;
+    padding: 70px 0;
+    
+    h2 {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      color: $primary-color;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+    /*
+    .Service__cta {
+      background-color: $secondary-color;
+      padding: 15px 30px;
+      border: none;
+      cursor: pointer;
+      color: $primary-color;
+      font-weight: bold;
+      margin-top: 20px;
+    } */
+
+    .Promocion__title {
+      @extend h2;
+      color: $secondary-color;
+    }
+    .services__list {
+      display: flex;
+      height: auto;
+      justify-content: space-around;
+      gap: 20px;
+      
+      .service__box {
+        width: 80%; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4%;   
+      }
+      .service__image{
+        width: 80%;
+        border-radius: 10%;
+      }
+    }
+  }
+}
