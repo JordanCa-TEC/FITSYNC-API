@@ -1,0 +1,37 @@
+@import 'variables';
+
+.about {
+
+  display: flex;
+  padding-top: 8%;
+  justify-content: center;
+  background-color: $background-light;
+
+    &__mission {
+      width: 40%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 0;
+      text-align: center;
+      align-items: center;
+      
+      p {
+        font-size: clamp(1rem, 2vw, 1.6rem);
+        text-align: left;
+        line-height: 1.6em;
+        font-weight: 500;
+      }
+    }
+  
+    &__photo {
+      width: 30%;
+    }
+  
+    &__photo-gym {
+      width: 50%;
+      border-radius: 2em;
+    }
+
+  }
+  

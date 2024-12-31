@@ -1,0 +1,73 @@
+@import 'variables';
+
+.contact{
+    width: 100%;
+
+    &__mission {
+        display: flex;
+        padding-top: 4em;
+        justify-content: center;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/Foto-gym_fitsync.png');
+        background-size: cover;
+        background-position: center;
+        color: $text-color;
+        text-align: center;
+        
+
+        h1 {
+            font-size: 4.5rem;
+            margin: 3em 0 3em 0;
+            color: $secondary-color;
+            text-align: left;
+          }
+    }
+
+    &__box{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      margin: 5% 0 5% 0;
+      justify-content: center;
+    }
+
+    .info__container{
+      width: 20%;
+      align-content: center;
+
+      .info__Main{
+        display: flex;
+
+        p {
+          font-size: 1.3em;
+          font-weight: bold;
+          margin-left: 2%;
+        }
+      }
+
+      .info__Main-gps{
+        display: flex;
+        padding: 2em 0 0 3em;
+        width: 60%;
+        
+        p{
+          font-size: 1.3em;
+          font-weight: bold;
+          margin-left: 2%;
+        }
+      }
+    }
+
+    .map-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      
+        iframe {
+          //width: 100%;
+          max-width: 40em;
+          max-height: 40em;
+          border: 0;
+        }
+    }
+}

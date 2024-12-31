@@ -1,0 +1,10 @@
+@import 'variables';
+
+// global.scss
+body {
+  width: 100%;
+  font-family: $font-global;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}

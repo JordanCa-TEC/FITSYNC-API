@@ -1,0 +1,43 @@
+@import 'variables';
+
+.home__header {
+    width: 100%;
+    position: fixed;
+    justify-items: center;
+    z-index: 1000; 
+    top: 0;
+    left: 0;
+    background-color: $background-gray;
+    padding: 0.6em;
+    
+    .navbar {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      &__logo {
+        width: 8%;
+      }
+      &__menu {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 25px;
+        
+        a {
+          font-size: 1.2em;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          color: $text-color;
+          padding: 1.3em 1.3em;
+          cursor: pointer;
+          font-weight: bold;
+        }
+        img {
+          width: 2.2em;
+        }
+      }
+    }
+  }
