@@ -5,6 +5,7 @@ Desde la carpeta Raiz, usando terminal
 1) cd (Backend o Frontend)
 2) npm install
 
+Ejecutar con:
 
 CORRER backend + frontend: npm run dev
 
