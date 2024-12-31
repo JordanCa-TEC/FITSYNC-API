@@ -1,3 +1,11 @@
+Para instalar los modulos:
+
+Desde la carpeta Raiz, usando terminal
+
+1) cd (Backend o Frontend)
+2) npm install
+
+
 CORRER backend + frontend: npm run dev
 
 CORRER LA WEB: npm start
