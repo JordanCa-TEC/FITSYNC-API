@@ -1,15 +1,20 @@
-Para instalar los modulos:
+1) Instalar Modulo principal del proyecto
+
+2) Instalar los modulos de cada carpeta:
 
 Desde la carpeta Raiz, usando terminal
 
-1) cd (Backend o Frontend)
-2) npm install
+2.1) cd (Backend o Frontend)
+2.2) npm install
 
-Ejecutar con:
+
+3) Ejecutar con:
+"Desde la carpeta Principal"
 
 CORRER backend + frontend: npm run dev
 
-CORRER LA WEB: npm start
+
+Servidores configurados:
 
 Accede al Frontend en: http://localhost:3000
 
