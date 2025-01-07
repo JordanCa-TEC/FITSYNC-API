@@ -20,7 +20,7 @@ app.use('/images', express.static('images'));
 // Rutas usando el controlador
 app.get('/products', getProducts);
 app.get('/products/:id', getProductById);
-app.post('/products', addProduct); 
+app.post('/products', addProduct);
 app.put('/products/:id', updateProduct);
 app.delete('/products/:id', deleteProduct);
 

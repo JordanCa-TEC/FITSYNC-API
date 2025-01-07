@@ -1,11 +1,10 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useProductDetail } from '../components/ProductDetail';
 import '../sass/_ProductDetail.scss';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { product, loading, error } = useProductDetail(id);
 
   if (loading) return <p>Cargando información del producto...</p>;
@@ -22,6 +21,18 @@ const ProductDetail = () => {
         <h2>s/.{product.price}</h2>
         <div className="product-detail__actions">
           <button className="button--add">Agregar al carrito</button>
+        </div>
+        <div className="product-detail__Description">
+        <h3>Descripción</h3>
+        {product.info.split('\n\n').map((block, index) => (
+          <div key={index} style={{ marginBottom: '1rem' }}>
+            {block.split('\n').map((line, lineIndex) => (
+              <p key={lineIndex}>
+                • {line} {/* Aquí agregamos el punto antes de cada línea */}
+              </p>
+            ))}
+          </div>
+        ))}
         </div>
       </div>
     </div>

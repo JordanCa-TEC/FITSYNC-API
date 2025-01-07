@@ -1,46 +1,42 @@
 const fs = require('fs');
 const path = require('path');
 
-const dataPath = path.join(__dirname, 'data.json');
-let products = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+const filePath = path.join(__dirname, 'data.json');
 
-const saveProductsToFile = () => {
-    fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
-};
-
-// Obtener todos los productos
+// Leer productos desde el archivo
 const getProducts = (req, res) => {
+    const products = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     res.json(products);
 };
 
 // Obtener un producto por ID
 const getProductById = (req, res) => {
-    const product = products.find(p => p.id === parseInt(req.params.id));
-    product ? res.json(product) : res.status(404).send('Producto no encontrado');
-};
-
-// Agregar un nuevo producto
-const addProduct = (req, res) => {
-    const { name, image, subCategory, price, info } = req.body;
-
-    // Asegúrate de que la descripción no esté vacía y sea una cadena de texto
-    if (typeof info !== 'string' || info.length === 0) {
-        return res.status(400).json({ error: 'La descripción (info) debe ser un texto válido.' });
+    const products = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const product = products.find(p => p.id == req.params.id);
+    if (product) {
+        res.json(product);
+    } else {
+        res.status(404).send('Producto no encontrado');
     }
-
-    const newProduct = { id: products.length + 1, name, image, subCategory, price, info };
-    products.push(newProduct);
-    saveProductsToFile();
-    res.status(201).json(newProduct);
 };
 
-// Actualizar un producto
+// Añadir un nuevo producto con texto largo
+const addProduct = (req, res) => {
+    const products = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const newProduct = req.body;
+    products.push(newProduct);
+    fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
+    res.status(201).send('Producto añadido con éxito');
+};
+
+// Actualizar un producto existente
 const updateProduct = (req, res) => {
-    const index = products.findIndex(p => p.id === parseInt(req.params.id));
+    let products = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const index = products.findIndex(p => p.id == req.params.id);
     if (index !== -1) {
         products[index] = { ...products[index], ...req.body };
-        saveProductsToFile();
-        res.json(products[index]);
+        fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
+        res.send('Producto actualizado con éxito');
     } else {
         res.status(404).send('Producto no encontrado');
     }
@@ -48,20 +44,10 @@ const updateProduct = (req, res) => {
 
 // Eliminar un producto
 const deleteProduct = (req, res) => {
-    const index = products.findIndex(p => p.id === parseInt(req.params.id));
-    if (index !== -1) {
-        products.splice(index, 1);
-        saveProductsToFile();
-        res.sendStatus(204);
-    } else {
-        res.status(404).send('Producto no encontrado');
-    }
+    let products = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const filteredProducts = products.filter(p => p.id != req.params.id);
+    fs.writeFileSync(filePath, JSON.stringify(filteredProducts, null, 2));
+    res.send('Producto eliminado con éxito');
 };
 
-module.exports = {
-    getProducts,
-    getProductById,
-    addProduct,
-    updateProduct,
-    deleteProduct
-};
+module.exports = { getProducts, getProductById, addProduct, updateProduct, deleteProduct };
