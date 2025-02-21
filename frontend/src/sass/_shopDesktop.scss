@@ -14,7 +14,7 @@
             padding-top: 15em;
             padding-bottom: 1em;
             display: grid;
-            height: 90em;
+            height: 70em;
             width: 60%;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 3fr);
@@ -35,19 +35,19 @@
                 }
 
                 h2{
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                     color: $primary-color;
                     margin: 0.2em;
                 }
 
                 h3{
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     color: $background-light-02;
                     margin: 0.2em;
                 }
 
                 .item__price {
-                    font-size: 1.8em;
+                    font-size: 1.3em;
                     color: $secondary-color;
                     margin: 0.1em;
                 }
