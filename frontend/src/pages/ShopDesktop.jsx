@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../sass/_shopDesktop.scss';
-import axios from 'axios';
-import { Banner_fitsyncMKT } from '../assets/assets';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts, addToCart, toggleCart } from "../redux/shopSlice";
+import axios from "axios";
+import Cart from "../components/Cart";
+import "../sass/_shopDesktop.scss";
+import { Banner_fitsyncMKT } from "../assets/assets";
 
 const ShopDesktop = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.shop.products);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/products'); // URL de tu API
-        setProducts(response.data); // Asume que la API devuelve un array de productos
+        const response = await axios.get("http://localhost:5000/products");
+        dispatch(setProducts(response.data));
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="shop">
+      <button className="cart-icon" onClick={() => dispatch(toggleCart())}>🛒</button>
+      <Cart />
+
       <section className="shop__desktop">
         <div className="parent">
           {products.map((product, index) => (
@@ -32,11 +39,12 @@ const ShopDesktop = () => {
               </Link>
               <h3>{product.subCategory}</h3>
               <h2 className="item__price">s/.{product.price}</h2>
-              <button>Agregar al carrito</button>
+              <button onClick={() => dispatch(addToCart(product))}>Agregar al carrito</button>
             </div>
           ))}
         </div>
       </section>
+
       <section className="shop__banner">
         <img src={Banner_fitsyncMKT} alt="Banner Promocional" />
       </section>
