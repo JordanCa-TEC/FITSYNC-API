@@ -1,28 +1,21 @@
-// src/components/Navbar/Navbar.js
-import React from 'react';
-import '../sass/_Navbar.scss'; 
-import {logo} from '../assets/assets.js';
-import {carrito} from '../assets/assets.js';
-import {account_login} from '../assets/assets.js';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "../redux/shopSlice"; 
+import { Link } from "react-router-dom";
+import {carrito} from "../assets/assets"; 
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const isCartOpen = useSelector((state) => state.shop.isCartOpen); // Verifica si el carrito está abierto
+
   return (
-    <header className="home__header">
     <nav className="navbar">
-      <img src={logo} alt="Logo__gym-fitsync" className="navbar__logo" />
-      <ul className="navbar__menu">
-          <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/about">Quiénes somos</Link></li>
-          <li><Link to="/shop">Shop</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-      </ul>
-      <div className="navbar__menu">
-      <a href='#'><img src={carrito} alt="shopping cart" ></img></a>
-      <a href='#' >Login<img src={account_login} alt="shopping cart" ></img></a>
-      </div>
+      <Link to="/">Inicio</Link>
+      <button className="cart-button" onClick={() => dispatch(toggleCart())}>
+        <img src={carrito} alt="shopping cart" />
+      </button>
+      {isCartOpen && <div className="cart-dropdown">Carrito abierto</div>} 
     </nav>
-  </header>
   );
 };
 

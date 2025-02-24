@@ -12,16 +12,26 @@ const shopSlice = createSlice({
   initialState,
   reducers: {
     setProducts: (state, action) => {
+      console.log("Productos recibidos en Redux:", action.payload);
       state.products = action.payload;
     },
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
-      state.totalPrice += action.payload.price;
+      const existingProduct = state.cart.find((p) => p.id === action.payload.id);
+      if (!existingProduct) {
+        state.cart.push({ ...action.payload, quantity: 1 });
+        state.totalPrice += action.payload.price;
+      } else {
+        existingProduct.quantity += 1;
+        state.totalPrice += action.payload.price;
+      }
     },
     removeFromCart: (state, action) => {
       const index = state.cart.findIndex((p) => p.id === action.payload);
       if (index !== -1) {
-        state.totalPrice -= state.cart[index].price;
+        const removedProduct = state.cart[index];
+        if (removedProduct) {
+          state.totalPrice -= removedProduct.price * removedProduct.quantity;
+        }
         state.cart.splice(index, 1);
       }
     },

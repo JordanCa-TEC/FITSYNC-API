@@ -12,17 +12,18 @@ const ShopDesktop = () => {
   const products = useSelector((state) => state.shop.products);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/products");
-        dispatch(setProducts(response.data));
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [dispatch]);
+    if (products.length === 0) {  // Evita llamadas innecesarias
+      const fetchProducts = async () => {
+        try {
+          const response = await axios.get("http://localhost:5000/products");
+          dispatch(setProducts(response.data));
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
+      fetchProducts();
+    }
+  }, [dispatch, products.length]);
 
   return (
     <div className="shop">
@@ -31,17 +32,23 @@ const ShopDesktop = () => {
 
       <section className="shop__desktop">
         <div className="parent">
-          {products.map((product, index) => (
-            <div key={product.id} className={`shop__item--${index + 1} parent__content--div`}>
-              <Link to={`/shop/product/${product.id}`}>
-                <img src={product.image} alt={product.name} />
-                <h2>{product.name}</h2>
-              </Link>
-              <h3>{product.subCategory}</h3>
-              <h2 className="item__price">s/.{product.price}</h2>
-              <button onClick={() => dispatch(addToCart(product))}>Agregar al carrito</button>
-            </div>
-          ))}
+          {products?.length > 0 ? (
+            products.map((product, index) =>
+              product?.id ? (
+                <div key={product.id} className={`shop__item--${index + 1} parent__content--div`}>
+                  <Link to={`/shop/product/${product.id}`}>
+                    <img src={product.image} alt={product.name} />
+                    <h2>{product.name}</h2>
+                  </Link>
+                  <h3>{product.subCategory}</h3>
+                  <h2 className="item__price">s/.{product.price}</h2>
+                  <button onClick={() => dispatch(addToCart(product))}>Agregar al carrito</button>
+                </div>
+              ) : null
+            )
+          ) : (
+            <p>Cargando productos...</p>
+          )}
         </div>
       </section>
 

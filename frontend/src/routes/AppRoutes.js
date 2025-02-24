@@ -1,7 +1,7 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'; // Importa Routes y Route
-import MainLayout from '../layouts/MainLayout'; // Importa MainLayout
-import HomeDesktop from '../pages/HomeDesktop'; // Importa las páginas
+import { Routes, Route } from 'react-router-dom'; 
+import MainLayout from '../layouts/MainLayout'; 
+import HomeDesktop from '../pages/HomeDesktop'; 
 import AboutDesktop from '../pages/AboutDesktop';
 import ShopDesktop from '../pages/ShopDesktop';
 import ContactDesktop from '../pages/ContactDesktop';
