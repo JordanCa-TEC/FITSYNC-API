@@ -4,7 +4,14 @@ import { removeFromCart, toggleCart } from "../redux/shopSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { cart, totalPrice, isCartOpen } = useSelector((state) => state.shop);
+  
+  const shopState = useSelector((state) => state.shop || {});  
+  const { cart = [], totalPrice = 0, isCartOpen = false } = shopState;
+
+  console.log("Estado completo de Redux:", shopState);
+  console.log("Carrito en Redux:", cart);
+  console.log("Total Price en Redux:", totalPrice);
+  console.log("isCartOpen en Redux:", isCartOpen);
 
   if (!isCartOpen) return null;
 
