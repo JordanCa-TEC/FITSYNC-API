@@ -16,24 +16,30 @@ const shopSlice = createSlice({
       state.products = action.payload;
     },
     addToCart: (state, action) => {
-      const existingProduct = state.cart.find((p) => p.id === action.payload.id);
-      if (!existingProduct) {
-        state.cart.push({ ...action.payload, quantity: 1 });
-        state.totalPrice += action.payload.price;
-      } else {
+      const product = action.payload;
+      const existingProduct = state.cart.find((p) => p.id === product.id);
+
+      if (existingProduct) {
         existingProduct.quantity += 1;
-        state.totalPrice += action.payload.price;
+      } else {
+        state.cart.push({ ...product, quantity: 1 });
       }
+
+      state.totalPrice = state.cart.reduce((total, p) => total + p.price * p.quantity, 0);
     },
     removeFromCart: (state, action) => {
-      const index = state.cart.findIndex((p) => p.id === action.payload);
-      if (index !== -1) {
-        const removedProduct = state.cart[index];
-        if (removedProduct) {
-          state.totalPrice -= removedProduct.price * removedProduct.quantity;
+      const productId = action.payload;
+      const existingProduct = state.cart.find((p) => p.id === productId);
+
+      if (existingProduct) {
+        if (existingProduct.quantity > 1) {
+          existingProduct.quantity -= 1;
+        } else {
+          state.cart = state.cart.filter((p) => p.id !== productId);
         }
-        state.cart.splice(index, 1);
       }
+
+      state.totalPrice = state.cart.reduce((total, p) => total + p.price * p.quantity, 0);
     },
     toggleCart: (state) => {
       state.isCartOpen = !state.isCartOpen;

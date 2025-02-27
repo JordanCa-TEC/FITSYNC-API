@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCart } from "../redux/shopSlice"; 
+import { toggleCart } from "../redux/shopSlice";
 import { Link } from "react-router-dom";
-import {carrito} from "../assets/assets"; 
+import { carrito } from "../assets/assets";
+import Cart from "../components/Cart";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,11 @@ const Navbar = () => {
       <button className="cart-button" onClick={() => dispatch(toggleCart())}>
         <img src={carrito} alt="shopping cart" />
       </button>
-      {isCartOpen && <div className="cart-dropdown">Carrito abierto</div>} 
+      {isCartOpen && (
+        <div className="cart-dropdown">
+          <Cart />
+        </div>
+      )}
     </nav>
   );
 };

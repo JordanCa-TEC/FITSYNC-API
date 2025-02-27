@@ -5,13 +5,10 @@ import { removeFromCart, toggleCart } from "../redux/shopSlice";
 const Cart = () => {
   const dispatch = useDispatch();
   
-  const shopState = useSelector((state) => state.shop || {});  
-  const { cart = [], totalPrice = 0, isCartOpen = false } = shopState;
-
-  console.log("Estado completo de Redux:", shopState);
-  console.log("Carrito en Redux:", cart);
-  console.log("Total Price en Redux:", totalPrice);
-  console.log("isCartOpen en Redux:", isCartOpen);
+  const { cart = [], isCartOpen = false } = useSelector((state) => state.shop || {});
+  
+  // Calcular el total dinámicamente en lugar de depender de Redux (opcional)
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
   if (!isCartOpen) return null;
 
@@ -36,7 +33,7 @@ const Cart = () => {
             <p>El carrito está vacío</p>
           )}
         </ul>
-        <h3>Total: s/.{totalPrice}</h3>
+        <h3>Total: s/.{totalPrice.toFixed(2)}</h3>
       </div>
     </div>
   );
