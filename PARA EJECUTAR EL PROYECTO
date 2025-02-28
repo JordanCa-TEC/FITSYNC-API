@@ -19,3 +19,6 @@ Servidores configurados:
 Accede al Frontend en: http://localhost:3000
 
 Accede al Backend en: http://localhost:5000 (o el puerto configurado).
+
+
+Si uso pawershell // $env:NODE_OPTIONS="--openssl-legacy-provider"; npm run dev

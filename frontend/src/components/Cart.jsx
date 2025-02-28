@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, toggleCart } from "../redux/shopSlice";
+import { toggleCart, removeFromCart } from "../redux/shopSlice"; 
 
 const Cart = () => {
   const dispatch = useDispatch();
-  
-  const { cart = [], isCartOpen = false } = useSelector((state) => state.shop || {});
-  
-  // Calcular el total dinámicamente en lugar de depender de Redux (opcional)
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
+  // Corrección: Extraer valores por separado
+  const cart = useSelector((state) => state.shop.cart);
+  const isCartOpen = useSelector((state) => state.shop.isCartOpen);
+
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (!isCartOpen) return null;
 
@@ -17,22 +18,23 @@ const Cart = () => {
       <div className="cart__content">
         <button className="cart__close" onClick={() => dispatch(toggleCart())}>✖</button>
         <h2>Carrito de Compras</h2>
-        <ul>
-          {cart.length > 0 ? (
-            cart.map((item) => (
+        {cart.length > 0 ? (
+          <ul>
+            {cart.map((item) => (
               <li key={item.id}>
-                <img src={item.image} alt={item.name} />
+                <img src={item.image || "/placeholder.jpg"} alt={item.name} />
                 <div>
                   <h3>{item.name}</h3>
-                  <p>s/.{item.price}</p>
+                  <p>Precio: s/.{item.price.toFixed(2)}</p>
+                  <p>Cantidad: {item.quantity}</p>
                   <button onClick={() => dispatch(removeFromCart(item.id))}>Eliminar</button>
                 </div>
               </li>
-            ))
-          ) : (
-            <p>El carrito está vacío</p>
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <p>El carrito está vacío</p>
+        )}
         <h3>Total: s/.{totalPrice.toFixed(2)}</h3>
       </div>
     </div>

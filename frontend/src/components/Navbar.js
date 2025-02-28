@@ -7,7 +7,9 @@ import Cart from "../components/Cart";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const isCartOpen = useSelector((state) => state.shop.isCartOpen); // Verifica si el carrito está abierto
+  const isCartOpen = useSelector((state) => state.shop.isCartOpen);
+
+  console.log("Estado en Navbar:", isCartOpen);
 
   return (
     <nav className="navbar">

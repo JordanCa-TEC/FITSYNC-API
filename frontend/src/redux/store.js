@@ -3,10 +3,9 @@ import shopReducer from "./shopSlice";
 
 const store = configureStore({
   reducer: {
-    shop: shopReducer, 
+    shop: shopReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
-
-console.log("Redux Store:", store);
 
 export default store;
