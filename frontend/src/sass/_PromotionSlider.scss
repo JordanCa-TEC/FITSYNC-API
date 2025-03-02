@@ -10,14 +10,15 @@
 
   .promotion-slider__box {
     display: flex;
-    width: 50%;
+    width: 60%;
   }
 
   /* Caja de texto: título, beneficios y botón de contacto */
   &__text-box {
     flex: 1;
+
     h2 {
-      font-size: 2.7em;
+      font-size: 2 rem;
       font-weight: bold;
       margin-bottom: 30px;
       .highlight {
@@ -52,6 +53,14 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+
+      &:hover {
+        transform: scale(1.1); 
+      }
+    
+      &:active {
+        transform: scale(1.2); 
+      }
     }
   }
 

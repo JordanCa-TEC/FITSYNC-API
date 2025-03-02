@@ -63,6 +63,14 @@
                     border-radius: 8px;
                     cursor: pointer;
                     font-weight: bold;
+
+                    &:hover {
+                        transform: scale(1.1); 
+                      }
+                    
+                    &:active {
+                        transform: scale(1.2); 
+                    }
                 }
             }
             .shop__item--1 { grid-area: 1 / 1 / 2 / 2; }

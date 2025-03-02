@@ -11,7 +11,7 @@
     text-align: center;
     display: flex;
     h1 {
-      font-size: 4.5rem;
+      font-size: 3.5rem;
       margin-bottom: 20px;
       text-align: left;
       padding-left: 0.5em;
@@ -50,16 +50,6 @@
       font-size: 2.5rem;
       margin-bottom: 40px;
     }
-    /*
-    .Service__cta {
-      background-color: $secondary-color;
-      padding: 15px 30px;
-      border: none;
-      cursor: pointer;
-      color: $primary-color;
-      font-weight: bold;
-      margin-top: 20px;
-    } */
 
     .Promocion__title {
       @extend h2;

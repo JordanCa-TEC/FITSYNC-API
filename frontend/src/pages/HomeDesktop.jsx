@@ -1,5 +1,4 @@
 import React from 'react';
-import '../sass/_homeDesktop.scss';
 import PromotionSlider from '../components/PromotionSlider';
 import { phone_home,promo_01, promo_02, promo_03 } from '../assets/assets';
 

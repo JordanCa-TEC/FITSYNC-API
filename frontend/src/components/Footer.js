@@ -1,5 +1,4 @@
 import React from 'react';
-import '../sass/_Footer.scss';
 import { logo, whatsappIcon, tiktokIcon, instagramIcon, facebookIcon } from '../assets/assets.js';
 
 const Footer = () => {

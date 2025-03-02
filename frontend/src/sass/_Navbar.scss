@@ -34,9 +34,32 @@
           padding: 1.3em 1.3em;
           cursor: pointer;
           font-weight: bold;
+
+          &:hover {
+            transform: scale(1.1); 
+          }
+        
+          &:active {
+            transform: scale(1.2); 
+          }
         }
         img {
           width: 2.2em;
+        }
+      }
+
+      .cart__button {
+        padding: 0.5em;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      
+        &:hover {
+          transform: scale(1.1); 
+        }
+      
+        &:active {
+          transform: scale(1.2); 
         }
       }
     }
