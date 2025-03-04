@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toggleCart, removeFromCart, addToCart } from "../redux/shopSlice"; 
 import { trash } from "../assets/assets";
 //import '../sass/_cart.scss';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Corrección: Extraer valores por separado
   const cart = useSelector((state) => state.shop.cart);
@@ -40,7 +42,7 @@ const Cart = () => {
           <p>El carrito está vacío</p>
         )}
         <h3>Total: s/.{totalPrice.toFixed(2)}</h3>
-        <button className="cart__buy">Ir a comprar</button>
+        <button className="cart__buy"onClick={() => navigate("/checkoutshop")}>Ir a comprar</button>
       </div>
     </div>
   );
