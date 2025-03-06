@@ -11,56 +11,77 @@ const CheckoutShop = () => {
 
   return (
     <div className="checkout">
-      <div className="checkout-form">
-        <h2>Resumen de la compra</h2>
-        <form>
-          <label>N° de Tarjeta:</label>
-          <input type="text" />
+      <h2 className="checkout-title">Resumen de la compra</h2>
 
-          <label>Caducidad:</label>
-          <input type="text" />
+      <div className="checkout-content">
+        <div className="checkout-form">
+          <form>
+            <section>
+              <label>N° de Tarjeta:</label>
+              <input type="text" />
+            </section>
 
-          <label>CVV:</label>
-          <input type="text" />
+            <section>
+              <label>Caducidad:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+              <label>CVV:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+              <label>Nombre del titular:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+              <label>Dirección:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+              <label>Ciudad:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+              <label>Provincia:</label>
+              <input type="text" />
+            </section>
+            
+            <section>
+            <label>Código de Promoción:</label>
+            <input type="text" />
+            </section>
+            
+          </form>
+        </div>
 
-          <label>Nombre del titular:</label>
-          <input type="text" />
-
-          <label>Dirección:</label>
-          <input type="text" />
-
-          <label>Ciudad:</label>
-          <input type="text" />
-
-          <label>Provincia:</label>
-          <input type="text" />
-
-          <label>Codigo de Promoción:</label>
-          <input type="text" />
-
-          <button type="submit" className="checkout-button">Comprar</button>
-          <button type="submit" className="cancel-button">Cancelar</button>
-        </form>
+        <div className="cart-summary">
+          {cart.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} />
+              <div className="item-info">
+                <p>{item.name}</p>
+                <p>Cantidad: {item.quantity}</p>
+                <p className="price">Precio unitario: s/. {item.price.toFixed(2)}</p>
+                <p className="price">Total: s/. {(item.price * item.quantity).toFixed(2)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="totals">
+              <p>Descuentos: 0</p>
+              <p>Subtotal: s/. {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+              <p>Total: s/. {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+        </div>
       </div>
 
-      <div className="cart-summary">
-        {cart.map((item) => (
-          <div key={item.id} className="cart-item">
-            <img src={item.image} alt={item.name} />
-            <div className="item-info">
-              <p>{item.name}</p>
-              <p>Cantidad: {item.quantity}</p>
-              <p className="price">Precio unitario: s/. {item.price.toFixed(2)}</p>
-              <p className="price">Total: s/. {(item.price * item.quantity).toFixed(2)}</p>
-            </div>
-          </div>
-        ))}
-
-        <div className="totals">
-          <p>Descuentos: 0</p>
-          <p>Subtotal: s/. {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
-          <p>Total: s/. {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
-        </div>
+      <div className="checkout-buttons">
+        <button type="submit" className="checkout-button">Comprar</button>
+        <button type="submit" className="cancel-button">Cancelar</button>
       </div>
     </div>
   );
