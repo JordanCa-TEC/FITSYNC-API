@@ -41,11 +41,15 @@ const shopSlice = createSlice({
 
       state.totalPrice = state.cart.reduce((total, p) => total + p.price * p.quantity, 0);
     },
+    clearCart: (state) => {
+      state.cart = [];
+      state.totalPrice = 0;
+    },
     toggleCart: (state) => {
       state.isCartOpen = !state.isCartOpen;
     },
   },
 });
 
-export const { setProducts, addToCart, removeFromCart, toggleCart } = shopSlice.actions;
+export const { setProducts, addToCart, removeFromCart, clearCart, toggleCart } = shopSlice.actions;
 export default shopSlice.reducer;
