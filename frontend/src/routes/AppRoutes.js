@@ -7,6 +7,8 @@ import ShopDesktop from '../pages/ShopDesktop';
 import CheckoutShop from "../pages/CheckoutShop";
 import ContactDesktop from '../pages/ContactDesktop';
 import ProductDetail from '../pages/ProductDetail';
+import LoginDesktop from '../pages/LoginDesktop';
+import CreateDesktop from '../pages/CreateDesktop';
 
 const AppRoutes = () => {
   return (
@@ -19,6 +21,8 @@ const AppRoutes = () => {
         <Route path="/shop/product/:id" element={<ProductDetail />} />
         <Route path="/checkoutshop" element={<CheckoutShop />} />
         <Route path="/contact" element={<ContactDesktop />} />
+        <Route path="/login" element={<LoginDesktop />} />
+        <Route path="/record" element={<CreateDesktop />} />
       </Routes>
     </MainLayout>
   );
