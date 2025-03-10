@@ -9,6 +9,7 @@ import ContactDesktop from '../pages/ContactDesktop';
 import ProductDetail from '../pages/ProductDetail';
 import LoginDesktop from '../pages/LoginDesktop';
 import CreateDesktop from '../pages/CreateDesktop';
+import PrivateRoute from "../components/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,10 @@ const AppRoutes = () => {
         <Route path="/contact" element={<ContactDesktop />} />
         <Route path="/login" element={<LoginDesktop />} />
         <Route path="/record" element={<CreateDesktop />} />
+        {/* Rutas protegidas dentro de PrivateRoute */}
+        <Route element={<PrivateRoute />}>
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+        </Route>
       </Routes>
     </MainLayout>
   );

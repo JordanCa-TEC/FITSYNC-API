@@ -3,14 +3,34 @@ import { useNavigate } from "react-router-dom";
 import { logo_Alternative } from "../assets/assets";
 
 const Login = () => {
-  const navigate = useNavigate(); // Se agregó la instancia de navigate
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // Estado para manejar errores
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Usuario:", user, "Contraseña:", password);
-    // Aquí puedes manejar la autenticación
+    setError(""); // Limpiar errores anteriores
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: user, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al iniciar sesión");
+      }
+
+      // Guardar usuario en localStorage y redirigir
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/dashboard"); // Cambia "/dashboard" por la ruta que quieras
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -21,19 +41,20 @@ const Login = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <label>Usuario</label>
-          <input 
-            type="text" 
-            value={user} 
-            onChange={(e) => setUser(e.target.value)} 
-            required 
+          <input
+            type="text"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
           />
           <label>Contraseña</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
+          {error && <p className="error">{error}</p>} {/* Mostrar error si existe */}
           <div className="buttons">
             <button type="submit" className="accept">Aceptar</button>
             <button type="button" className="register" onClick={() => navigate("/record")}>
