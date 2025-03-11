@@ -86,5 +86,30 @@
         }
       }
     }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    
+      input {
+        flex: 1;
+        padding-right: 40px; // Espacio para el ícono
+      }
+    
+      .toggle-password {
+        position: absolute;
+        right: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        color: #666;
+    
+        &:hover {
+          color: #000;
+        }
+      }
+    }    
   }
   

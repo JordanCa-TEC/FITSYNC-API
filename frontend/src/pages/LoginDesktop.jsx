@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 import { logo_Alternative } from "../assets/assets";
 
 const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar contraseña
   const [error, setError] = useState(""); // Estado para manejar errores
 
   const handleSubmit = async (e) => {
@@ -47,13 +49,24 @@ const Login = () => {
             onChange={(e) => setUser(e.target.value)}
             required
           />
+
           <label>Contraseña</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+
           {error && <p className="error">{error}</p>} {/* Mostrar error si existe */}
           <div className="buttons">
             <button type="submit" className="accept">Aceptar</button>
@@ -68,3 +81,4 @@ const Login = () => {
 };
 
 export default Login;
+

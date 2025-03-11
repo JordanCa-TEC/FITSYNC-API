@@ -10,12 +10,13 @@ import ProductDetail from '../pages/ProductDetail';
 import LoginDesktop from '../pages/LoginDesktop';
 import CreateDesktop from '../pages/CreateDesktop';
 import PrivateRoute from "../components/ProtectedRoute";
+import UserDashboard from '../pages/UserDashboard';
 
 const AppRoutes = () => {
   return (
     <MainLayout> {/* MainLayout envuelve las rutas */}
       <Routes>
-        {/* Define las rutas principales */}
+        {/* Rutas principales */}
         <Route path="/" element={<HomeDesktop />} />
         <Route path="/about" element={<AboutDesktop />} />
         <Route path="/shop" element={<ShopDesktop />} />
@@ -26,7 +27,7 @@ const AppRoutes = () => {
         <Route path="/record" element={<CreateDesktop />} />
         {/* Rutas protegidas dentro de PrivateRoute */}
         <Route element={<PrivateRoute />}>
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/userdashboard" element={<UserDashboard />} />
         </Route>
       </Routes>
     </MainLayout>
