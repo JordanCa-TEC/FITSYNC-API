@@ -8,7 +8,7 @@ const HomeDesktop = () => {
 
       <section className="home__hero">
         <div className='home__hero--box'>
-        <img src={phone_home} alt="FitSync Gym Image" className="home__phone-image" />
+        <img src={phone_home} alt="FitSync" className="home__phone-image" />
         <h1><spawn className="highcolor_Gold">Controla</spawn> tu entrenamiento en la palma de <spawn className="highcolor_Gold">tu mano</spawn></h1>
         </div>
       </section>
