@@ -12,7 +12,7 @@ console.log("Estado inicial de Redux antes del render:", store.getState());
 
 
 root.render(
-  <Provider store={store}>
+  <Provider store={store} future={{ v7_relativeSplatPath: true }}>
     <App />
   </Provider>
 );

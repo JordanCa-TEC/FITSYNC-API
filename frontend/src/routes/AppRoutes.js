@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route path="/record" element={<CreateDesktop />} />
         {/* Rutas protegidas dentro de PrivateRoute */}
         <Route element={<PrivateRoute />}>
-          <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/userdashboard/*" element={<UserDashboard />} />
         </Route>
       </Routes>
     </MainLayout>
