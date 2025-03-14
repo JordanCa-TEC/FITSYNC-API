@@ -7,8 +7,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar contraseña
-  const [error, setError] = useState(""); // Estado para manejar errores
+  const [showPassword, setShowPassword] = useState(false); 
+  const [error, setError] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,15 +22,23 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log("Respuesta del servidor:", data); // <-- LOG PARA DEPURAR
 
       if (!response.ok) {
-        throw new Error(data.error || "Error al iniciar sesión");
+        throw new Error(data?.error || "Error al iniciar sesión");
+      }
+
+      if (!data.user) {
+        throw new Error("El servidor no envió datos del usuario");
       }
 
       // Guardar usuario en localStorage y redirigir
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/dashboard"); // Cambia "/dashboard" por la ruta que quieras
+      console.log("Usuario guardado en localStorage:", data.user); // <-- LOG PARA VERIFICAR
+
+      navigate("/userdashboard"); // Asegúrate de que esta ruta coincide con AppRoutes
     } catch (err) {
+      console.error("Error en login:", err.message); // <-- LOG PARA ERRORES
       setError(err.message);
     }
   };
@@ -81,4 +89,3 @@ const Login = () => {
 };
 
 export default Login;
-
