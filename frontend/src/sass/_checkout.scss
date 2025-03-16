@@ -1,0 +1,258 @@
+@import "variables"; // Asegúrate de importar tu archivo de variables
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 160px;
+
+
+  .checkout-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .checkout-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .checkout-form {
+    flex: 1;
+    min-width: 320px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    section {
+      padding-bottom: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      color: $primary-color;
+      font-size: 0.9em;
+    }
+
+    input {
+      width: 100%;
+      border: 2px solid $secondary-color;
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #fff;
+      box-sizing: border-box;
+      transition: border 0.3s ease-in-out;
+
+      &:focus {
+        border-color: darken($primary-color, 15%);
+        outline: none;
+      }
+    }
+
+    .aplicar__promo {
+      width: 25%;
+      padding: 12px;
+      margin-top: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1); 
+      }
+    
+      &:active {
+        transform: scale(1.2); 
+      }
+    }
+  }
+
+  .cart-summary {
+    flex-basis: 45%;
+    min-width: 280px;
+    max-width: 380px;
+    padding: 15px;
+    border: 2px solid $background-light-03;
+    border-radius: 8px;
+    background-color: $background-light;
+    overflow-y: auto;
+    max-height: 475px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid lighten($primary-color, 30%);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: $primary-color;
+      }
+
+      .price {
+        font-weight: bold;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .totals {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      display: inline-block;
+      background-color: $secondary-color;
+      width: 300px;
+      padding: 8px;
+    }
+  }
+
+  .checkout-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+
+    .checkout-button,
+    .cancel-button {
+      width: 20%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .checkout-button {
+      background-color: $primary-color;
+      color: #fff;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: scale(1.1); 
+      }
+
+      &:active {
+        transform: scale(1.2); 
+      }
+    }
+
+    .cancel-button {
+      background-color: $secondary-color;
+      color: $primary-color;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: scale(1.1); 
+      }
+
+      &:active {
+        transform: scale(1.2); 
+      }
+    }
+  }
+}
+
+// mensaje de alerta
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); // Fondo oscuro con transparencia
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Asegura que esté por encima de todo
+
+  .popup-message {
+    background: $secondary-color;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $primary-color;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }  
+}
+
+.error-message {
+  color: red;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 25px;
+  font-weight: bold;
+}
+
+
+// 📌 Responsivo para móviles
+@media (max-width: 768px) {
+  .checkout-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .checkout-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cart-summary {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 15px;
+  }
+
+  .checkout-buttons {
+    flex-direction: column;
+    width: 100%;
+
+    .checkout-button,
+    .cancel-button {
+      width: 100%;
+    }
+  }
+}

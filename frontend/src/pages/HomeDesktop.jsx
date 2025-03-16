@@ -1,5 +1,4 @@
 import React from 'react';
-import '../sass/_homeDesktop.scss';
 import PromotionSlider from '../components/PromotionSlider';
 import { phone_home,promo_01, promo_02, promo_03 } from '../assets/assets';
 
@@ -9,7 +8,7 @@ const HomeDesktop = () => {
 
       <section className="home__hero">
         <div className='home__hero--box'>
-        <img src={phone_home} alt="FitSync Gym Image" className="home__phone-image" />
+        <img src={phone_home} alt="FitSync" className="home__phone-image" />
         <h1><spawn className="highcolor_Gold">Controla</spawn> tu entrenamiento en la palma de <spawn className="highcolor_Gold">tu mano</spawn></h1>
         </div>
       </section>

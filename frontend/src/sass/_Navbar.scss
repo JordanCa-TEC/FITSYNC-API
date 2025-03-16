@@ -19,24 +19,58 @@
       &__logo {
         width: 8%;
       }
-      &__menu {
+      &__menu-Principal {
         display: flex;
         align-items: center;
-        list-style: none;
         gap: 25px;
-        
+        list-style: none;
+
         a {
-          font-size: 1.2em;
+          font-size: 1em;
           text-decoration: none;
           display: flex;
           align-items: center;
           color: $text-color;
-          padding: 1.3em 1.3em;
+          padding: 0.5em 0.5em;
           cursor: pointer;
           font-weight: bold;
+
+          &:hover {
+            transform: scale(1.1); 
+          }
+        
+          &:active {
+            transform: scale(1.2); 
+          }
         }
         img {
           width: 2.2em;
+        }
+      }
+
+      &__menu-icon{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        list-style: none;
+
+        img {
+          width: 80%;
+        }
+      }
+
+      .cart__button {
+        padding: 0.5em;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      
+        &:hover {
+          transform: scale(1.1); 
+        }
+      
+        &:active {
+          transform: scale(1.2); 
         }
       }
     }

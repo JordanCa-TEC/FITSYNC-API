@@ -12,7 +12,7 @@ export const useProductDetail = (id) => {
       setError(null);
 
       try {
-        const response = await axios.get(`http://localhost:5000/products/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error('Error al obtener el producto:', error);
