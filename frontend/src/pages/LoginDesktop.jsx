@@ -32,11 +32,12 @@ const Login = () => {
         throw new Error("El servidor no envió datos del usuario");
       }
 
-      // Guardar usuario en localStorage y redirigir
+      // Guardar usuario en localStorage
       localStorage.setItem("user", JSON.stringify(data.user));
       console.log("Usuario guardado en localStorage:", data.user); // <-- LOG PARA VERIFICAR
 
-      navigate("/userdashboard"); // Asegúrate de que esta ruta coincide con AppRoutes
+      // Recargar la página para actualizar la sesión
+      window.location.href = "/userdashboard"; 
     } catch (err) {
       console.error("Error en login:", err.message); // <-- LOG PARA ERRORES
       setError(err.message);

@@ -2,26 +2,18 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const ProtectedRoute = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    console.log("Usuario en localStorage al cargar ProtectedRoute:", storedUser); // <-- LOG
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    } catch (error) {
-      console.error("Error al recuperar usuario:", error);
-      setUser(null);
-    } finally {
-      setIsLoading(false);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
     }
   }, []);
-
-  if (isLoading) {
-    return <p>Cargando...</p>;
-  }
 
   return user ? <Outlet /> : <Navigate to="/login" replace />;
 };

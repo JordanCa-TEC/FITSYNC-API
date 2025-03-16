@@ -1,0 +1,46 @@
+@import 'variables';
+
+.user-menu {
+    position: absolute;
+    top: 90px;
+    right: 140px;
+    background: $secondary-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 150px;
+    z-index: 100;
+    padding: 10px;
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #181818;
+  
+        &:last-child {
+          border-bottom: none;
+        }
+  
+        a, button {
+          text-decoration: none;
+          color: $primary-color;
+          font-size: 1.2em;
+          background: none;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          display: block;
+  
+          &:hover {
+            color: #fff;
+            background: $background-gray;
+          }
+        }
+      }
+    }
+  }
+  
