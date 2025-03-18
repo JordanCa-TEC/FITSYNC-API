@@ -20,5 +20,8 @@ import productHybro from '../assets/product-hydro-fitsync.webp';
 import Banner_fitsyncMKT from '../assets/Banner_005_Medical_Syntrax_001_3-2048x696.jpg';
 import trash from '../assets/trash.svg';
 import backgroundLogin from '../assets/background_gym_02.jpg';
+import guia from '../assets/Guia-ejercicio.png';
+import entrenador from '../assets/entrenador.jpg';
+import nutricionista from '../assets/nutricionista.jpg';
 
-export { backgroundLogin,trash,Banner_fitsyncMKT,productHybro,gpsFitsync,emailFitsync,whatsappIconMain,gymnasioInterior,logo, logo_Alternative, phone_home, carrito, account_login, promo_01, promo_02, promo_03, facebookIcon, instagramIcon, tiktokIcon, whatsappIcon, fitsync__bio };
+export { guia,entrenador,nutricionista,backgroundLogin,trash,Banner_fitsyncMKT,productHybro,gpsFitsync,emailFitsync,whatsappIconMain,gymnasioInterior,logo, logo_Alternative, phone_home, carrito, account_login, promo_01, promo_02, promo_03, facebookIcon, instagramIcon, tiktokIcon, whatsappIcon, fitsync__bio };

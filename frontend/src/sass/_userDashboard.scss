@@ -3,11 +3,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+    background-color: #fff;
+
     .main-content {
       display: flex;
       flex-direction: column;
-      width: 100%;
+      width: 60%;
     }
   }
   
@@ -32,37 +33,148 @@
   
 
 
-  // trainersList
-  .trainers-list {
+// trainersList - Estilos exclusivos de este componente
+.trainers-dashboard {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+// Sección de Entrenadores
+.trainers-list {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  padding: 1rem;
+
+  .title {
+    background: #e3b400;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+
+  .trainers-container {
     display: flex;
-    flex-direction: column;
-  
-    .trainers-container {
-      display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .trainer {
+    position: relative;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid white;
     }
-  
-    .trainer {
-      position: relative;
-  
-      .status {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-  
-        &.online {
-          background-color: green;
-        }
-  
-        &.offline {
-          background-color: red;
-        }
+
+    .status {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid white;
+
+      &.online {
+        background-color: green;
+      }
+
+      &.offline {
+        background-color: red;
       }
     }
   }
-  
+}
+
+// Sección de Horario de Eventos
+.event-schedule {
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+
+  .title {
+    background: #e3b400;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+
+  .events-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+
+    .event-name {
+      font-weight: bold;
+      color: black;
+    }
+
+    .event-time {
+      color: #555;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+
+// eventSchedule
+.event-schedule {
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  padding: 1rem;
+
+  .title {
+    background: #e3b400;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .events {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+  }
+
+  .event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+
+    .event-name {
+      font-size: 1rem;
+    }
+
+    .event-time {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  }
+}
+
   
 
 
@@ -92,14 +204,41 @@
   // menuOptions
   .menu-options {
     display: flex;
+    height: 100%;
+    padding: 1.2em 1.2em;
     justify-content: space-around;
+    
   
     button {
-      background-color: black;
-      color: white;
-      padding: 10px;
+      width: 25em;
+      height: 20em;
       border: none;
       cursor: pointer;
+      border-radius: 2em;
+    }
+
+    h2{
+      font-size: 2em;
+      color: white;
+    }
+
+    .menu-options__button-01{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/Guia-ejercicio.png');
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .menu-options__button-02{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/entrenador.jpg');
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .menu-options__button-03{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/nutricionista.jpg');
+      background-size: cover; 
+      background-position: center;
+      background-repeat: no-repeat;
     }
   }
   
