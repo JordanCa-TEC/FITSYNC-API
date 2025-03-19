@@ -1,14 +1,15 @@
 // dashboard
 .dashboard-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    flex-direction:column;
     background-color: #fff;
 
     .main-content {
       display: flex;
-      flex-direction: column;
-      width: 60%;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
     }
   }
   
@@ -33,7 +34,7 @@
   
 
 
-// trainersList - Estilos exclusivos de este componente
+// trainersList 
 .trainers-dashboard {
   display: flex;
   flex-direction: column;
@@ -134,7 +135,7 @@
   }
 }
 
-
+/*
 // eventSchedule
 .event-schedule {
   display: flex;
@@ -184,28 +185,65 @@
     flex-direction: column;
   }  
   
+*/
 
-
-  // daySummary
-  .day-summary {
-    text-align: center;
+// DaySummary
+.day-summary {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   
-    .icon {
-      width: 50px;
-      height: 50px;
-      background-color: yellow;
-      border-radius: 50%;
+  h3 {
+    color: #f1c40f;
+    background: #2c2c2c;
+    padding: 5px;
+    border-radius: 3px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .icon {
+    background: #f1c40f;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 40px;
+      height: 40px;
     }
   }
-  
-  
+}
 
-  
-  // menuOptions
+
+ // menuOptions 
+  .dashboard-container-second {
+    display: flex;
+    flex-direction: column;
+  }
+
+ 
   .menu-options {
     display: flex;
     height: 100%;
-    padding: 1.2em 1.2em;
+    width: 100%;
+    padding: 1.2em 2em 2em;
     justify-content: space-around;
     
   
@@ -241,4 +279,3 @@
       background-repeat: no-repeat;
     }
   }
-  
