@@ -6,7 +6,7 @@ const TrainersList = () => {
   const { trainers, events } = useSelector((state) => state.trainersList);
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container-one">
       {/* Entrenadores Activos */}
       <div className="trainers-list">
         <h3 className="title">Entrenadores activos en el Gymnasio</h3>
