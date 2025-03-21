@@ -23,10 +23,6 @@ import backgroundLogin from '../assets/background_gym_02.jpg';
 import guia from '../assets/Guia-ejercicio.png';
 import entrenador from '../assets/entrenador.jpg';
 import nutricionista from '../assets/nutricionista.jpg';
-import brazo from '../assets/brazo.webp';
-import espalda from '../assets/espalda.webp';
-import gluteos from '../assets/gluteos.webp';
-import pecho from '../assets/pecho.webp';
-import piernas from '../assets/piernas.webp';
 
-export { piernas,pecho,gluteos,espalda,brazo,guia,entrenador,nutricionista,backgroundLogin,trash,Banner_fitsyncMKT,productHybro,gpsFitsync,emailFitsync,whatsappIconMain,gymnasioInterior,logo, logo_Alternative, phone_home, carrito, account_login, promo_01, promo_02, promo_03, facebookIcon, instagramIcon, tiktokIcon, whatsappIcon, fitsync__bio };
+
+export { guia,entrenador,nutricionista,backgroundLogin,trash,Banner_fitsyncMKT,productHybro,gpsFitsync,emailFitsync,whatsappIconMain,gymnasioInterior,logo, logo_Alternative, phone_home, carrito, account_login, promo_01, promo_02, promo_03, facebookIcon, instagramIcon, tiktokIcon, whatsappIcon, fitsync__bio };

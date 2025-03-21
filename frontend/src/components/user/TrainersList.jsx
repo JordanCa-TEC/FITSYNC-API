@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../../sass/_userDashboard.scss"; 
 
+
 const TrainersList = () => {
   const { trainers, events } = useSelector((state) => state.trainersList);
 
@@ -25,13 +26,17 @@ const TrainersList = () => {
         <h3 className="title">Horario de Evento</h3>
         <div className="events">
           {events.map((event, index) => (
-            <div key={index} className="event">
-              <span className="event-name">{event.name}</span>
-              <span className="event-time">{event.time}</span>
-            </div>
+            <React.Fragment key={index}>
+              <div className="event">
+                <span className="event-name">{event.name}</span>
+                <span className="event-time">{event.time}</span>
+              </div>
+              {index < events.length - 1 && <div className="event-divider"></div>}
+            </React.Fragment>
           ))}
         </div>
       </div>
+
     </div>
   );
 };

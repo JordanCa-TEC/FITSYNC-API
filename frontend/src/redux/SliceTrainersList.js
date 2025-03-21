@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
   trainers: [
-    { id: 1, name: "Juan", photo: "/juan.jpg", active: true },
-    { id: 2, name: "Carlos", photo: "/carlos.jpg", active: true }
+    { id: 1, name: "Juan", photo: "/entrenador-perfil.jpg", active: true },
+    { id: 2, name: "Carlos", photo: "/entrenador-perfil-2.jpg", active: true }
   ],
   events: [
     { name: "Aérobiocos", time: "04:00 p.m." },
