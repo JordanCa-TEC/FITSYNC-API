@@ -23,7 +23,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    //max-width: 700px;
     height: 350px;
     overflow: hidden;
     margin: 60px auto; // Centrar
@@ -49,9 +48,8 @@
     border-radius: 50%;
     overflow: hidden;
     background: #ddd;
-    border: 4px solid white;
     position: absolute;
-    bottom: -60px; // Mitad sobre la imagen, mitad sobre el fondo blanco
+    bottom: -60px; // Mitad sobre la imagen
   }
   
   .profile-avatar img {
@@ -65,17 +63,18 @@
     height: 130px;
     background-color: white;
     text-align: center;
-    padding-top: 50px; // Ajuste para que el texto no toque el avatar
+    padding-top: 40px; // Ajuste para que el texto no toque el avatar
     color: $primary-color;
   }
   
   .profile-info h2 {
-    font-size: 18px;
+    font-size: 2.2em;
     margin-bottom: 5px;
   }
   
   .profile-info p {
-    font-size: 14px;
+    font-size: 1em;
+    margin: 2px;
     font-weight: bold;
   }
   
