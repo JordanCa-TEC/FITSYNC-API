@@ -11,6 +11,7 @@ import LoginDesktop from '../pages/LoginDesktop';
 import CreateDesktop from '../pages/CreateDesktop';
 import PrivateRoute from "../components/ProtectedRoute";
 import UserDashboard from '../pages/UserDashboard';
+import ChatWindowsEN from '../pages/ChatWindowsEN';
 
 const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         {/* Rutas protegidas dentro de PrivateRoute */}
         <Route element={<PrivateRoute />}>
           <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path='/chatwindowsen' element={<ChatWindowsEN />} />
         </Route>
       </Routes>
     </MainLayout>
