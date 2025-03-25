@@ -21,19 +21,65 @@
   // profileCard
   .profile-card {
     display: flex;
-    align-items: center;
-  
-    .profile-avatar {
-      width: 50px;
-      height: 50px;
-      background-color: gray;
-      border-radius: 50%;
-    }
-  
-    .profile-info {
-      margin-left: 10px;
-    }
+    flex-direction: column;
+    width: 100%;
+    //max-width: 700px;
+    height: 350px;
+    overflow: hidden;
+    margin: 60px auto; // Centrar
   }
+  
+  /* 🔹 Parte superior con imagen de fondo */
+  .profile-background {
+    position: relative;
+    height: 300px; // Mitad superior
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/Gymnasio-Fitsync.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  /* 🔹 Avatar centrado y sobrepuesto */
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ddd;
+    border: 4px solid white;
+    position: absolute;
+    bottom: -60px; // Mitad sobre la imagen, mitad sobre el fondo blanco
+  }
+  
+  .profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 🔹 Parte inferior con información */
+  .profile-info {
+    height: 130px;
+    background-color: white;
+    text-align: center;
+    padding-top: 50px; // Ajuste para que el texto no toque el avatar
+    color: $primary-color;
+  }
+  
+  .profile-info h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .profile-info p {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  
   
 
 
