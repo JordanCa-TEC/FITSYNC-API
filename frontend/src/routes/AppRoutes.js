@@ -29,7 +29,7 @@ const AppRoutes = () => {
         {/* Rutas protegidas dentro de PrivateRoute */}
         <Route element={<PrivateRoute />}>
           <Route path="/userdashboard" element={<UserDashboard />} />
-          <Route path='/chatwindowsen' element={<ChatWindowsEN />} />
+          <Route path='/Entrenador' element={<ChatWindowsEN />} />
         </Route>
       </Routes>
     </MainLayout>

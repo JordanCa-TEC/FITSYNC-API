@@ -13,6 +13,18 @@
     background-color: $boton-cancelar;
   }
   
+  .trainer-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .trainer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .chat-header {
     background-color: $background-light-02;
     padding: 10px;
@@ -24,10 +36,10 @@
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    background-color: $boton-cancelar;
   }
   
   .message {
@@ -39,25 +51,26 @@
   
   .user-message {
     align-self: flex-end;
-    background-color: #ffcc00;
+    background-color: $secondary-color;
   }
   
   .bot-message {
     align-self: flex-start;
-    background-color: #ddd;
+    background-color: $background-light-02;
   }
   
   .chat-input {
     display: flex;
     padding: 10px;
     border-top: 1px solid #ddd;
-    background-color: #f9f9f9;
+    background-color: $background-light-02;
   
     input {
       flex: 1;
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      background-color: #FFF;
     }
   
     button {

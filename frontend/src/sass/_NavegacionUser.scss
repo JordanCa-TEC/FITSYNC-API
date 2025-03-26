@@ -4,24 +4,23 @@
     justify-content: center;
     gap: 10px;
     padding: 10px;
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #ddd;
+
   
     button {
       padding: 8px 16px;
       border: none;
-      background-color: #ddd;
+      background-color: $background-light-03;
       cursor: pointer;
       font-weight: bold;
       border-radius: 5px;
       transition: background 0.3s ease;
   
       &.active {
-        background-color: #ffcc00;
+        background-color: $secondary-color;
       }
   
       &:hover {
-        background-color: #e0e0e0;
+        background-color: $secondary-color;
       }
     }
   }
