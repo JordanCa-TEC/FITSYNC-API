@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const ProtectedRoute = () => {
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    console.log("Usuario en localStorage al cargar ProtectedRoute:", storedUser); // <-- LOG
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
@@ -15,7 +14,9 @@ const ProtectedRoute = () => {
     }
   }, []);
 
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/login" replace />;
+
+  return <Outlet context={{ role: user.role }} />;
 };
 
 export default ProtectedRoute;

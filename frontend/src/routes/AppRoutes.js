@@ -30,6 +30,7 @@ const AppRoutes = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path='/Entrenador' element={<ChatWindowsEN />} />
+          <Route path='/nutricionista' element={<ChatWindowsEN />} />
         </Route>
       </Routes>
     </MainLayout>
