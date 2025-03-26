@@ -1,43 +1,64 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
+const randomResponses = [
+  "Interesante, cuéntame más.",
+  "Eso suena genial, sigue así!",
+  "Gracias por compartirlo!",
+  "¿Tienes alguna otra duda?",
+  "Buen punto, lo tomaré en cuenta.",
+  "¡Eso es motivador!",
+  "Entiendo, podemos trabajar en ello juntos.",
+];
 
 const ChatWindow = () => {
   const [messages, setMessages] = useState([
-    { sender: "Juan", text: "Hola Usuario" },
+    { sender: "Juan", text: "Hola usuario" },
     { sender: "Juan", text: "Te comento unas observaciones del día de hoy." },
   ]);
   const [input, setInput] = useState("");
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const sendMessage = () => {
+    if (input.trim() !== "") {
+      const newMessages = [...messages, { sender: "Tú", text: input }];
+      setMessages(newMessages);
+      setInput("");
+      
+      setTimeout(() => {
+        const randomResponse =
+          randomResponses[Math.floor(Math.random() * randomResponses.length)];
+        setMessages((prevMessages) => [...prevMessages, { sender: "Juan", text: randomResponse }]);
+      }, 1000);
+    }
+  };
 
-    const newMessage = { sender: "Tú", text: input };
-    setMessages([...messages, newMessage]);
-    setInput("");
-
-    // Simular respuesta de IA
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: "Juan", text: "¡Entendido! Sigue esforzándote." }]);
-    }, 1000);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
-    <div className="chat-window bg-gray-100 p-4 rounded-lg w-96">
-      <div className="chat-header font-bold mb-2">Juan | Entrenador</div>
-      <div className="chat-body h-60 overflow-y-auto bg-white p-2 rounded">
+    <div className="chat-window">
+      <div className="chat-header">Juan | Entrenador</div>
+      <div className="chat-messages">
         {messages.map((msg, index) => (
-          <div key={index} className={msg.sender === "Tú" ? "text-right" : "text-left"}>
-            <span className={`inline-block p-2 rounded-lg ${msg.sender === "Tú" ? "bg-yellow-300" : "bg-gray-200"}`}>{msg.text}</span>
+          <div
+            key={index}
+            className={`message ${msg.sender === "Tú" ? "user-message" : "bot-message"}`}
+          >
+            {msg.text}
           </div>
         ))}
       </div>
-      <div className="chat-footer mt-2 flex">
+      <div className="chat-input">
         <input
-          className="flex-grow p-2 border rounded-l"
+          type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="Escribe un mensaje..."
         />
-        <button className="bg-yellow-400 px-4 py-2 rounded-r" onClick={sendMessage}>➤</button>
+        <button onClick={sendMessage}>➤</button>
       </div>
     </div>
   );
