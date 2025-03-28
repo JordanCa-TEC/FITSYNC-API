@@ -1,0 +1,72 @@
+.routine-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  
+    .status-bar {
+      width: 100%;
+      background-color: #ccc;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.3s;
+  
+      &.active {
+        background-color: #ffcc00;
+      }
+    }
+  
+    .exercise-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      background: #f4f4f4;
+      border-radius: 8px;
+  
+      h3 {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  
+    .week-grid {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 20px;
+    }
+  
+    .day-column {
+      flex: 1;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+  
+      h3 {
+        background: #ffcc00;
+        padding: 5px;
+        border-radius: 4px;
+      }
+    }
+  
+    .exercise-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px;
+      background: #ffeeba;
+      border-radius: 4px;
+      cursor: grab;
+      transition: transform 0.2s;
+  
+      &.dragging {
+        opacity: 0.5;
+        transform: scale(1.1);
+      }
+    }
+  }
+  

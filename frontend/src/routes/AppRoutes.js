@@ -12,6 +12,7 @@ import CreateDesktop from '../pages/CreateDesktop';
 import PrivateRoute from "../components/ProtectedRoute";
 import UserDashboard from '../pages/UserDashboard';
 import ChatWindowsEN from '../pages/ChatWindowsEN';
+import CalendarUser from '../pages/CalendarUser';
 
 const AppRoutes = () => {
   return (
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path='/Entrenador' element={<ChatWindowsEN />} />
           <Route path='/nutricionista' element={<ChatWindowsEN />} />
+          <Route path='/usercalendar' element={<CalendarUser/>} />
         </Route>
       </Routes>
     </MainLayout>

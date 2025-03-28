@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const MenuButtons = () => {
   const menuItems = [
     { name: "Inicio", path: "/userdashboard" },
-    { name: "Guía de Rutina", path: "/rutina" },
+    { name: "Guía de Rutina", path: "/usercalendar" },
     { name: "Entrenador", path: "/entrenador" },
     { name: "Nutricionista", path: "/nutricionista" },
   ];
