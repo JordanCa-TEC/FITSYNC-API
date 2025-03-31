@@ -1,72 +1,295 @@
-.routine-calendar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+@import 'variables';
+
+/* Estilos base */
+.routine-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "header header header"
+    "week week week"
+    "calendar exercises exercisesbox";
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  text-align: center;
   
-    .status-bar {
-      width: 100%;
-      background-color: #ccc;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-      transition: background-color 0.3s;
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Sección de semana */
+.week-section {
+  grid-area: week;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.week-container {
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.day-column {
+  flex: 1;
+  padding: 15px;
+  min-height: 200px;
+  border-right: 1px solid #eee;
   
-      &.active {
-        background-color: #ffcc00;
-      }
-    }
+  &:last-child {
+    border-right: none;
+  }
+
+  .day-header {
+    background-color: #FFCC00;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+}
+
+.weekend-day {
+  background-color: #f9f9f9;
   
-    .exercise-palette {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 10px;
-      background: #f4f4f4;
-      border-radius: 8px;
+  .day-header {
+    background-color: #FF9900;
+    color: white;
+  }
+}
+
+.exercise-list {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Botón de guardar rutina */
+.save-routine-button {
+  background-color: $background-light-03;
+  color: $background-gray;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+  width: 100%;
+  margin: 0 auto;
   
-      h3 {
-        width: 100%;
-        text-align: center;
-      }
-    }
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+/* Sección de calendario */
+.calendar-section {
+  grid-area: calendar;
+}
+
+.month-calendar {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   
-    .week-grid {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      margin-top: 20px;
-    }
+  h3 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+}
+
+.calendar-widget {
+  border: none;
   
-    .day-column {
-      flex: 1;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-  
-      h3 {
-        background: #ffcc00;
-        padding: 5px;
-        border-radius: 4px;
-      }
-    }
-  
-    .exercise-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px;
-      background: #ffeeba;
-      border-radius: 4px;
-      cursor: grab;
-      transition: transform 0.2s;
-  
-      &.dragging {
-        opacity: 0.5;
-        transform: scale(1.1);
-      }
-    }
+  .react-calendar__month-view__weekdays {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #666;
   }
   
+  .react-calendar__tile {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+/* Sección de día seleccionado */
+.selected-day-section {
+  grid-area: exercises;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  p {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+}
+
+.day-exercises {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Banco de ejercicios */
+.exercise-bank {
+  grid-area: exercisesbox;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  
+  h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+.exercise-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  h4 {
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+}
+
+.exercise-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Estilos comunes para ejercicios */
+.exercise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: #FFEEBA;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+  &.dragging {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  
+  img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  
+  span {
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+  }
+}
+
+.no-exercise {
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* iconos de ejercicio */
+.exercise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: #FFEEBA;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 5px;
+  
+  &.dragging {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  
+  .exercise-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+  }
+  
+  span {
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+  }
+}
+
+.exercise-bank {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+.exercise-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
