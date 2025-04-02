@@ -68,6 +68,7 @@ const ExerciseBank = () => {
     <div className="exercise-bank">
       <h3>EJERCICIOS</h3>
       <div className="exercise-categories">
+        <div className="exercise-group">
         {Object.entries(EXERCISES).map(([category, exercise]) => (
           <ExerciseItem 
             key={category}
@@ -76,6 +77,7 @@ const ExerciseBank = () => {
             isDraggable={true}
           />
         ))}
+        </div>
       </div>
     </div>
   );
@@ -143,7 +145,6 @@ const RoutineCalendar = () => {
 
       <div className="calendar-section">
         <div className="month-calendar">
-          <h3>{formatMonthYear(currentMonth)}</h3>
           <Calendar
             onChange={handleDateChange}
             value={selectedDate}
