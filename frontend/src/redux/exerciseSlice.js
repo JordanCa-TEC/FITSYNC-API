@@ -10,6 +10,7 @@ const initialState = {
     Sábado: { exercises: [] },
     Domingo: { exercises: [] },
   },
+  selectedDay: null,
 };
 
 const exerciseSlice = createSlice({
@@ -19,14 +20,12 @@ const exerciseSlice = createSlice({
     moveExercise: (state, action) => {
       const { fromDay, toDay, exercise } = action.payload;
       
-      // Remover del día origen
       if (fromDay !== 'bank' && state.routine[fromDay]) {
         state.routine[fromDay].exercises = state.routine[fromDay].exercises.filter(
           ex => ex.id !== exercise.id
         );
       }
       
-      // Agregar al día destino (si no es 'bank')
       if (toDay !== 'bank' && state.routine[toDay]) {
         if (!state.routine[toDay].exercises.some(ex => ex.id === exercise.id)) {
           state.routine[toDay].exercises.push(exercise);
@@ -41,13 +40,20 @@ const exerciseSlice = createSlice({
         );
       }
     },
+    setSelectedDay: (state, action) => {
+      state.selectedDay = action.payload;
+    },
     saveRoutine: (state, action) => {
       if (action.payload) {
-        state.routine = action.payload;
+        return {
+          ...state,
+          routine: action.payload.routine || state.routine,
+          selectedDay: action.payload.selectedDay || state.selectedDay
+        };
       }
     },
   },
 });
 
-export const { moveExercise, saveRoutine, removeExercise } = exerciseSlice.actions;
+export const { moveExercise, saveRoutine, removeExercise, setSelectedDay } = exerciseSlice.actions;
 export default exerciseSlice.reducer;
