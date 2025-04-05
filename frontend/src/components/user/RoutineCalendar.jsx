@@ -134,13 +134,21 @@ const RoutineCalendar = () => {
             />
           ))}
         </div>
-        
+        <div className="week-container-ask">
+        <p>¿QUIERES MANTENER ESTA RUTINA DE FORMA PERMANENTE?</p>
         <button 
           className="save-routine-button"
           onClick={handleSaveRoutine}
         >
-          ¿QUIERES MANTENER ESTA RUTINA DE FORMA PERMANENTE?
+          SI
         </button>
+        <button 
+          className="save-routine-button-no"
+          onClick={handleSaveRoutine}
+        >
+          NO
+        </button>
+        </div>
       </div>
 
       <div className="calendar-section">
@@ -158,8 +166,10 @@ const RoutineCalendar = () => {
         </div>
       </div>
 
-      <div className="selected-day-section">
+      <div className="selected__day-section">
+        <div className="selected__day-section-title">
         <h3>{selectedDate.toLocaleDateString("es-ES", { weekday: "long", day: "2-digit", month: "long" })}</h3>
+        </div>
         <p>Arrastra los iconos para modificar tu actividad semanal</p>
         <div className="day-exercises">
           {weeklyRoutine[selectedDate.toLocaleDateString("es-ES", { weekday: "long" })]?.length > 0 ? (

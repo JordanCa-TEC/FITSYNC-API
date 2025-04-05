@@ -10,10 +10,9 @@
     "week week week"
     "calendar exercises exercisesbox";
   gap: 20px;
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 50px;
   font-family: 'Arial', sans-serif;
-  min-height: 100vh;
+  min-height: auto;
 }
 
 .header {
@@ -37,40 +36,48 @@
 
 .week-container {
   display: flex;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: $background-gray-db;
   overflow: hidden;
+}
+
+.week-container-ask{
+  @extend .week-container;
+  display: grid;
+  grid-template-columns: auto auto auto; // 3 columnas para distribuir los elementos
+  align-items: center; // Centra verticalmente el contenido
+  justify-content: center; // Centra horizontalmente
+  text-align: center;
+  gap: 20px; // Espaciado uniforme entre elementos
+  padding: 1%;
 }
 
 .day-column {
   flex: 1;
   padding: 15px;
   min-height: 200px;
-  border-right: 1px solid #eee;
+  border-right: 1px solid $background-light-02;
   
   &:last-child {
     border-right: none;
   }
 
   .day-header {
-    background-color: #FFCC00;
-    color: #333;
+    background-color: $secondary-color;
+    color: $primary-color;
     font-weight: bold;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 15px;
     text-align: center;
-    border-radius: 8px;
     font-size: 14px;
   }
 }
 
 .weekend-day {
-  background-color: #f9f9f9;
+  background-color: $background-gray-db;
   
   .day-header {
-    background-color: #FF9900;
-    color: white;
+    background-color: $secondary-color;
+    color: $primary-color;
   }
 }
 
@@ -88,18 +95,26 @@
   background-color: $background-light-03;
   color: $background-gray;
   border: none;
-  padding: 15px 25px;
+  padding: 20px 65px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
   align-self: center;
-  width: 100%;
   margin: 0 auto;
   
   &:hover {
     background-color: #45a049;
+  }
+}
+
+.save-routine-button-no{
+  @extend .save-routine-button;
+  align-content: center;
+
+  &:hover {
+    background-color: #ca2323;
   }
 }
 
@@ -115,7 +130,8 @@
   background: white;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: $background-gray-db;
+  overflow: hidden;
   
   
   h3 {
@@ -145,23 +161,32 @@
 }
 
 /* Sección de día seleccionado */
-.selected-day-section {
+.selected__day-section {
   grid-area: exercises;
-  background: white;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: $background-gray-db;
   border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
   
+  &-title {
+    background-color: $background-gray;
+    width: 100%;
+    text-align: center;
+  }
+
   h3 {
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 18px;
+    color: $secondary-color;
+    padding: 0.5em 0.8em;
+    font-size: 2em;
   }
   
   p {
     color: #666;
     font-style: italic;
     margin-bottom: 15px;
+    padding: 20px;
   }
 }
 
@@ -174,11 +199,10 @@
 /* Banco de ejercicios */
 .exercise-bank {
   grid-area: exercisesbox;
-  background: white;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  background-color: $background-gray-db;
+  
   
   h3 {
     color: #333;
@@ -193,6 +217,7 @@
   width: 100%;
   flex-direction: row;
   gap: 15px;
+
   
   h4 {
     color: #555;
@@ -203,22 +228,20 @@
 
 .exercise-group {
   display: flex;
-  width: 70%;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
 }
 
 /* Estilos comunes para ejercicios */
 .exercise-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 7em;
+  height: 7em;
   border-radius: 10px;
-  padding: 8px;
+  padding: 2.2em;
   cursor: grab;
   transition: all 0.2s ease;
 
@@ -229,8 +252,8 @@
   }
   
   img {
-    width: 70px;
-    height: 70px;
+    width: 100%;
+    height: 100%;
     margin-bottom: 5px;
   }
   
@@ -241,30 +264,4 @@
   }
 }
 
-.no-exercise {
-  color: #888;
-  font-style: italic;
-  margin-top: 20px;
-  font-size: 14px;
-}
 
-.exercise-bank {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  
-  h3 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 18px;
-    text-align: center;
-  }
-}
-
-.exercise-categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
