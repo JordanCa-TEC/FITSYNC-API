@@ -28,10 +28,17 @@ const exerciseSlice = createSlice({
       
       // Agregar al día destino (si no es 'bank')
       if (toDay !== 'bank' && state.routine[toDay]) {
-        // Evitar duplicados
         if (!state.routine[toDay].exercises.some(ex => ex.id === exercise.id)) {
           state.routine[toDay].exercises.push(exercise);
         }
+      }
+    },
+    removeExercise: (state, action) => {
+      const { day, exerciseId } = action.payload;
+      if (state.routine[day]) {
+        state.routine[day].exercises = state.routine[day].exercises.filter(
+          ex => ex.id !== exerciseId
+        );
       }
     },
     saveRoutine: (state, action) => {
@@ -42,5 +49,5 @@ const exerciseSlice = createSlice({
   },
 });
 
-export const { moveExercise, saveRoutine } = exerciseSlice.actions;
+export const { moveExercise, saveRoutine, removeExercise } = exerciseSlice.actions;
 export default exerciseSlice.reducer;

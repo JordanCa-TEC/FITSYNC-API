@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { moveExercise, saveRoutine } from "../../redux/exerciseSlice";
+import { moveExercise, saveRoutine, removeExercise } from "../../redux/exerciseSlice";
 import { useDrag, useDrop } from "react-dnd";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -15,7 +15,7 @@ const EXERCISES = {
   Piernas: { name: "Piernas", icon: "/piernas.webp", id: "5" },
 };
 
-const ExerciseItem = ({ exercise, day, isDraggable = true }) => {
+const ExerciseItem = ({ exercise, day, isDraggable = true, onRemove }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.EXERCISE,
     item: { exercise, day },
@@ -25,18 +25,26 @@ const ExerciseItem = ({ exercise, day, isDraggable = true }) => {
     canDrag: isDraggable,
   }));
 
+  const handleClick = () => {
+    if (!isDraggable && onRemove) {
+      onRemove(exercise.id);
+    }
+  };
+
   return (
     <div
       ref={isDraggable ? drag : null}
-      className={`exercise-item ${isDragging ? "dragging" : ""}`}
+      className={`exercise-item ${isDragging ? "dragging" : ""} ${!isDraggable ? "clickable" : ""}`}
+      onClick={handleClick}
     >
       <img src={exercise.icon} alt={exercise.name} className="exercise-icon" />
       <span>{exercise.name}</span>
+      {!isDraggable && <span className="remove-icon">×</span>}
     </div>
   );
 };
 
-const DayColumn = ({ day, exercises = [], onDropExercise }) => {
+const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise }) => {
   const [, drop] = useDrop(() => ({
     accept: ItemTypes.EXERCISE,
     drop: (item) => {
@@ -57,7 +65,13 @@ const DayColumn = ({ day, exercises = [], onDropExercise }) => {
       <div className="exercise-list">
         {exercises.length > 0 ? (
           exercises.map((exercise, index) => (
-            <ExerciseItem key={index} exercise={exercise} day={day} />
+            <ExerciseItem
+              key={index}
+              exercise={exercise}
+              day={day}
+              isDraggable={false}
+              onRemove={onRemoveExercise}
+            />
           ))
         ) : (
           <div className="no-exercise">Arrastra un ejercicio aquí</div>
@@ -119,6 +133,10 @@ const RoutineCalendar = () => {
     dispatch(moveExercise({ fromDay, toDay, exercise }));
   };
 
+  const handleRemoveExercise = (day, exerciseId) => {
+    dispatch(removeExercise({ day, exerciseId }));
+  };
+
   const handleSaveRoutine = () => {
     localStorage.setItem("weeklyRoutine", JSON.stringify(weeklyRoutine));
     alert("¡Rutina guardada permanentemente!");
@@ -154,6 +172,7 @@ const RoutineCalendar = () => {
               day={day}
               exercises={weeklyRoutine[day]?.exercises || []}
               onDropExercise={handleDropExercise}
+              onRemoveExercise={(exerciseId) => handleRemoveExercise(day, exerciseId)}
             />
           ))}
         </div>
@@ -162,7 +181,7 @@ const RoutineCalendar = () => {
           <button className="save-routine-button" onClick={handleSaveRoutine}>
             SI
           </button>
-          <button className="save-routine-button-no" onClick={handleSaveRoutine}>
+          <button className="save-routine-button-no" onClick={() => {}}>
             NO
           </button>
         </div>
@@ -198,6 +217,7 @@ const RoutineCalendar = () => {
                 exercise={exercise}
                 day={formattedDay}
                 isDraggable={false}
+                onRemove={(exerciseId) => handleRemoveExercise(formattedDay, exerciseId)}
               />
             ))
           ) : (
