@@ -57,9 +57,7 @@ const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise }) =>
   return (
     <div
       ref={drop}
-      className={`day-column ${
-        day === "Sábado" || day === "Domingo" ? "weekend-day" : ""
-      }`}
+      className={`day-column ${day === "Sábado" || day === "Domingo" ? "weekend-day" : ""}`}
     >
       <div className="day-header">{day}</div>
       <div className="exercise-list">
@@ -88,12 +86,7 @@ const ExerciseBank = () => {
       <div className="exercise-categories">
         <div className="exercise-group">
           {Object.entries(EXERCISES).map(([category, exercise]) => (
-            <ExerciseItem
-              key={category}
-              exercise={exercise}
-              day="bank"
-              isDraggable={true}
-            />
+            <ExerciseItem key={category} exercise={exercise} day="bank" isDraggable={true} />
           ))}
         </div>
       </div>
@@ -103,16 +96,18 @@ const ExerciseBank = () => {
 
 const RoutineCalendar = () => {
   const dispatch = useDispatch();
-  const weeklyRoutine = useSelector((state) => state.exercises.routine || {
+
+  const defaultRoutine = {
     Lunes: { exercises: [] },
     Martes: { exercises: [] },
     Miércoles: { exercises: [] },
     Jueves: { exercises: [] },
     Viernes: { exercises: [] },
     Sábado: { exercises: [] },
-    Domingo: { exercises: [] }
-  });
-  
+    Domingo: { exercises: [] },
+  };
+
+  const weeklyRoutine = useSelector((state) => state.exercises.routine || defaultRoutine);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
@@ -149,6 +144,8 @@ const RoutineCalendar = () => {
   const formattedDay = selectedDate.toLocaleDateString("es-ES", {
     weekday: "long",
   });
+  const capitalizedDay =
+    formattedDay.charAt(0).toUpperCase() + formattedDay.slice(1).toLowerCase();
 
   return (
     <div className="routine-container">
@@ -158,15 +155,7 @@ const RoutineCalendar = () => {
 
       <div className="week-section">
         <div className="week-container">
-          {[
-            "Lunes",
-            "Martes",
-            "Miércoles",
-            "Jueves",
-            "Viernes",
-            "Sábado",
-            "Domingo",
-          ].map((day) => (
+          {Object.keys(defaultRoutine).map((day) => (
             <DayColumn
               key={day}
               day={day}
@@ -210,14 +199,14 @@ const RoutineCalendar = () => {
         </div>
         <p>Arrastra los iconos para modificar tu actividad semanal</p>
         <div className="day-exercises">
-          {weeklyRoutine[formattedDay]?.exercises?.length > 0 ? (
-            weeklyRoutine[formattedDay].exercises.map((exercise, index) => (
+          {weeklyRoutine[capitalizedDay]?.exercises?.length > 0 ? (
+            weeklyRoutine[capitalizedDay].exercises.map((exercise, index) => (
               <ExerciseItem
                 key={index}
                 exercise={exercise}
-                day={formattedDay}
+                day={capitalizedDay}
                 isDraggable={false}
-                onRemove={(exerciseId) => handleRemoveExercise(formattedDay, exerciseId)}
+                onRemove={(exerciseId) => handleRemoveExercise(capitalizedDay, exerciseId)}
               />
             ))
           ) : (
