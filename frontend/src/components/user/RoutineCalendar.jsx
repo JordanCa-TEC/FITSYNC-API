@@ -27,7 +27,7 @@ const ExerciseItem = ({ exercise, day, onRemove, isPastWeek }) => {
 
   const handleClick = () => {
     if (day !== "bank") {
-      onRemove(exercise); // Eliminar solo si no está en el banco
+      onRemove(exercise.id); // Eliminar solo si no está en el banco
     }
   };
 
@@ -154,8 +154,12 @@ const RoutineCalendar = () => {
   };
 
   const handleSaveRoutine = () => {
-    localStorage.setItem("routines", JSON.stringify(routines));
-    alert("¡Rutina guardada permanentemente!");
+    if (new Date().getDay() === 0) { // Solo guarda si es domingo
+      localStorage.setItem("routines", JSON.stringify(routines));
+      alert("¡Rutina guardada permanentemente!");
+    } else {
+      alert("No se puede guardar antes del domingo.");
+    }
   };
 
   const handleDateChange = (date) => {
