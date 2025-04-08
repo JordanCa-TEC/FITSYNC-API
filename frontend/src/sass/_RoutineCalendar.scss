@@ -203,7 +203,6 @@
   padding: 20px;
   background-color: $background-gray-db;
   
-  
   h3 {
     color: #333;
     margin-bottom: 20px;
@@ -217,7 +216,6 @@
   width: 100%;
   flex-direction: row;
   gap: 15px;
-
   
   h4 {
     color: #555;
@@ -245,23 +243,36 @@
   cursor: grab;
   transition: all 0.2s ease;
 
-  
+  /* Estilo de cuando se está arrastrando */
   &.dragging {
     opacity: 0.6;
     transform: scale(1.05);
+    cursor: grabbing; 
   }
   
   img {
     width: 100%;
     height: 100%;
     margin-bottom: 5px;
+    object-fit: cover; 
   }
   
   span {
     font-size: 15px;
     text-align: center;
     word-break: break-word;
+    color: #333;
   }
 }
+
+/* Efecto visual para el arrastre */
+.exercise-item:active {
+  cursor: grabbing;
+}
+
+.exercise-item:hover {
+  background-color: $background-light-03;
+}
+
 
 

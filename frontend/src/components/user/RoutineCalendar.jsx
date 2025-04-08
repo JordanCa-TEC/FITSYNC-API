@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { moveExercise, saveRoutine, removeExercise } from "../../redux/exerciseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { moveExercise, saveRoutine, removeExercise, initializeWeek } from "../../redux/exerciseSlice";
 import { useDrag, useDrop } from "react-dnd";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -15,60 +15,56 @@ const EXERCISES = {
   Piernas: { name: "Piernas", icon: "/piernas.webp", id: "5" },
 };
 
-const ExerciseItem = ({ exercise, day, isDraggable = true, onRemove }) => {
+const ExerciseItem = ({ exercise, day, onRemove, isPastWeek }) => {
+  // Usamos useDrag para arrastrar los elementos
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.EXERCISE,
+    type: ItemTypes.EXERCISE, // Usamos el tipo EXERCISE
     item: { exercise, day },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
+      isDragging: monitor.isDragging(), // Monitoreamos el estado de arrastre
     }),
-    canDrag: isDraggable,
   }));
 
   const handleClick = () => {
-    if (!isDraggable && onRemove) {
-      onRemove(exercise.id);
+    if (day !== "bank") {
+      onRemove(exercise); // Eliminar solo si no está en el banco
     }
   };
 
   return (
     <div
-      ref={isDraggable ? drag : null}
-      className={`exercise-item ${isDragging ? "dragging" : ""} ${!isDraggable ? "clickable" : ""}`}
+      ref={drag} // Asignamos la referencia para el drag
+      className={`exercise-item ${isDragging ? "dragging" : ""} ${day !== "bank" ? "clickable" : ""}`}
       onClick={handleClick}
     >
       <img src={exercise.icon} alt={exercise.name} className="exercise-icon" />
       <span>{exercise.name}</span>
-      {!isDraggable && <span className="remove-icon">×</span>}
+      {day !== "bank" && <span className="remove-icon">×</span>}
     </div>
   );
 };
 
-const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise }) => {
+const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise, isPastWeek }) => {
   const [, drop] = useDrop(() => ({
-    accept: ItemTypes.EXERCISE,
+    accept: ItemTypes.EXERCISE, // Aceptamos elementos de tipo EXERCISE
     drop: (item) => {
-      if (item.day !== day) {
+      if (!isPastWeek && item.day !== day) {
         onDropExercise(item.exercise, item.day, day);
       }
     },
   }));
 
   return (
-    <div
-      ref={drop}
-      className={`day-column ${day === "Sábado" || day === "Domingo" ? "weekend-day" : ""}`}
-    >
+    <div ref={drop} className={`day-column ${day === "Sábado" || day === "Domingo" ? "weekend-day" : ""}`}>
       <div className="day-header">{day}</div>
       <div className="exercise-list">
         {exercises.length > 0 ? (
-          exercises.map((exercise, index) => (
+          exercises.map((exercise) => (
             <ExerciseItem
-              key={index}
+              key={`${day}-${exercise.id}`}
               exercise={exercise}
               day={day}
-              isDraggable={false}
-              onRemove={onRemoveExercise}
+              onRemove={isPastWeek ? null : onRemoveExercise}
             />
           ))
         ) : (
@@ -79,61 +75,86 @@ const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise }) =>
   );
 };
 
-const ExerciseBank = () => {
-  return (
-    <div className="exercise-bank">
-      <h3>EJERCICIOS</h3>
-      <div className="exercise-categories">
-        <div className="exercise-group">
-          {Object.entries(EXERCISES).map(([category, exercise]) => (
-            <ExerciseItem key={category} exercise={exercise} day="bank" isDraggable={true} />
-          ))}
-        </div>
+/*Iconos de ejercicios*/
+const ExerciseBank = () => (
+  <div className="exercise-bank">
+    <h3>EJERCICIOS</h3>
+    <div className="exercise-categories">
+      <div className="exercise-group">
+        {Object.values(EXERCISES).map((exercise) => (
+          <ExerciseItem key={exercise.id} exercise={exercise} day="bank" onRemove={null} />
+        ))}
       </div>
     </div>
-  );
+  </div>
+);
+
+const getWeekKey = (date) => {
+  const firstDay = new Date(date);
+  firstDay.setDate(date.getDate() - firstDay.getDay());
+  return `${firstDay.getFullYear()}-W${String(getWeekNumber(firstDay)).padStart(2, "0")}`;
+};
+
+const getWeekNumber = (date) => {
+  const firstJan = new Date(date.getFullYear(), 0, 1);
+  const days = Math.floor((date - firstJan) / (24 * 60 * 60 * 1000));
+  return Math.ceil((days + firstJan.getDay() + 1) / 7);
+};
+
+const getSpanishDayName = (date) => {
+  const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  return days[date.getDay()];
+};
+
+const defaultRoutine = {
+  Lunes: { exercises: [] },
+  Martes: { exercises: [] },
+  Miércoles: { exercises: [] },
+  Jueves: { exercises: [] },
+  Viernes: { exercises: [] },
+  Sábado: { exercises: [] },
+  Domingo: { exercises: [] },
 };
 
 const RoutineCalendar = () => {
   const dispatch = useDispatch();
-
-  const defaultRoutine = {
-    Lunes: { exercises: [] },
-    Martes: { exercises: [] },
-    Miércoles: { exercises: [] },
-    Jueves: { exercises: [] },
-    Viernes: { exercises: [] },
-    Sábado: { exercises: [] },
-    Domingo: { exercises: [] },
-  };
-
-  const weeklyRoutine = useSelector((state) => state.exercises.routine || defaultRoutine);
+  const routines = useSelector((state) => state.exercises.routines);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const weekKey = getWeekKey(selectedDate);
+  const todayKey = getWeekKey(new Date());
+  const currentRoutine = routines[weekKey] || defaultRoutine;
+  const selectedDayName = getSpanishDayName(selectedDate);
+  const isPastWeek = weekKey < todayKey;
+
   useEffect(() => {
-    const savedRoutine = localStorage.getItem("weeklyRoutine");
-    if (savedRoutine) {
+    const saved = localStorage.getItem("routines");
+    if (saved) {
       try {
-        const parsed = JSON.parse(savedRoutine);
-        if (parsed) {
-          dispatch(saveRoutine(parsed));
-        }
+        const parsed = JSON.parse(saved);
+        if (parsed) dispatch(saveRoutine(parsed));
       } catch (e) {
-        console.error("Error loading routine:", e);
+        console.error("Error al cargar rutinas:", e);
       }
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    if (!routines[weekKey] && routines[todayKey]) {
+      dispatch(initializeWeek({ weekKey, baseWeekKey: todayKey }));
+    }
+  }, [weekKey, routines, dispatch, todayKey]);
+
   const handleDropExercise = (exercise, fromDay, toDay) => {
-    dispatch(moveExercise({ fromDay, toDay, exercise }));
+    dispatch(moveExercise({ weekKey, fromDay, toDay, exercise }));
   };
 
-  const handleRemoveExercise = (day, exerciseId) => {
-    dispatch(removeExercise({ day, exerciseId }));
+  const handleRemoveExercise = (exerciseId, day) => {
+    dispatch(removeExercise({ weekKey, day, exerciseId }));
   };
 
   const handleSaveRoutine = () => {
-    localStorage.setItem("weeklyRoutine", JSON.stringify(weeklyRoutine));
+    localStorage.setItem("routines", JSON.stringify(routines));
     alert("¡Rutina guardada permanentemente!");
   };
 
@@ -141,16 +162,10 @@ const RoutineCalendar = () => {
     setSelectedDate(date);
   };
 
-  const formattedDay = selectedDate.toLocaleDateString("es-ES", {
-    weekday: "long",
-  });
-  const capitalizedDay =
-    formattedDay.charAt(0).toUpperCase() + formattedDay.slice(1).toLowerCase();
-
   return (
     <div className="routine-container">
       <div className="header">
-        <h1>ACTIVIDAD SEMANAL PREDETERMINADA</h1>
+        <h1>ACTIVIDAD SEMANAL</h1>
       </div>
 
       <div className="week-section">
@@ -159,21 +174,24 @@ const RoutineCalendar = () => {
             <DayColumn
               key={day}
               day={day}
-              exercises={weeklyRoutine[day]?.exercises || []}
+              exercises={currentRoutine[day]?.exercises || []}
               onDropExercise={handleDropExercise}
-              onRemoveExercise={(exerciseId) => handleRemoveExercise(day, exerciseId)}
+              onRemoveExercise={(exerciseId) => handleRemoveExercise(exerciseId, day)}
+              isPastWeek={isPastWeek}
             />
           ))}
         </div>
-        <div className="week-container-ask">
-          <p>¿QUIERES MANTENER ESTA RUTINA DE FORMA PERMANENTE?</p>
-          <button className="save-routine-button" onClick={handleSaveRoutine}>
-            SI
-          </button>
-          <button className="save-routine-button-no" onClick={() => {}}>
-            NO
-          </button>
-        </div>
+        {!isPastWeek && (
+          <div className="week-container-ask">
+            <p>¿QUIERES MANTENER ESTA RUTINA DE FORMA PERMANENTE?</p>
+            <button className="save-routine-button" onClick={handleSaveRoutine}>
+              SI
+            </button>
+            <button className="save-routine-button-no" onClick={() => {}}>
+              NO
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="calendar-section">
@@ -199,14 +217,13 @@ const RoutineCalendar = () => {
         </div>
         <p>Arrastra los iconos para modificar tu actividad semanal</p>
         <div className="day-exercises">
-          {weeklyRoutine[capitalizedDay]?.exercises?.length > 0 ? (
-            weeklyRoutine[capitalizedDay].exercises.map((exercise, index) => (
+          {currentRoutine[selectedDayName]?.exercises?.length > 0 ? (
+            currentRoutine[selectedDayName].exercises.map((exercise) => (
               <ExerciseItem
-                key={index}
+                key={`${selectedDayName}-${exercise.id}`}
                 exercise={exercise}
-                day={capitalizedDay}
-                isDraggable={false}
-                onRemove={(exerciseId) => handleRemoveExercise(capitalizedDay, exerciseId)}
+                day={selectedDayName}
+                onRemove={isPastWeek ? null : (exerciseId) => handleRemoveExercise(exerciseId, selectedDayName)}
               />
             ))
           ) : (
