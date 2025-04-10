@@ -11,8 +11,8 @@
         
         .parent {
             display: flex;
-            padding-top: 15em;
-            padding-bottom: 1em;
+            padding-top: 10em;
+            padding-bottom: 6em;
             display: grid;
             height: 70em;
             width: 60%;
@@ -91,6 +91,7 @@
         justify-content: center;
         background-color: $background-light-03;
         display: flex;
+        padding-top: 4em;
         padding-bottom: 12em;
 
         img{

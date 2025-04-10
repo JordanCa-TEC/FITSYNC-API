@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { createSlice } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { moveExercise, saveRoutine, removeExercise, initializeWeek } from "../../redux/exerciseSlice";
 import { useDrag, useDrop } from "react-dnd";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+
 
 const ItemTypes = { EXERCISE: "exercise" };
 
@@ -16,24 +18,23 @@ const EXERCISES = {
 };
 
 const ExerciseItem = ({ exercise, day, onRemove, isPastWeek }) => {
-  // Usamos useDrag para arrastrar los elementos
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.EXERCISE, // Usamos el tipo EXERCISE
+    type: ItemTypes.EXERCISE,
     item: { exercise, day },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging(), // Monitoreamos el estado de arrastre
+      isDragging: monitor.isDragging(),
     }),
   }));
 
   const handleClick = () => {
-    if (day !== "bank") {
-      onRemove(exercise.id); // Eliminar solo si no está en el banco
+    if (day !== "bank" && onRemove) {
+      onRemove(exercise.id);
     }
   };
 
   return (
     <div
-      ref={drag} // Asignamos la referencia para el drag
+      ref={drag}
       className={`exercise-item ${isDragging ? "dragging" : ""} ${day !== "bank" ? "clickable" : ""}`}
       onClick={handleClick}
     >
@@ -45,17 +46,29 @@ const ExerciseItem = ({ exercise, day, onRemove, isPastWeek }) => {
 };
 
 const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise, isPastWeek }) => {
-  const [, drop] = useDrop(() => ({
-    accept: ItemTypes.EXERCISE, // Aceptamos elementos de tipo EXERCISE
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: ItemTypes.EXERCISE,
     drop: (item) => {
       if (!isPastWeek && item.day !== day) {
-        onDropExercise(item.exercise, item.day, day);
+        // Verificar si el ejercicio ya está presente en el día actual
+        const isExerciseAlreadyAdded = exercises.some((exercise) => exercise.id === item.exercise.id);
+
+        if (!isExerciseAlreadyAdded) {
+          // Llamar la función de agregar el ejercicio solo si no existe
+          onDropExercise(item.exercise, item.day, day);
+        }
       }
     },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
   }));
 
+  // Verificación si la semana es actual o futura
+  const isCurrentOrFutureWeek = !isPastWeek;
+
   return (
-    <div ref={drop} className={`day-column ${day === "Sábado" || day === "Domingo" ? "weekend-day" : ""}`}>
+    <div ref={drop} className={`day-column ${["Sábado", "Domingo"].includes(day) ? "weekend-day" : ""}`}>
       <div className="day-header">{day}</div>
       <div className="exercise-list">
         {exercises.length > 0 ? (
@@ -68,14 +81,17 @@ const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise, isPa
             />
           ))
         ) : (
-          <div className="no-exercise">Arrastra un ejercicio aquí</div>
+          // Solo mostrar el mensaje si no hay ejercicios y no se está arrastrando un ejercicio
+          exercises.length === 0 && !isOver && isCurrentOrFutureWeek && (
+            <div className="no-exercise">Arrastra un ejercicio aquí</div>
+          )
         )}
       </div>
     </div>
   );
 };
 
-/*Iconos de ejercicios*/
+
 const ExerciseBank = () => (
   <div className="exercise-bank">
     <h3>EJERCICIOS</h3>
@@ -154,11 +170,19 @@ const RoutineCalendar = () => {
   };
 
   const handleSaveRoutine = () => {
-    if (new Date().getDay() === 0) { // Solo guarda si es domingo
+    const today = new Date();
+    if (today.getDay() === 0) {
       localStorage.setItem("routines", JSON.stringify(routines));
       alert("¡Rutina guardada permanentemente!");
     } else {
-      alert("No se puede guardar antes del domingo.");
+      alert("Solo puedes guardar rutina el día domingo.");
+    }
+  };
+
+  const handleClearRoutine = () => {
+    if (window.confirm("¿Estás seguro de que no quieres conservar esta rutina?")) {
+      localStorage.removeItem("routines");
+      window.location.reload();
     }
   };
 
@@ -185,13 +209,14 @@ const RoutineCalendar = () => {
             />
           ))}
         </div>
+
         {!isPastWeek && (
           <div className="week-container-ask">
             <p>¿QUIERES MANTENER ESTA RUTINA DE FORMA PERMANENTE?</p>
             <button className="save-routine-button" onClick={handleSaveRoutine}>
               SI
             </button>
-            <button className="save-routine-button-no" onClick={() => {}}>
+            <button className="save-routine-button-no" onClick={handleClearRoutine}>
               NO
             </button>
           </div>
@@ -219,7 +244,6 @@ const RoutineCalendar = () => {
             })}
           </h3>
         </div>
-        <p>Arrastra los iconos para modificar tu actividad semanal</p>
         <div className="day-exercises">
           {currentRoutine[selectedDayName]?.exercises?.length > 0 ? (
             currentRoutine[selectedDayName].exercises.map((exercise) => (
@@ -227,7 +251,7 @@ const RoutineCalendar = () => {
                 key={`${selectedDayName}-${exercise.id}`}
                 exercise={exercise}
                 day={selectedDayName}
-                onRemove={isPastWeek ? null : (exerciseId) => handleRemoveExercise(exerciseId, selectedDayName)}
+                onRemove={isPastWeek ? null : (id) => handleRemoveExercise(id, selectedDayName)}
               />
             ))
           ) : (

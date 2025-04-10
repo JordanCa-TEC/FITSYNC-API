@@ -118,6 +118,10 @@
   }
 }
 
+.remove-icon {
+  visibility: hidden;
+}
+
 /* Sección de calendario */
 .calendar-section {
   grid-area: calendar;
@@ -164,8 +168,8 @@
 .selected__day-section {
   grid-area: exercises;
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
+  align-items: center;
   background-color: $background-gray-db;
   border-radius: 15px;
 
@@ -192,6 +196,8 @@
 
 .day-exercises {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
 }
