@@ -5,6 +5,7 @@ import routineReducer from "./routineSlice";
 import trainersListReducer from "./SliceTrainersList";
 import userRoutineSlice from "./userRoutineSlice";
 import exerciseReducer from "./exerciseSlice";
+import { profileReducer } from './profileReducer';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     trainersList: trainersListReducer,
     userRoutine: userRoutineSlice,
     exercises: exerciseReducer,
+    profile: profileReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

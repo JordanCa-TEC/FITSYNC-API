@@ -1,0 +1,97 @@
+/* Estilos para AlertProfile */
+.alert-profile {
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 1px solid transparent;
+
+  &--loading {
+    background-color: #e7f5ff;
+    color: #1864ab;
+    text-align: center;
+    border-color: #a5d8ff;
+  }
+
+  &--success {
+    background-color: #ebfbee;
+    color: #2b8a3e;
+    border-color: #b2f2bb;
+  }
+
+  &--error {
+    background-color: #fff5f5;
+    color: #c92a2a;
+    border-color: #ffc9c9;
+  }
+}
+
+/* Estilos para ProfileScreen */
+.profile-screen {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+
+  &__form {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  &__form-group {
+    display: grid;
+    gap: 0.5rem;
+
+    label {
+      font-weight: 500;
+      color: #495057;
+    }
+
+    input {
+      padding: 0.75rem;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: all 0.2s;
+
+      &:focus {
+        border-color: #4dabf7;
+        box-shadow: 0 0 0 2px rgba(29, 155, 240, 0.25);
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: #e9ecef;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__submit-btn {
+    padding: 0.75rem;
+    background-color: #339af0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #228be6;
+    }
+
+    &:disabled {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+  }
+}

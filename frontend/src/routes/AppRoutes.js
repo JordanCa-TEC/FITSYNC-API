@@ -13,6 +13,7 @@ import PrivateRoute from "../components/ProtectedRoute";
 import UserDashboard from '../pages/UserDashboard';
 import ChatWindowsEN from '../pages/ChatWindowsEN';
 import CalendarUser from '../pages/CalendarUser';
+import Profile from '../pages/ProfileScreen';
 
 const AppRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           <Route path='/Entrenador' element={<ChatWindowsEN />} />
           <Route path='/nutricionista' element={<ChatWindowsEN />} />
           <Route path='/usercalendar' element={<CalendarUser/>} />
+          <Route path='/profileuser' element={<Profile/>} />
         </Route>
       </Routes>
     </MainLayout>
