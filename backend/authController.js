@@ -21,7 +21,7 @@ ensureAdminExists();
 const register = (req, res) => {
   const { username, password } = req.body;
 
-  if (!username || !password) {
+  if (!username0    || !password) {
     return res.status(400).json({ error: "Usuario y contraseña son obligatorios" });
   }
 
