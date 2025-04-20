@@ -23,6 +23,7 @@ export const exerciseSlice = createSlice({
     moveExercise: (state, action) => {
       const { weekKey, fromDay, toDay, exercise } = action.payload;
 
+      
       // Verificar si la semana es pasada
       const weekNumber = parseInt(weekKey.split('-')[1]); // Asumiendo que el weekKey es algo como 'week-1', 'week-2', etc.
       if (weekNumber < currentWeek) {

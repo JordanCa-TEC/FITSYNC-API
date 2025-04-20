@@ -10,10 +10,14 @@ export const fetchUserPurchases = createAsyncThunk(
   }
 );
 
+// 🔻 NUEVO: recuperar de localStorage si existe
+const savedPurchases = localStorage.getItem("user_purchases");
+const initialLocalData = savedPurchases ? JSON.parse(savedPurchases) : [];
+
 const purchasesSlice = createSlice({
   name: "purchases",
   initialState: {
-    items: [],
+    items: initialLocalData, // NUEVO
     status: "idle",
     error: null
   },
@@ -23,6 +27,13 @@ const purchasesSlice = createSlice({
       state.items = [];
       state.status = "idle";
       state.error = null;
+      localStorage.removeItem("user_purchases"); // NUEVO
+    },
+
+    // NUEVO: Agregar nueva compra
+    addPurchase: (state, action) => {
+      state.items.push(action.payload);
+      localStorage.setItem("user_purchases", JSON.stringify(state.items)); // NUEVO
     }
   },
   extraReducers: (builder) => {
@@ -33,6 +44,9 @@ const purchasesSlice = createSlice({
       .addCase(fetchUserPurchases.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.items = action.payload;
+
+        // NUEVO: guardar también en localStorage
+        localStorage.setItem("user_purchases", JSON.stringify(action.payload));
       })
       .addCase(fetchUserPurchases.rejected, (state, action) => {
         state.status = "failed";
@@ -41,6 +55,6 @@ const purchasesSlice = createSlice({
   }
 });
 
-// Exportación del reducer y acción
-export const { resetPurchases } = purchasesSlice.actions;
+// Exportación del reducer y acciones
+export const { resetPurchases, addPurchase } = purchasesSlice.actions; // NUEVO
 export default purchasesSlice.reducer;

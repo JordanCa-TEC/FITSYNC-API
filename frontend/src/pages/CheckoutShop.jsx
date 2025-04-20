@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/shopSlice";
+import { addPurchase } from "../redux/purchasesSlice"; // NUEVO
 import "../sass/_checkout.scss";
 
 const CheckoutShop = () => {
@@ -53,12 +54,27 @@ const CheckoutShop = () => {
       setFormError("Todos los campos son obligatorios.");
       return;
     }
+
     setFormError("");
     setShowPopup(true);
+
+    // NUEVO: crear objeto de orden
+    const nuevaOrden = {
+      id: Date.now(),
+      productos: cart,
+      total: totalWithDiscount,
+      descuento: discount,
+      fecha: new Date().toLocaleString(),
+      datosEnvio: formData
+    };
+
+    // NUEVO: guardar la orden en Redux y localStorage
+    dispatch(addPurchase(nuevaOrden));
+
     setTimeout(() => {
       setShowPopup(false);
-      dispatch(clearCart());
-      navigate("/shop");
+      dispatch(clearCart()); // Limpiar el carrito después de la compra
+      navigate("/orders"); // Redirigir a la página de compras
     }, 1500);
   };
 
