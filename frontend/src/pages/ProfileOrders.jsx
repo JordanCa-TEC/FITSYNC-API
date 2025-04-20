@@ -1,59 +1,39 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import "../sass/_PurchaseHistory.scss";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserPurchases } from "../redux/purchasesSlice"; // Ajusta ruta según tu estructura
 
-const ProfileOrders = () => {
-  const user = useSelector((state) => state.auth?.user);
+const ProfileOrders = ({ userId }) => {
+  const dispatch = useDispatch();
+  const { items: purchases, status, error } = useSelector((state) => state.purchases);
 
-  // Datos simulados de compras
-  const purchases = [
-    {
-      date: "15/04/2025",
-      total: 75,
-      items: [
-        { name: "Creatina", price: 25, quantity: 1 },
-        { name: "Proteína", price: 50, quantity: 1 },
-      ],
-    },
-    {
-      date: "12/04/2025",
-      total: 100,
-      items: [
-        { name: "BCAA", price: 60, quantity: 1 },
-        { name: "Multivitamínico", price: 40, quantity: 1 },
-      ],
-    },
-  ];
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchUserPurchases(userId));
+    }
+  }, [dispatch, userId]);
 
-  if (!user) {
-    return <div>Cargando perfil...</div>;
-  }
+  if (status === "loading") return <p>Cargando tus compras...</p>;
+  if (status === "failed") return <p>Error: {error}</p>;
 
   return (
-    <div className="profile-page">
-      <h1>Historial de compras de {user.name}</h1>
-
-      <div className="purchase-history">
-        {purchases.map((purchase, index) => (
-          <div className="purchase-history__order" key={index}>
-            <div className="purchase-history__header">
-              <span className="purchase-history__date">{purchase.date}</span>
-              <span className="purchase-history__total">
-                Total: ${purchase.total}
-              </span>
-            </div>
-            <ul className="purchase-history__items">
-              {purchase.items.map((item, idx) => (
-                <li className="purchase-history__item" key={idx}>
-                  <span className="item__name">{item.name}</span>
-                  <span className="item__price">${item.price}</span>
-                  <span className="item__quantity">x{item.quantity}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+    <div className="profile-orders">
+      <h2>🛍️ Mis Compras</h2>
+      {purchases.length === 0 ? (
+        <p>No tienes compras registradas.</p>
+      ) : (
+        <ul>
+          {purchases.map((purchase) => (
+            <li key={purchase.id} style={{ borderBottom: "1px solid #ccc", marginBottom: "1rem" }}>
+              <p><strong>📅 Fecha:</strong> {purchase.date}</p>
+              <p><strong>🧾 Productos:</strong> {purchase.items.length}</p>
+              <p>
+                <strong>💸 Total:</strong>{" "}
+                {purchase.items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)} €
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

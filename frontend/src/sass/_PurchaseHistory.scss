@@ -1,76 +1,59 @@
-.profile-page {
+.profile-orders {
+  height: 40em;
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 7rem 0;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfdfd;
 
-  h1 {
+  h2 {
     text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
     margin-bottom: 2rem;
-    color: #333;
-  }
-}
-
-.purchase-history {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-
-  &__order {
-    background-color: #f7f7f7;
-    border-left: 6px solid #4CAF50;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.01);
-    }
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+    display: inline-block;
   }
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: #4CAF50;
-    font-size: 1.1rem;
+  p {
+    color: #555;
+    font-size: 1rem;
   }
 
-  &__items {
+  ul {
     list-style: none;
     padding: 0;
     margin: 0;
 
-    .purchase-history__item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-top: 1px solid #ddd;
+    li {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease;
 
-      &:first-child {
-        border-top: none;
+      &:hover {
+        transform: translateY(-4px);
       }
 
-      .item__name {
-        flex: 2;
-        color: #333;
-        font-weight: 500;
-      }
+      p {
+        margin: 0.5rem 0;
+        font-size: 1.05rem;
 
-      .item__price {
-        flex: 1;
-        text-align: right;
-        color: #888;
-      }
-
-      .item__quantity {
-        flex: 1;
-        text-align: right;
-        color: #555;
-        font-style: italic;
+        strong {
+          color: #4CAF50;
+        }
       }
     }
+  }
+
+  // Mensaje sin compras
+  > p {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    font-size: 1.1rem;
   }
 }

@@ -1,1 +1,21 @@
-[]
+[
+    {
+      "id": "1",
+      "userId": "123",
+      "date": "2025-04-15",
+      "total": 75,
+      "items": [
+        {
+          "name": "Proteína",
+          "price": 50,
+          "quantity": 1
+        },
+        {
+          "name": "Creatina",
+          "price": 25,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+  
