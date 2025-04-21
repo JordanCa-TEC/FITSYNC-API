@@ -1,39 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Async thunk para obtener las compras del usuario
+// 🔄 Async thunk para obtener las compras del usuario
 export const fetchUserPurchases = createAsyncThunk(
   "purchases/fetchUserPurchases",
-  async (userId) => {
-    const res = await axios.get(`/api/purchases/${userId}`);
-    return res.data;
+  async (userId, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/purchases/${userId}`);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
-// 🔻 NUEVO: recuperar de localStorage si existe
+// 📦 Cargar compras guardadas desde localStorage
 const savedPurchases = localStorage.getItem("user_purchases");
 const initialLocalData = savedPurchases ? JSON.parse(savedPurchases) : [];
 
 const purchasesSlice = createSlice({
   name: "purchases",
   initialState: {
-    items: initialLocalData, // NUEVO
-    status: "idle",
-    error: null
+    items: initialLocalData,      // Lista de compras
+    status: "idle",               // idle | loading | succeeded | failed
+    error: null                   // Errores de carga
   },
   reducers: {
-    // Acción para limpiar el estado de compras
+    // 🧹 Limpiar compras
     resetPurchases: (state) => {
       state.items = [];
       state.status = "idle";
       state.error = null;
-      localStorage.removeItem("user_purchases"); // NUEVO
+      localStorage.removeItem("user_purchases");
     },
 
-    // NUEVO: Agregar nueva compra
+    // ➕ Agregar nueva compra y guardar en localStorage
     addPurchase: (state, action) => {
       state.items.push(action.payload);
-      localStorage.setItem("user_purchases", JSON.stringify(state.items)); // NUEVO
+      localStorage.setItem("user_purchases", JSON.stringify(state.items));
     }
   },
   extraReducers: (builder) => {
@@ -43,18 +47,16 @@ const purchasesSlice = createSlice({
       })
       .addCase(fetchUserPurchases.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.items = action.payload;
-
-        // NUEVO: guardar también en localStorage
-        localStorage.setItem("user_purchases", JSON.stringify(action.payload));
+        state.items = action.payload || [];
+        localStorage.setItem("user_purchases", JSON.stringify(state.items));
       })
       .addCase(fetchUserPurchases.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = action.payload || "No se pudieron cargar las compras.";
       });
   }
 });
 
-// Exportación del reducer y acciones
-export const { resetPurchases, addPurchase } = purchasesSlice.actions; // NUEVO
+// 🟢 Exportaciones
+export const { resetPurchases, addPurchase } = purchasesSlice.actions;
 export default purchasesSlice.reducer;

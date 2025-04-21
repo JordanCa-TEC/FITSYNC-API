@@ -1,38 +1,53 @@
-import React from "react";
+// src/components/ProfileOrders.jsx
 import { useSelector } from "react-redux";
 
 const ProfileOrders = () => {
-  // Verifica que el estado esté correctamente estructurado
-  const purchases = useSelector((state) => state.purchases.purchases);
-
-  if (!purchases || purchases.length === 0) {
-    return (
-      <div className="profile-orders">
-        <h2>🛍️ Mis Compras</h2>
-        <p>No tienes compras registradas.</p>
-      </div>
-    );
-  }
+  const purchases = useSelector((state) => state.purchases.items);
 
   return (
-    <div className="profile-orders">
-      <h2>🛍️ Mis Compras</h2>
+    <div className="profile__orders">
+      <h2>Mis Compras</h2>
       <ul>
         {purchases.map((purchase) => (
-          <li key={purchase.id} style={{ borderBottom: "1px solid #ccc", marginBottom: "1rem" }}>
-            <p><strong>📅 Fecha:</strong> {purchase.fecha}</p>
-            <p><strong>📦 Productos:</strong> {purchase.productos.length}</p>
-            <p><strong>💸 Total:</strong> s/. {purchase.total}</p>
+          <li key={purchase.id}>
+            <p>
+              <strong>📅 Fecha:</strong>{" "}
+              {typeof purchase.fecha === "string"
+                ? purchase.fecha
+                : JSON.stringify(purchase.fecha)}
+            </p>
+
+            <p>
+              <strong>💸 Total:</strong> s/. {purchase.total}
+            </p>
+
+            <p>
+              <strong>📦 Productos:</strong> {purchase.productos?.length || 0}
+            </p>
 
             <ul>
-              {purchase.productos.map((item, index) => (
-                <li key={index} style={{ marginLeft: "1rem" }}>
-                  🧴 {item.name} (x{item.quantity}) - s/. {(item.price * item.quantity).toFixed(2)}
+              {purchase.productos?.map((item, index) => (
+                <li key={index}>
+                  <img src={item.image} alt={item.name} />
+                  <div>
+                    <span>{item.name}</span> <br />
+                    <span>Cantidad: {item.quantity}</span> <br />
+                    <span className="price">
+                      Total: s/. {(item.price * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
 
-            <p><strong>🚚 Enviado a:</strong> {purchase.datosEnvio.address}, {purchase.datosEnvio.city}, {purchase.datosEnvio.province}</p>
+
+            {purchase.datosEnvio && typeof purchase.datosEnvio === "object" && (
+              <p>
+                <strong>🚚 Enviado a:</strong>{" "}
+                {purchase.datosEnvio.address}, {purchase.datosEnvio.city},{" "}
+                {purchase.datosEnvio.province}
+              </p>
+            )}
           </li>
         ))}
       </ul>
