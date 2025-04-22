@@ -4,7 +4,6 @@ import { fetchTrainers } from "../redux/trainersSlice";
 import { fetchRoutine } from "../redux/routineSlice";
 import ProfileCard from "../components/user/ProfileCard";
 import TrainersList from "../components/user/TrainersList";
-import EventSchedule from "../components/user/EventSchedule";
 import DaySummary from "../components/user/DaySummary";
 import MenuOptions from "../components/user/MenuOptions";
 //import "../sass/_UserDashboard";
@@ -24,9 +23,10 @@ const UserDashboard = () => {
       <ProfileCard />
       <div className="main-content">
         <TrainersList trainers={trainers} />
-        <EventSchedule routine={routine} />
         <DaySummary />
-        <MenuOptions />
+      </div>
+      <div className="dashboard-container-second">
+      <MenuOptions />
       </div>
     </div>
   );

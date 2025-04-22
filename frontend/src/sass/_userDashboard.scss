@@ -1,13 +1,18 @@
+@import 'variables';
+
 // dashboard
 .dashboard-container {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    flex-direction:column;
     align-items: center;
-  
+    background-color: #fff;
+
     .main-content {
       display: flex;
-      flex-direction: column;
-      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      width: 88%;
     }
   }
   
@@ -16,90 +21,309 @@
   // profileCard
   .profile-card {
     display: flex;
-    align-items: center;
-  
-    .profile-avatar {
-      width: 50px;
-      height: 50px;
-      background-color: gray;
-      border-radius: 50%;
-    }
-  
-    .profile-info {
-      margin-left: 10px;
-    }
+    flex-direction: column;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    margin: 60px auto; // Centrar
   }
   
-
-
-  // trainersList
-  .trainers-list {
+  /* 🔹 Parte superior con imagen de fondo */
+  .profile-background {
+    position: relative;
+    height: 300px; // Mitad superior
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/Gymnasio-Fitsync.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
   
-    .trainers-container {
-      display: flex;
+  /* 🔹 Avatar centrado y sobrepuesto */
+  .profile-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ddd;
+    position: absolute;
+    bottom: -60px; // Mitad sobre la imagen
+  }
+  
+  .profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 🔹 Parte inferior con información */
+  .profile-info {
+    height: 130px;
+    background-color: white;
+    text-align: center;
+    padding-top: 40px; // Ajuste para que el texto no toque el avatar
+    color: $primary-color;
+  }
+  
+  .profile-info h2 {
+    font-size: 2.2em;
+    margin-bottom: 5px;
+  }
+  
+  .profile-info p {
+    font-size: 1em;
+    margin: 2px;
+    font-weight: bold;
+  }
+  
+  
+  
+
+
+// trainersList 
+.dashboard-container-one{
+  width: 50%;
+  background-color: $background-light-03;
+  border-bottom-left-radius: 45px;
+}
+.trainers-dashboard {
+  display: flex;
+  flex-direction: column;
+  background-color: $background-light-03;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+// Sección de Entrenadores
+.trainers-list {
+  background-color: $background-light-03;
+  border-radius: 10px;
+  padding: 0;
+
+  .title {
+    background: $secondary-color;
+    color: black;
+    font-weight: bold;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  .trainers-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding-left: 1em;
+  }
+
+  .trainer {
+    position: relative;
+
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid white;
     }
-  
-    .trainer {
-      position: relative;
-  
-      .status {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-  
-        &.online {
-          background-color: green;
-        }
-  
-        &.offline {
-          background-color: red;
-        }
+
+    .status {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid white;
+
+      &.online {
+        background-color: green;
+      }
+
+      &.offline {
+        background-color: red;
       }
     }
   }
-  
-  
+}
 
+// Sección de Horario de Eventos
+.event-schedule {
+  background-color: $background-light-03;
+  border-radius: 10px;
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom-left-radius: 45px;
 
-  // eventSchedule
-  .event-schedule {
+  .title {
+    background: $secondary-color;
+    color: black;
+    font-weight: bold;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .events {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .event {
     display: flex;
     flex-direction: column;
-  }  
-  
-
-
-  // daySummary
-  .day-summary {
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     text-align: center;
-  
-    .icon {
-      width: 50px;
-      height: 50px;
-      background-color: yellow;
-      border-radius: 50%;
-    }
-  }
-  
-  
 
+    .event-name {
+      font-weight: bold;
+      color: black;
+      font-size: 1.2rem;
+    }
+
+    .event-time {
+      color: #555;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  }
+
+  .event-divider {
+    width: 2px;
+    height: 40px;
+    background-color: $background-gray;
+  }
+}
+
+
+// DaySummary
+.day-summary {
+  width:15% ;
+  display: flex;
+  flex-direction: column;
+  background: $background-light-03;
+  border-bottom-right-radius: 45px;
+  text-align: center;
   
-  // menuOptions
-  .menu-options {
+  &-box{
+    width: 100%;
+    background: $primary-color;
+  }
+
+  h3 {
+    color: $secondary-color;
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  p {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $primary-color;
+    margin: 0;
+    padding: 1em 0 1em 0;
+  }
+
+  .icon-container {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
   
-    button {
-      background-color: black;
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
+  .icon {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 45%; // 2 iconos por fila
+    max-width: 150px; // Tamaño máximo
+  
+    img {
+      width: 90px;
+      height: 90px;
     }
   }
   
+  // Si hay solo 1 icono, que sea más grande
+  .icon-container:has(.icon:nth-child(1):nth-last-child(1)) .icon {
+    flex: 1 1 100%;
+    max-width: 200px;
+  
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+  // Si hay 3 iconos, el último será más grande
+  .icon-container:has(.icon:nth-child(3):nth-last-child(1)) .icon:nth-child(3) {
+    flex: 1 1 100%;
+    max-width: 200px;
+  
+    img {
+      width: 110px;
+      height: 110px;
+    }
+  }
+  
+}
+
+
+ // menuOptions 
+  .dashboard-container-second {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    .menu-options {
+      display: flex;
+      justify-content: space-around;
+      width: 60%;
+      
+
+      button {
+        width: 24em;
+        height: 20em;
+        border: none;
+        cursor: pointer;
+        border-radius: 2em;
+        margin: 2em 2em 2em 0;
+      }
+  
+      h2{
+        font-size: 2em;
+        color: white;
+      }
+  
+      .menu-options__button-01{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/Guia-ejercicio.png');
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .menu-options__button-02{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/entrenador.jpg');
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .menu-options__button-03{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/nutricionista.jpg');
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }

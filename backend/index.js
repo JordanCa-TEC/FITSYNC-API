@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const fs = require("fs");
+const { getPurchasesByUser, addPurchase } = require("./purchase");
 const { register, login } = require("./authController"); // 🔹 Importa autenticación
 const {
   getProducts,
@@ -46,8 +47,23 @@ app.get("/products/:id", getProductById);
 app.post("/products", addProduct);
 app.put("/products/:id", updateProduct);
 app.delete("/products/:id", deleteProduct);
+app.get("/purchases/:userId", getPurchasesByUser);
+app.post("/purchases", addPurchase);
 
 // 📌 Iniciar servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+});
+
+// 📌 Ruta para obtener todos los usuarios 
+app.get("/users", (req, res) => {
+  fs.readFile(USERS_FILE, "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error al leer users.json:", err);
+      return res.status(500).json({ message: "Error al leer el archivo de usuarios" });
+    }
+
+    const users = JSON.parse(data);
+    res.json(users);
+  });
 });

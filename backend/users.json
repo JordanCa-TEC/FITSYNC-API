@@ -2,6 +2,11 @@
   {
     "username": "admin",
     "password": "admin123",
-    "role": "admin"
+    "role": "admin",
+    "name": "Jordan",
+    "lastname": "Carranza",
+    "email": "jordanmorel.ca@gmail.com",
+    "age": "33"
+    
   }
 ]

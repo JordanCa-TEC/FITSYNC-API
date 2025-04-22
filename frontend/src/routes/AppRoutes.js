@@ -11,12 +11,16 @@ import LoginDesktop from '../pages/LoginDesktop';
 import CreateDesktop from '../pages/CreateDesktop';
 import PrivateRoute from "../components/ProtectedRoute";
 import UserDashboard from '../pages/UserDashboard';
+import ChatWindowsEN from '../pages/ChatWindowsEN';
+import CalendarUser from '../pages/CalendarUser';
+import Profile from '../pages/ProfileScreen';
+import OrdersUser from '../pages/ProfileOrders';
 
 const AppRoutes = () => {
   return (
-    <MainLayout> {/* MainLayout envuelve las rutas */}
-      <Routes>
-        {/* Rutas principales */}
+    <Routes>
+      {/* MainLayout envuelve todo desde aquí */}
+      <Route element={<MainLayout />}>
         <Route path="/" element={<HomeDesktop />} />
         <Route path="/about" element={<AboutDesktop />} />
         <Route path="/shop" element={<ShopDesktop />} />
@@ -25,12 +29,18 @@ const AppRoutes = () => {
         <Route path="/contact" element={<ContactDesktop />} />
         <Route path="/login" element={<LoginDesktop />} />
         <Route path="/record" element={<CreateDesktop />} />
-        {/* Rutas protegidas dentro de PrivateRoute */}
+
+        {/* Rutas protegidas */}
         <Route element={<PrivateRoute />}>
           <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path='/Entrenador' element={<ChatWindowsEN />} />
+          <Route path='/nutricionista' element={<ChatWindowsEN />} />
+          <Route path='/usercalendar' element={<CalendarUser />} />
+          <Route path='/profileuser' element={<Profile />} />
+          <Route path='/orders' element={<OrdersUser />} />
         </Route>
-      </Routes>
-    </MainLayout>
+      </Route>
+    </Routes>
   );
 };
 

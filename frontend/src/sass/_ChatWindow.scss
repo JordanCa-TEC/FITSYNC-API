@@ -1,0 +1,85 @@
+@import 'variables';
+
+.chat-window {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: $boton-cancelar;
+  }
+  
+  .trainer-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .trainer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-header {
+    background-color: $background-light-02;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: $boton-cancelar;
+  }
+  
+  .message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  
+  .user-message {
+    align-self: flex-end;
+    background-color: $secondary-color;
+  }
+  
+  .bot-message {
+    align-self: flex-start;
+    background-color: $background-light-02;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: $background-light-02;
+  
+    input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #FFF;
+    }
+  
+    button {
+      margin-left: 8px;
+      padding: 8px 12px;
+      border: none;
+      background-color: #ffcc00;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  }
+  

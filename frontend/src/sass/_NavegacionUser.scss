@@ -1,0 +1,26 @@
+/* Estilos para el menú de botones */
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+
+  
+    button {
+      padding: 8px 16px;
+      border: none;
+      background-color: $background-light-03;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+  
+      &.active {
+        background-color: $secondary-color;
+      }
+  
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+  }
