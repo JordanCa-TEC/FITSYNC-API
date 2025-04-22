@@ -54,3 +54,16 @@ app.post("/purchases", addPurchase);
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
+
+// 📌 Ruta para obtener todos los usuarios 
+app.get("/users", (req, res) => {
+  fs.readFile(USERS_FILE, "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ Error al leer users.json:", err);
+      return res.status(500).json({ message: "Error al leer el archivo de usuarios" });
+    }
+
+    const users = JSON.parse(data);
+    res.json(users);
+  });
+});

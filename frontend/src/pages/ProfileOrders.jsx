@@ -11,18 +11,18 @@ const ProfileOrders = () => {
         {purchases.map((purchase) => (
           <li key={purchase.id}>
             <p>
-              <strong>📅 Fecha:</strong>{" "}
+              <strong>Fecha:</strong>{" "}
               {typeof purchase.fecha === "string"
                 ? purchase.fecha
                 : JSON.stringify(purchase.fecha)}
             </p>
 
             <p>
-              <strong>💸 Total:</strong> s/. {purchase.total}
+              <strong>Total:</strong> s/. {purchase.total}
             </p>
 
             <p>
-              <strong>📦 Productos:</strong> {purchase.productos?.length || 0}
+              <strong>Productos:</strong> {purchase.productos?.length || 0}
             </p>
 
             <ul>
@@ -43,7 +43,7 @@ const ProfileOrders = () => {
 
             {purchase.datosEnvio && typeof purchase.datosEnvio === "object" && (
               <p>
-                <strong>🚚 Enviado a:</strong>{" "}
+                <strong>Enviado a:</strong>{" "}
                 {purchase.datosEnvio.address}, {purchase.datosEnvio.city},{" "}
                 {purchase.datosEnvio.province}
               </p>
