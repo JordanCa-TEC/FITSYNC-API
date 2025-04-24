@@ -8,14 +8,31 @@
   gap: 40px;
   align-items: flex-start;
 
+  @include breakpoint-S {
+    display: flex;
+    flex-direction: column;
+  } 
+
   .promotion-slider__box {
     display: flex;
     width: 60%;
+  
+    @include breakpoint-S {
+      width: 100%;
+      align-content: center;
+      flex-direction: column;
+    }
+    
   }
 
   /* Caja de texto: título, beneficios y botón de contacto */
   &__text-box {
     flex: 1;
+
+    @include breakpoint-S {
+      display: flex;
+      flex-direction: column;
+    }
 
     h2 {
       font-size: 2 rem;
@@ -24,11 +41,20 @@
       .highlight {
         color: $secondary-color;
       }
+
+      @include breakpoint-S {
+        order: 1;
+        font-size: 1.7em;
+      }
     }
     .promotion-slider__benefits {
       padding: 0 5rem;
       font-size: 1em;
       margin-bottom: 20px;
+
+      @include breakpoint-S {
+        order: 3;
+      }
 
       li {
         text-align: left;
@@ -54,6 +80,13 @@
       cursor: pointer;
       font-weight: bold;
 
+      @include breakpoint-S {
+        order: 3;
+        width: 180px;
+        font-size: 1.3em;
+        align-self: center;
+      }
+
       &:hover {
         transform: scale(1.1); 
       }
@@ -70,6 +103,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include breakpoint-S {
+      order: 2;
+    }
     
     .promotion-slider__image-container {
       position: relative;
@@ -78,6 +115,7 @@
       perspective: 1000px;
       margin: auto;
       cursor: pointer;
+
 
       .promotion-slider__card {
         position: absolute;
@@ -95,8 +133,14 @@
         color: #333;
         transform-origin: center; // Rotación desde el centro
         transition: transform 0.6s ease, z-index 0.3s ease;
-        //backface-visibility: hidden; // Oculta la parte trasera durante la rotación
-    
+        //backface-visibility: hidden; 
+        
+        @include breakpoint-S {
+          width: 50%;
+          height: 50%;
+          border-radius: 20px;
+        }
+
         &:nth-child(1) {
           background: #f0f0f0;
           transform: translateZ(50px) rotateY(0deg); // Tarjeta frontal
@@ -113,11 +157,19 @@
         &.active {
           transform: translateZ(50px) translateX(50px) translateY(40px) rotateY(0deg); // Tarjeta activa en frente
           z-index: 2;
+
+          @include breakpoint-S {
+            transform: translateZ(50px) translateX(90px) translateY(60px) rotateY(0deg); // Tarjeta activa en frente
+          }
         }
     
         &:not(.active) {
           transform: translateX(200px) translateY(120px) translateZ(-50px) rotateY(-180deg); // Tarjeta detrás girada
           z-index: 1;
+
+          @include breakpoint-S {
+            transform: translateX(170px) translateY(120px) translateZ(-50px) rotateY(-180deg); // Tarjeta detrás girada
+          }
         }
         .promotion-slider__image {
           width: 50%; 
@@ -128,6 +180,10 @@
       display: flex;
       gap: 8px;
       margin-top: 150px;
+
+      @include breakpoint-S {
+        margin-top: 30px;
+      }
 
       .dot {
         width: 10px;
@@ -142,5 +198,27 @@
         }
       }
     }
+  }
+}
+
+
+.promotion-desktop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.promotion-mobile {
+  display: none;
+}
+
+@include breakpoint-S {
+
+  .promotion-desktop {
+    display: none;
+  }
+
+  .promotion-mobile {
+    display: flex;
   }
 }

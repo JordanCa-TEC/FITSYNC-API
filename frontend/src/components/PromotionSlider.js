@@ -38,40 +38,82 @@ const PromotionSlider = () => {
 
   return (
     <div className="promotion-slider">
-      <div className='promotion-slider__box'>
-          {/* Caja para el título, beneficios y botón de contacto */}
-      <div className="promotion-slider__text-box">
-        <h2>CONOCE NUESTROS <span className="highlight">PLANES</span></h2>
-        <ul className="promotion-slider__benefits">
-          {promotions[currentPromo].benefits.map((benefit, index) => (
-            <li key={index}>{benefit}</li>
-          ))}
-        </ul>
-        <button className="promotion-slider__button">Contactar</button>
-      </div>
+      <div className='promotion-desktop'>
+        <div className='promotion-slider__box'>
+            {/* Caja para el título, beneficios y botón de contacto */}
+        <div className="promotion-slider__text-box">
+          <h2>CONOCE NUESTROS <span className="highlight">PLANES</span></h2>
+          <ul className="promotion-slider__benefits">
+            {promotions[currentPromo].benefits.map((benefit, index) => (
+              <li key={index}>{benefit}</li>
+            ))}
+          </ul>
+          <button className="promotion-slider__button">Contactar</button>
+        </div>
 
-      {/* Caja para las tarjetas y los puntos de navegación */}
-      <div className="promotion-slider__card-box">
-        <div className="promotion-slider__image-container" onClick={handleNextPromo}>
-          {promotions.map((promo, index) => (
-            <div
-              key={promo.id}
-              className={`promotion-slider__card ${index === currentPromo ? 'active' : ''}`}
-            >
-              <img src={promo.image} alt={`${promo.title} plan`} className="promotion-slider__image" />
-            </div>
-          ))}
-        </div>
-        <div className="promotion-slider__dots">
-          {promotions.map((_, index) => (
-            <span
-              key={index}
-              className={`dot ${index === currentPromo ? 'active' : ''}`}
-              onClick={() => setCurrentPromo(index)}
-            ></span>
-          ))}
+        {/* Caja para las tarjetas y los puntos de navegación */}
+        <div className="promotion-slider__card-box">
+          <div className="promotion-slider__image-container" onClick={handleNextPromo}>
+            {promotions.map((promo, index) => (
+              <div
+                key={promo.id}
+                className={`promotion-slider__card ${index === currentPromo ? 'active' : ''}`}
+              >
+                <img src={promo.image} alt={`${promo.title} plan`} className="promotion-slider__image" />
+              </div>
+            ))}
+          </div>
+          <div className="promotion-slider__dots">
+            {promotions.map((_, index) => (
+              <span
+                key={index}
+                className={`dot ${index === currentPromo ? 'active' : ''}`}
+                onClick={() => setCurrentPromo(index)}
+              ></span>
+            ))}
+          </div>
         </div>
       </div>
+      </div>
+      
+
+      {/* VERSIÓN MOBILE */}
+      <div className="promotion-mobile">
+        <div className="promotion-slider__box">
+
+          <div className="promotion-slider__text-box">
+            <h2>CONOCE NUESTROS <span className="highlight">PLANES</span></h2>
+
+            <div className="promotion-slider__card-box">
+            <div className="promotion-slider__image-container" onClick={handleNextPromo}>
+              {promotions.map((promo, index) => (
+                <div
+                  key={promo.id}
+                  className={`promotion-slider__card ${index === currentPromo ? 'active' : ''}`}
+                >
+                  <img src={promo.image} alt={`${promo.title} plan`} className="promotion-slider__image" />
+                </div>
+              ))}
+            </div>
+            <div className="promotion-slider__dots">
+              {promotions.map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${index === currentPromo ? 'active' : ''}`}
+                  onClick={() => setCurrentPromo(index)}
+                ></span>
+              ))}
+            </div>
+          </div>
+
+            <ul className="promotion-slider__benefits">
+              {promotions[currentPromo].benefits.map((benefit, index) => (
+                <li key={index}>{benefit}</li>
+              ))}
+            </ul>
+            <button className="promotion-slider__button">Contactar</button>
+          </div>
+        </div>
       </div>
     </div>
   );

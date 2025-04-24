@@ -16,3 +16,24 @@ $background-gray-db: #f3f3f3;
 
 //Fonts
 $font-global: "Inter", sans-serif;
+
+
+// mixins
+
+@mixin breakpoint-XL {
+    @media (max-width: 992px) {
+      @content;
+    }
+  }
+
+@mixin breakpoint-M {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
+@mixin breakpoint-S {
+    @media (max-width: 576px) {
+      @content;
+    }
+  }

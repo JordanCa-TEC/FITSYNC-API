@@ -23,7 +23,7 @@ const HomeDesktop = () => {
           <img src={promo_01} alt="Inscripcion-en-fitsync" className="service__image" />
           </div>
           <div className="service__box">
-            <img src={promo_02} alt="matricul-cero-en-fitsync" className="service__image" />
+            <img src={promo_02} alt="matricul-cero-en-fitsync" className="service__image" style={{ marginTop: '11rem', width: '30rem' }}/>
           </div>
           <div className="service__box">
           <img src={promo_03} alt="suplementos-fitsync" className="service__image" />
