@@ -119,3 +119,18 @@
     }
   }
 }
+.ocultar__home-S{
+  display: none;
+
+  @include breakpoint-S {
+    display: flex;
+  }
+}
+
+.ocultar__home-PC{
+  display: flex;
+
+  @include breakpoint-S {
+    display: none;
+  }
+}
