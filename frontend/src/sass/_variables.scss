@@ -21,7 +21,7 @@ $font-global: "Inter", sans-serif;
 // mixins
 
 @mixin breakpoint-XL {
-    @media (max-width: 992px) {
+    @media (min-width: 992px) {
       @content;
     }
   }

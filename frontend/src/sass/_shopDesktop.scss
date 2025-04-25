@@ -1,104 +1,129 @@
 @import 'variables';
 @import 'PromotionSlider';
 
-.shop{
+.shop {
     width: 100%;
     background-color: $background-light-03;
+  
+    &__desktop {
+      display: flex;
+      justify-content: center;
+  
+      .parent {
+        display: grid;
+        width: 60%;
+        padding-top: 10em;
+        padding-bottom: 6em;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: auto; // Ajuste automático de filas según contenido
+        gap: 40px 40px; // 40px fila, 80px columnas
 
-    &__desktop{ 
-        display: flex;
-        justify-content: center;
-        
-        .parent {
-            display: flex;
-            padding-top: 10em;
-            padding-bottom: 6em;
-            display: grid;
-            height: 70em;
-            width: 60%;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 3fr);
-            grid-column-gap: 80px;
-            grid-row-gap: 40px;
-        
-            &__content--div { 
-                background-color: #fff;
-                padding: 1em 3em;
-                display: flex;
-                align-items: left;
-                flex-direction: column;
-                border-radius: 5%;
-                
-                img{
-                    width:100%;
-                    height:75%;
-                }
-
-                h2{
-                    font-size: 1.2rem;
-                    color: $primary-color;
-                    margin: 0.2em;
-                }
-
-                h3{
-                    font-size: 1.3rem;
-                    color: $background-light-02;
-                    margin: 0.2em;
-                }
-
-                .item__price {
-                    font-size: 1.3em;
-                    color: $secondary-color;
-                    margin: 0.1em;
-                }
-
-                button{
-                    width: auto;
-                    font-size: 1.4em;
-                    margin: 15px 0;
-                    padding: 15px 15px;
-                    background-color: $background-gray;
-                    color: $secondary-color;
-                    border: none;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: bold;
-
-                    &:hover {
-                        transform: scale(1.1); 
-                      }
-                    
-                    &:active {
-                        transform: scale(1.2); 
-                    }
-                }
-            }
-            .shop__item--1 { grid-area: 1 / 1 / 2 / 2; }
-            .shop__item--2 { grid-area: 1 / 2 / 2 / 3; }
-            .shop__item--3 { grid-area: 1 / 3 / 2 / 4; }
-            .shop__item--4 { grid-area: 2 / 1 / 3 / 2; }
-            .shop__item--5 { grid-area: 2 / 2 / 3 / 3; }
-            .shop__item--6 { grid-area: 2 / 3 / 3 / 4; }
-            .shop__item--7 { grid-area: 3 / 1 / 4 / 2; }
-            .shop__item--8 { grid-area: 3 / 2 / 4 / 3; }
-            .shop__item--9 { grid-area: 3 / 3 / 4 / 4; }
-        
-            }
-    }
-
-    &__banner{
-        width: 100%;
-        justify-content: center;
-        background-color: $background-light-03;
-        display: flex;
-        padding-top: 4em;
-        padding-bottom: 12em;
-
-        img{
-            width: 60%;
-            pointer-events: inherit;
-            cursor: pointer;
+        @include breakpoint-XL {
+            width: 50%;
         }
+
+        @include breakpoint-M {
+            width: 160%;
+        }
+
+        @include breakpoint-S {
+          grid-template-columns: 1fr;
+          width: 80%;
+        }
+  
+        &__content--div {
+          background-color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          border-radius: 20px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+        
+
+          &:hover {
+            transform: translateY(-5px);
+          }
+  
+          img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+          }
+  
+          h2 {
+            font-size: 1.18rem;
+            color: $primary-color;
+            margin: 0.5em 0;
+          }
+  
+          h3 {
+            font-size: 1rem;
+            color: $background-light-02;
+            margin-bottom: 0.5em;
+          }
+  
+          .item__price {
+            font-size: 1.6rem;
+            color: $secondary-color;
+          }
+  
+          button {
+            width: 100%;
+            font-size: 1rem;
+            padding: 1em;
+            background-color: $background-gray;
+            color: $secondary-color;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease, background 0.2s ease;
+  
+            &:hover {
+              transform: scale(1.05);
+              background-color: darken($background-gray, 10%);
+            }
+  
+            &:active {
+              transform: scale(1.1);
+            }
+          }
+        }
+  
+        // --- Productos posicionados de manera automática ---
+  
+        .shop__item--1,
+        .shop__item--2,
+        .shop__item--3,
+        .shop__item--4,
+        .shop__item--5,
+        .shop__item--6,
+        .shop__item--7,
+        .shop__item--8,
+        .shop__item--9 {
+          padding: 2em 2em;
+        }
+  
+        .shop__item--10 {
+          grid-column: 1 / -1; // El banner ocupa todo el ancho
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+  
+          img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+
+            @include breakpoint-S {
+                border-radius: 10px;
+                grid-column: auto;
+              }
+          }
+        }
+      }
     }
-}
-    
+  }
+  
