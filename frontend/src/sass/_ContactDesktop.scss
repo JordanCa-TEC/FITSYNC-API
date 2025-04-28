@@ -13,12 +13,20 @@
         color: $text-color;
         text-align: center;
         
+        @include breakpoint-S {
+          flex-direction: column;
+          align-items: center;
+        }
 
         h1 {
             font-size: 4.5rem;
             margin: 3em 0 3em 0;
             color: $secondary-color;
-            text-align: left;
+
+            @include breakpoint-S {
+              font-size: 2.5em;
+              margin: 3em 0 3em 0;
+            }
           }
     }
 
@@ -28,14 +36,30 @@
       flex-direction: row;
       margin: 5% 0 5% 0;
       justify-content: center;
+
+      @include breakpoint-S {
+        flex-direction: column;
+      }
     }
 
     .info__container{
       width: 20%;
       align-content: center;
 
+      @include breakpoint-S {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        
+      }
+
       .info__Main{
         display: flex;
+
+        @include breakpoint-S {
+          width: 70%;
+        }
 
         p {
           font-size: 1.3em;
@@ -48,6 +72,12 @@
         display: flex;
         padding: 2em 0 0 3em;
         width: 60%;
+
+        @include breakpoint-S {
+          width: 67%;
+          align-self: center;
+          padding: 1em 0 0 1em;
+        }
         
         p{
           font-size: 1.3em;
@@ -64,10 +94,14 @@
         margin-top: 20px;
       
         iframe {
-          //width: 100%;
           max-width: 40em;
           max-height: 40em;
           border: 0;
+
+          @include breakpoint-S {
+            max-width: 28em;
+            max-height: 28em;
+          }
         }
     }
 }

@@ -3,13 +3,17 @@
 .user-menu {
     position: absolute;
     top: 90px;
-    right: 140px;
+    left: 90%;
     background: $secondary-color;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 150px;
     z-index: 100;
     padding: 10px;
+
+    @include breakpoint-S {
+      left: 60%;
+    }
   
     ul {
       list-style: none;

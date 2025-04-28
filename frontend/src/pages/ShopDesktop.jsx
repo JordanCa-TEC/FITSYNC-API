@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../sass/_shopDesktop.scss";
 import { Banner_fitsyncMKT } from "../assets/assets";
-import { addToCart } from "../redux/shopSlice"; // Importamos la acción
+import { addToCart } from "../redux/shopSlice";
 
 const ShopDesktop = () => {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch(); // Usamos el dispatch de Redux
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (products.length === 0) {
@@ -41,9 +41,9 @@ const ShopDesktop = () => {
                   </Link>
                   <h3>{product.subCategory}</h3>
                   <h2 className="item__price">s/.{product.price}</h2>
-                  
+
                   {/* BOTÓN AGREGAR AL CARRITO */}
-                  <button 
+                  <button
                     className="add-to-cart-btn"
                     onClick={() => dispatch(addToCart(product))}
                   >
@@ -55,11 +55,12 @@ const ShopDesktop = () => {
           ) : (
             <p>Cargando productos...</p>
           )}
-        </div>
-      </section>
 
-      <section className="shop__banner">
-        <img src={Banner_fitsyncMKT} alt="Banner Promocional" />
+          {/* --- BANNER  --- */}
+          <div className="shop__item--10 parent__content--div">
+            <img src={Banner_fitsyncMKT} alt="Banner Promocional" />
+          </div>
+        </div>
       </section>
     </div>
   );

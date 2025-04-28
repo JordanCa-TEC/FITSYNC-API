@@ -1,77 +1,251 @@
 @import 'variables';
 
+
+
+// Estilos Base del Header
+
 .home__header {
-    width: 100%;
-    position: fixed;
-    justify-items: center;
-    z-index: 1000; 
-    top: 0;
-    left: 0;
-    background-color: $background-gray;
-    padding: 0.6em;
-    
-    .navbar {
-      width: 80%;
+  width: 100%;
+  position: fixed;
+  justify-items: center;
+  z-index: 1000; // Base para el header
+  top: 0;
+  left: 0;
+  background-color: $background-gray;
+  padding: 0.6em;
+
+  // Estilos para móvil
+  @include breakpoint-S {
+    padding: 0.8em;
+  }
+}
+
+
+// Componente Navbar
+
+.navbar {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  // Estilos para móvil
+  @include breakpoint-S {
+    width: 88%;
+  }
+
+
+  // Logo
+
+  &__logo {
+    width: 8%;
+    z-index: 1002; // Logo sobre el menú móvil
+    position: relative;
+
+    // Móvil
+    @include breakpoint-S {
+      width: 20%;
+      margin-right: auto;
+      z-index: 1003; // Logo sobre menú móvil en mobile
+    }
+  }
+
+
+  // Menú Principal (Desktop)
+
+  &__menu-Principal {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+    z-index: 1; // Menú principal por defecto
+
+    // Enlaces del menú
+    a {
+      font-size: 1em;
+      text-decoration: none;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      
-      &__logo {
-        width: 8%;
+      color: $text-color;
+      padding: 0.5em 0.5em;
+      cursor: pointer;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+
+      // Efectos hover/active
+      &:hover {
+        transform: scale(1.1); 
       }
-      &__menu-Principal {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        list-style: none;
-
-        a {
-          font-size: 1em;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          color: $text-color;
-          padding: 0.5em 0.5em;
-          cursor: pointer;
-          font-weight: bold;
-
-          &:hover {
-            transform: scale(1.1); 
-          }
-        
-          &:active {
-            transform: scale(1.2); 
-          }
-        }
-        img {
-          width: 2.2em;
-        }
+    
+      &:active {
+        transform: scale(1.2); 
       }
 
-      &__menu-icon{
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        list-style: none;
-
-        img {
-          width: 80%;
-        }
+      // Móvil
+      @include breakpoint-S {
+        font-size: 1.2em;
+        padding: 0.8em;
       }
+    }
 
-      .cart__button {
-        padding: 0.5em;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-      
-        &:hover {
-          transform: scale(1.1); 
-        }
-      
-        &:active {
-          transform: scale(1.2); 
-        }
+    // Imágenes dentro del menú
+    img {
+      width: 2.2em;
+    }
+
+    // Versión móvil del menú
+    @include breakpoint-S {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: $background-gray;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1001; // Menú detrás del botón de cerrar
+      padding: 80px 0;
+
+      // Estado activo (abierto)
+      &.mobile-active {
+        transform: translateX(0);
       }
     }
   }
+
+
+  // Iconos del Menú (Carrito, Usuario)
+
+  &__menu-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    list-style: none;
+    z-index: 1002; // Iconos sobre el menú móvil
+
+    // Móvil
+    @include breakpoint-S {
+      order: 2;
+      gap: 5px;
+      z-index: 1003;
+    }
+
+    img {
+      width: 80%;
+    }
+  }
+
+
+  // Botón del Carrito
+ 
+  .cart__button {
+    padding: 0.5em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+  
+    // Efectos hover/active
+    &:hover {
+      transform: scale(1.1); 
+    }
+  
+    &:active {
+      transform: scale(1.2); 
+    }
+
+    // Ajuste para móvil
+    @include breakpoint-S {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+
+  // Botón de Menú Móvil (Hamburguesa/X)
+
+  &__mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1003; // Botón de toggle siempre visible
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+    // Móvil
+    @include breakpoint-S {
+      order: 3;
+      display: block;
+      margin-left: 0;
+      z-index: 1004; // Botón sobre todo en mobile
+      position: relative;
+    }
+  }
+
+
+  // Grupo de Iconos Derecha (Mobile)
+
+  &__right-icons {
+    // Solo para móvil
+    @include breakpoint-S {
+      order: 2;
+      display: flex;
+      gap: 5px;
+      z-index: 1003;
+    }
+  }
+}
+
+
+// Componente Close Icon (X de cerrar)
+
+.close-icon {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fbff00;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1004; // X de cerrar sobre todo
+  position: relative;
+
+  // Efecto hover
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+
+// Estado Mobile Menu Abierto
+
+.mobile-menu-open {
+  // Solo aplica en móvil
+  @include breakpoint-S {
+    .navbar__mobile-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1005; // Máxima prioridad
+      
+      .close-icon {
+        z-index: 1006;
+      }
+    }
+  }
+}
