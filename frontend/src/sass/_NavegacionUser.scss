@@ -1,28 +1,89 @@
 @import 'variables';
 
-/* Estilos para el menú de botones */
 .menu-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+  align-items: center;
 
-  
+  @include breakpoint-S {
+    width: 60%;
+  }
+
+  // Toggle button principal (visible en mobile)
+  &__mobile-toggle {
+    display: none;
+    font-weight: bold;
+    background-color: $secondary-color;
+    padding: 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    border: none;
+    color: black;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    span {
+      float: right;
+    }
+
+    @include breakpoint-S {
+      display: block;
+    }
+  }
+
+  // Lista de botones
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+
     button {
-      padding: 8px 16px;
+      padding: 10px 16px;
       border: none;
       background-color: $background-light-03;
       cursor: pointer;
       font-weight: bold;
-      border-radius: 5px;
+      border-radius: 8px;
       transition: background 0.3s ease;
-  
-      &.active {
-        background-color: $secondary-color;
-      }
-  
+      min-width: 150px;
+
+      &.active,
       &:hover {
         background-color: $secondary-color;
       }
     }
+
+    @include breakpoint-S {
+      display: none;
+      flex-direction: column;
+      background-color: white;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: slideDown 0.3s ease-in-out;
+
+      &.open {
+        display: flex;
+      }
+    }
   }
+}
+
+// Animación para el desplegable
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

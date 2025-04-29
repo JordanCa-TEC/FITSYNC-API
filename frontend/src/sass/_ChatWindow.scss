@@ -11,6 +11,11 @@
     display: flex;
     flex-direction: column;
     background-color: $boton-cancelar;
+
+    @include breakpoint-S {
+      width: 80%;
+      margin: 20px auto 40px;
+    }
   }
   
   .trainer-photo {
