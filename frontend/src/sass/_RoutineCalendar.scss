@@ -13,6 +13,16 @@
   padding: 50px;
   font-family: 'Arial', sans-serif;
   min-height: auto;
+
+  @include breakpoint-S {
+    grid-template-columns: 3fr;
+    grid-template-areas: 
+    "exercises"
+    "header"
+    "week"
+    "exercisesbox"
+    "calendar";
+  }
 }
 
 .header {
