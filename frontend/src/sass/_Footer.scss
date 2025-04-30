@@ -17,14 +17,54 @@
     img {
       max-width: 100%;
     }
+
+    @include breakpoint-S {
+      width: 40%;
+    }
   }
 
   &__links {
-    display: flex;
-    justify-content: space-between;
     width: 30%;
     margin-bottom: 20px;
-    
+
+    &--desktop {
+      display: flex;
+      justify-content: space-between;
+
+      @include breakpoint-S {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @include breakpoint-S {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
+
+      .footer__toggle {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-weight: bold;
+        border-top: 1px solid white;
+        padding: 10px 0;
+
+        span {
+          margin-left: auto;
+        }
+      }
+
+      ul {
+        padding-left: 1rem;
+        margin-top: 5px;
+      }
+    }
+
     &__row {
       display: flex;
       flex-direction: column;
@@ -51,9 +91,28 @@
         text-decoration: none;
 
         &:hover {
-         text-decoration: underline;
+          text-decoration: underline;
         }
       }
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 1rem;
+
+    img {
+      width: 60px;
+      height: 60px;
+
+      @include breakpoint-S {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @include breakpoint-S {
+      justify-content: center;
     }
   }
 
@@ -61,11 +120,4 @@
     margin-top: 20px;
     font-size: 0.875rem;
   }
-
-.footer__social {
-   img{
-    width: 20%;
-    padding-left: 3%;
-   }
-}
 }

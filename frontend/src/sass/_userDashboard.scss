@@ -13,6 +13,12 @@
       flex-direction: row;
       justify-content: center;
       width: 88%;
+
+      @include breakpoint-S {
+        width: 100%;
+        flex-direction: column;
+        padding: 0 0 2em 0;
+      }
     }
   }
   
@@ -26,6 +32,10 @@
     height: 350px;
     overflow: hidden;
     margin: 60px auto; // Centrar
+
+    @include breakpoint-S {
+      height: auto;
+    }
   }
   
   /* 🔹 Parte superior con imagen de fondo */
@@ -39,6 +49,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
   }
   
   /* 🔹 Avatar centrado y sobrepuesto */
@@ -87,6 +98,14 @@
   width: 50%;
   background-color: $background-light-03;
   border-bottom-left-radius: 45px;
+
+  @include breakpoint-S {
+    order: 2;
+    width: 90%;
+    align-self: center;
+    border-bottom-left-radius: 0;
+  }
+  
 }
 .trainers-dashboard {
   display: flex;
@@ -109,6 +128,7 @@
     font-weight: bold;
     padding: 1.2rem;
     font-size: 1.2rem;
+    margin-top: 0;
   }
 
   .trainers-container {
@@ -156,6 +176,12 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-bottom-left-radius: 45px;
+
+  @include breakpoint-S {
+    border-bottom-left-radius: 0;
+    background-color: none;
+  }
+
 
   .title {
     background: $secondary-color;
@@ -211,6 +237,14 @@
   background: $background-light-03;
   border-bottom-right-radius: 45px;
   text-align: center;
+
+  @include breakpoint-S {
+    width: 90%;
+    border-bottom-right-radius: 0;
+    align-self: center;
+    padding-bottom: 3em;
+    margin-bottom: 2em;
+  }
   
   &-box{
     width: 100%;
@@ -251,6 +285,11 @@
     img {
       width: 90px;
       height: 90px;
+
+      @include breakpoint-S {
+        width: 120px;
+        height: 120px;
+      }
     }
   }
   
@@ -291,6 +330,13 @@
       display: flex;
       justify-content: space-around;
       width: 60%;
+
+      @include breakpoint-S {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding-bottom: 2em;
+      }
       
 
       button {
@@ -300,6 +346,14 @@
         cursor: pointer;
         border-radius: 2em;
         margin: 2em 2em 2em 0;
+
+        @include breakpoint-S {
+          width: 90%;
+          height: auto;
+          border-radius: 0;
+          align-self: center;
+          margin: 1em 0 1em 0;
+        }
       }
   
       h2{

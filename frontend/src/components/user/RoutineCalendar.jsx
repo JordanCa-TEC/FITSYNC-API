@@ -68,7 +68,7 @@ const DayColumn = ({ day, exercises = [], onDropExercise, onRemoveExercise, isPa
   const isCurrentOrFutureWeek = !isPastWeek;
 
   return (
-    <div ref={drop} className={`day-column ${["Sábado", "Domingo"].includes(day) ? "weekend-day" : ""}`}>
+    <div ref={drop} className="day-column">
       <div className="day-header">{day}</div>
       <div className="exercise-list">
         {exercises.length > 0 ? (

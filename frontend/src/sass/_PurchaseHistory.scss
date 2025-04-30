@@ -8,6 +8,11 @@
   align-content: center;
   background-color: #f9f9f9;
 
+  @include breakpoint-S {
+    padding: 8rem 1rem 0;
+    width: 90%;
+  }
+
   h2 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
