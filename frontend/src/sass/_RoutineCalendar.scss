@@ -198,11 +198,10 @@
 
 .month-calendar {
   display: flex;
-  height: 45vh;
+  height: 100%;
   justify-content: center;
   background: white;
   border-radius: 15px;
-  padding: 20px;
   background-color: $background-gray-db;
   overflow: hidden;
 
@@ -286,6 +285,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  padding-bottom: 50px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -302,13 +302,13 @@
     align-items: center;
     position: relative;
     flex: 1 1 auto;  /* Permite que el contenedor de cada icono crezca y se ajuste */
-    max-width: 250px;  /* Limita el tamaño máximo de cada ejercicio (ajústalo según sea necesario) */
-    margin: 5px;
+    max-width: 240px;  /* Limita el tamaño máximo de cada ejercicio (ajústalo según sea necesario) */
+    margin: 10px;
 
     .exercise-icon {
       width: 100%;  /* Asegura que el icono ocupe todo el espacio disponible en el contenedor */
       height: auto;  /* Mantiene la proporción del icono */
-      max-width: 100%; /* Asegura que el icono no se desborde */
+      max-width: 90%; /* Asegura que el icono no se desborde */
       transition: transform 0.2s ease;
       
       /* Si hay más de un icono, se ajustan para que se mantengan dentro del contenedor */
