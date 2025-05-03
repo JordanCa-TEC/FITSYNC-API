@@ -14,7 +14,6 @@
   font-family: 'Arial', sans-serif;
   min-height: auto;
 
-  /* Estilos para mobile */
   @include breakpoint-S {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -43,7 +42,7 @@
   }
 }
 
-/* Sección de semana */
+/************************* Sección de semana *************************/
 .week-section {
   grid-area: week;
   display: flex;
@@ -155,7 +154,7 @@
   }
 }
 
-/* Botón de guardar rutina */
+/************************* Botón de guardar rutina*************************** */
 .save-routine-button {
   background-color: $background-light-03;
   color: $background-gray;
@@ -191,7 +190,7 @@
   visibility: hidden;
 }
 
-/* Sección de calendario */
+/************************* Sección de calendario *************************/
 .calendar-section {
   grid-area: calendar;
 }
@@ -240,7 +239,7 @@
   }
 }
 
-/* Sección de día seleccionado */
+/************************* Sección de día seleccionado *************************/
 .selected__day-section {
   grid-area: exercises;
   display: flex;
@@ -327,7 +326,7 @@
 }
 
 
-/* Banco de ejercicios */
+/************************* Banco de ejercicios *************************/
 .exercise-bank {
   grid-area: exercisesbox;
   border-radius: 15px;
@@ -380,7 +379,7 @@
   }
 }
 
-/* Estilos comunes para ejercicios */
+/************************* Estilos comunes para ejercicios *************************/
 .exercise-item {
   display: flex;
   flex-direction: column;
@@ -398,7 +397,7 @@
   }
 
 
-  /* Estilo de cuando se está arrastrando */
+  /************************* Estilo de cuando se está arrastrando *************************/
   &.dragging {
     opacity: 0.6;
     transform: scale(1.05);
