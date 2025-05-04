@@ -58,6 +58,7 @@
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory; 
+    height: 36em;
   }
 }
 
@@ -72,21 +73,6 @@
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
-  }
-}
-
-.week-container-ask {
-  @extend .week-container;
-  display: grid;
-  grid-template-columns: auto auto auto; /* 3 columnas para distribuir los elementos */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 20px;
-  padding: 1%;
-
-  @include breakpoint-S {
-    grid-template-columns: auto;
   }
 }
 
@@ -131,7 +117,7 @@
 
     @include breakpoint-S{
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 0.5rem;
     }
   }
@@ -150,7 +136,7 @@
 
     @include breakpoint-S {
       gap: 6px;
-      max-height: 60px;
+      height: 100%;
     }
 
     span, p {
@@ -164,8 +150,8 @@
     flex-shrink: 0;
 
     @include breakpoint-S{
-      width: calc(100% / 5 - 4px);
-      max-height: 35px;
+      width: 70px;
+      max-width: 100%;
     }
     }
   }
@@ -181,7 +167,39 @@
   }
 }
 
-/************************* Botón de guardar rutina*************************** */
+/************************* Botón de guardar rutina****************************/
+
+.week-container-ask {
+  @extend .week-container;
+  display: grid;
+  grid-template-columns: auto auto auto; /* 3 columnas para distribuir los elementos */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  padding: 1%;
+
+  @include breakpoint-S {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto; 
+    gap: 20px;
+    text-align: center;
+    padding: 6%;
+  }
+
+  p{
+    font-size: 1.2em;
+
+    @include breakpoint-S {
+    grid-column: 1 / -1; 
+    font-size: 1.2em;
+    padding: 0 2em;
+    }
+  }
+}
+
+
 .save-routine-button {
   background-color: $background-light-03;
   color: $background-gray;
@@ -200,8 +218,11 @@
   }
 
   @include breakpoint-S {
+    width: 150px;
     padding: 15px 50px; 
-    font-size: 14px; 
+    font-size: 15px; 
+    grid-column: 1 / 2; 
+    justify-self: end;  
   }
 }
 
@@ -210,6 +231,14 @@
 
   &:hover {
     background-color: #ca2323;
+  }
+
+  @include breakpoint-S {
+    width: 150px;
+    padding: 15px 50px; 
+    font-size: 15px;
+    grid-column: 2 / 3; 
+    justify-self: start; 
   }
 }
 
