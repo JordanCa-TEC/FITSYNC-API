@@ -47,17 +47,22 @@
   }
 
   &__phone-image{
-    width: 30%;
+    width: 50%;
+    height: auto;
+    
 
     @include breakpoint-S {
       width: 120%;
     }
+
   }
 
   &__services {
     background-color: $background-light;
+    width: 100%;
     text-align: center;
     padding: 70px 0;
+  
 
     @include breakpoint-S {
       padding: 30px 0;
