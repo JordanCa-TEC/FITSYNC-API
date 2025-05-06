@@ -11,6 +11,10 @@
     flex-direction: column;
   }
 
+  @include breakpoint-M {
+    padding-bottom: 3em;
+  }
+
     &__mission {
       width: 40%;
       height: auto;
@@ -20,16 +24,31 @@
       text-align: center;
       align-items: center;
 
+      @include breakpoint-M {
+        width: 100%;
+        padding: 30px 30px 0;
+      }
+
       @include breakpoint-S {
         width: 100%;
         padding: 30px 0;
       }
       
       p {
-        font-size: clamp(1rem, 2vw, 1.6rem);
+        font-size: clamp(1rem, 2vw, 1.4rem);
         text-align: left;
         line-height: 1.6em;
         font-weight: 500;
+
+        @include breakpoint-XL {
+          font-size: clamp(1rem, 2vw, 1.3rem);
+          line-height: 1.4em;
+        }
+
+        @include breakpoint-M {
+          font-size: clamp(0.8rem, 2vw, 1.1rem);
+          line-height: 1.2em;
+        }
 
         @include breakpoint-S {
           text-align: center;
@@ -40,6 +59,12 @@
   
     &__photo {
       width: 30%;
+      padding-bottom: 2em;
+
+      @include breakpoint-M {
+        width: 50%;
+        padding-bottom: 2em;
+      }
 
       @include breakpoint-S {
         width: 40%;
@@ -48,9 +73,17 @@
     }
   
     &__photo-gym {
-      width: 50%;
+      width: 60%;
       border-radius: 2em;
 
+      @include breakpoint-XL {
+        width: 55%;
+      }
+
+      @include breakpoint-M {
+        width: 100%;
+      }
+      
       @include breakpoint-S {
         width: 75%;
       }

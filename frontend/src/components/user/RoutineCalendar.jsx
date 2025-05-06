@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { moveExercise, saveRoutine, removeExercise, initializeWeek } from "../../redux/exerciseSlice";
 import { useDrag, useDrop } from "react-dnd";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+//import "react-calendar/dist/Calendar.css";
 
 
 const ItemTypes = { EXERCISE: "exercise" };

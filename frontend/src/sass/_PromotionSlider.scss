@@ -23,6 +23,11 @@
       flex-direction: column;
     }
     
+    @include breakpoint-M {
+      width: 100%;
+      align-content: center;
+      flex-direction: column;
+    }
   }
 
   /* Caja de texto: título, beneficios y botón de contacto */
@@ -35,7 +40,7 @@
     }
 
     h2 {
-      font-size: 2 rem;
+      font-size: 2.5em;
       font-weight: bold;
       margin-bottom: 30px;
       .highlight {
@@ -55,6 +60,7 @@
       @include breakpoint-S {
         order: 3;
       }
+
 
       li {
         text-align: left;
@@ -142,6 +148,18 @@
           border-radius: 20px;
         }
 
+        @include breakpoint-M {
+          width: 70%;
+          height: 70%;
+          border-radius: 20px;
+        }
+
+        @include breakpoint-XL {
+          width: 90%;
+          height: 90%;
+          border-radius: 20px;
+        }
+
         &:nth-child(1) {
           background: #f0f0f0;
           transform: translateZ(50px) rotateY(0deg); // Tarjeta frontal
@@ -162,6 +180,9 @@
           @include breakpoint-S {
             transform: translateZ(50px) translateX(90px) translateY(60px) rotateY(0deg); // Tarjeta activa en frente
           }
+          @include breakpoint-M {
+            transform: translateZ(50px) translateX(10px) translateY(60px) rotateY(0deg); // Tarjeta activa en frente
+          }
         }
     
         &:not(.active) {
@@ -170,6 +191,9 @@
 
           @include breakpoint-S {
             transform: translateX(170px) translateY(120px) translateZ(-50px) rotateY(-180deg); // Tarjeta detrás girada
+          }
+          @include breakpoint-M {
+            transform: translateX(140px) translateY(120px) translateZ(-50px) rotateY(-180deg); // Tarjeta detrás girada
           }
         }
         .promotion-slider__image {
