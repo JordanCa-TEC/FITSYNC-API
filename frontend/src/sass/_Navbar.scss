@@ -43,6 +43,10 @@
     z-index: 1002; // Logo sobre el menú móvil
     position: relative;
 
+    @include breakpoint-M {
+      width: 80px;
+    }
+
     // Móvil
     @include breakpoint-S {
       width: 30%;
@@ -74,7 +78,7 @@
       display: flex;
       align-items: center;
       color: $text-color;
-      padding: 0.5em 0.5em;
+      padding: 0.5em;
       cursor: pointer;
       font-weight: bold;
       position: relative;
@@ -89,10 +93,14 @@
         transform: scale(1.2); 
       }
 
-      // Móvil
+      @include breakpoint-M {
+        font-size: 0.7em;
+        padding: 5px;
+      }
+
       @include breakpoint-S {
         font-size: 1.2em;
-        padding: 0.8em;
+        padding: 0.5em;
       }
     }
 
@@ -123,6 +131,10 @@
         transform: translateX(0);
       }
     }
+
+    @include breakpoint-M {
+      gap: 10px ;
+    }
   }
 
 
@@ -144,6 +156,10 @@
 
     img {
       width: 80%;
+
+      @include breakpoint-M {
+        width: 2em;
+      }
     }
   }
 
