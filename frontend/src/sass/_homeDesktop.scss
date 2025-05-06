@@ -18,6 +18,10 @@
       text-align: left;
       padding-left: 0.5em;
 
+      @include breakpoint-M {
+        font-size: 2.2rem;
+      }
+
       @include breakpoint-S {
         font-size: 1.7rem;
         text-align: center;
@@ -35,6 +39,10 @@
     align-items: center;
     justify-content: center;
 
+    @include breakpoint-M {
+      margin-top: 8em;
+    }
+
     @include breakpoint-S {
       display: flex;
       margin-top: 10em;
@@ -50,6 +58,9 @@
     width: 50%;
     height: auto;
     
+     @include breakpoint-M {
+      width: 270px;
+     }
 
     @include breakpoint-S {
       width: 120%;
@@ -62,7 +73,10 @@
     width: 100%;
     text-align: center;
     padding: 70px 0;
-  
+
+    @include breakpoint-M{
+      padding: 2px 0 80px;
+    }
 
     @include breakpoint-S {
       padding: 30px 0;
@@ -101,7 +115,6 @@
         justify-content: center;
         border-radius: 4%; 
         
-        
         @include breakpoint-S {
           height: 30%;
           height: 300px;
@@ -112,6 +125,10 @@
       .service__image{
         width: 80%;
         border-radius: 10%;
+
+        @include breakpoint-M{
+          width: 100%;
+        }
 
         @include breakpoint-S {
           width: 100%;
