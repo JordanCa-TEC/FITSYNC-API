@@ -50,7 +50,8 @@ const Navbar = () => {
   return (
     <header className="home__header">
       <nav className="navbar">
-        <img src={logo} alt="Logo__gym-fitsync" className="navbar__logo" />
+      <Link className="navbar__logo--Link" to="/"><img src={logo} alt="Logo__gym-fitsync" className="navbar__logo" /></Link>
+      
         
         {/* Menú hamburguesa para mobile */}
         <button className="navbar__mobile-toggle" onClick={toggleMobileMenu}>
