@@ -13,6 +13,12 @@
     padding: 100px 0 100px 0;
   }
 
+  @include breakpoint-M {
+    width: 65%;
+    align-content: center;
+    padding: 100px 0 100px 0;
+  }
+
   .checkout-title {
     text-align: center;
     font-size: 24px;
@@ -98,6 +104,7 @@
     background-color: $background-light;
     overflow-y: auto;
     max-height: 475px;
+
   }
 
   .cart-item {
@@ -163,6 +170,12 @@
     @include breakpoint-S {
       flex-direction: row;
     }
+    @include breakpoint-M{
+      @include breakpoint-S {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
 
     .checkout-button,
     .cancel-button {
@@ -176,7 +189,11 @@
       text-align: center;
       transition: background-color 0.3s ease-in-out;
 
-      @include breakpoint-S {
+      @include breakpoint-S{
+        font-size: 20px;
+        width: 30%;
+      }
+      @include breakpoint-M {
         font-size: 20px;
         width: 30%;
       }
@@ -221,11 +238,13 @@
     .checkout-form {
       width: 100%;
       max-width: 100%;
+      flex-direction: row;
+      justify-content: center;
     }
 
     .cart-summary {
       width: 100%;
-      max-width: 100%;
+      max-width: 80%;
       margin-top: 15px;
     }
 
@@ -236,6 +255,12 @@
       @include breakpoint-S {
         align-items: center;
       }
+      @include breakpoint-M {
+        align-items: center;
+        flex-direction: row;
+        height: 42px;
+      }
+
 
       .checkout-button,
       .cancel-button {
@@ -243,6 +268,9 @@
 
         @include breakpoint-S {
           width: 70%;
+        }
+        @include breakpoint-M {
+          width: 30%;
         }
       }
     }
