@@ -12,6 +12,15 @@
     width: 60%;
   }
 
+  @include breakpoint-M {
+    max-width: 90%;
+    min-width: 50%;
+  }
+  
+  @include breakpoint-XL {
+    width: 100%;
+  }
+
   // Toggle button principal (visible en mobile)
   &__mobile-toggle {
     display: none;
@@ -51,7 +60,11 @@
       font-weight: bold;
       border-radius: 8px;
       transition: background 0.3s ease;
-      min-width: 150px;
+      width: 150px;
+
+      @include breakpoint-M {
+        width: 127px;
+      }
 
       &.active,
       &:hover {
