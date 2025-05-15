@@ -29,7 +29,8 @@
   }
 
   @include breakpoint-M {
-    grid
+    gap:10px;
+    padding: 20px;
   }
 }
 
@@ -327,6 +328,10 @@
     @include breakpoint-S{
       font-size: 1.5em;
     }
+    @include breakpoint-M{
+      font-size: 1em;
+      padding: 0.2em;
+    }
   }
   
   p {
@@ -353,6 +358,9 @@
 
   @include breakpoint-S {
     gap: 5px;
+  }
+  @include breakpoint-M {
+    padding-top: 2em;
   }
 
   
@@ -433,12 +441,15 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 8px;
 
   @include breakpoint-S {
     display: flex;
     flex-wrap: nowrap;
     gap: 15px; 
+  }
+  @include breakpoint-M {
+    gap: 8px;
   }
 }
 
@@ -465,6 +476,12 @@
     border-radius: 8px;
   }
 
+  @include breakpoint-M {
+    padding: 0;
+    align-items: center;
+    width: 4.2rem;
+    height: 4.2rem;
+  }
 
   /************************* Estilo de cuando se está arrastrando *************************/
   &.dragging {
@@ -478,6 +495,11 @@
     height: 100%;
     margin-bottom: 5px;
     object-fit: cover; 
+
+    @include breakpoint-M{
+      width: 50%;
+      height: 50%;
+    }
   }
   
   span {
