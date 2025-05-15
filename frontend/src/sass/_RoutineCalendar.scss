@@ -27,6 +27,10 @@
     scroll-snap-type: x mandatory;
     overflow-x: auto;
   }
+
+  @include breakpoint-M {
+    grid
+  }
 }
 
 .header {
