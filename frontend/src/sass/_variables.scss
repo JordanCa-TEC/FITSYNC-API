@@ -27,14 +27,14 @@ $font-global: "Inter", sans-serif;
   }
 
 @mixin breakpoint-M {
-  @media (min-width: 577px) and (max-width: 991px) {
+  @media (min-width: 698px) and (max-width: 1079px) {
     @content;
   }
 }
   
 
 @mixin breakpoint-S {
-    @media (max-width: 576px) {
+    @media (max-width: 697px) {
       @content;
     }
   }

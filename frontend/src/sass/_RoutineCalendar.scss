@@ -125,6 +125,9 @@
       flex-direction: row;
       gap: 0.5rem;
     }
+    @include breakpoint-M {
+      gap: 0.2rem;
+    }
   }
 
   .exercise-item {
@@ -142,6 +145,10 @@
     @include breakpoint-S {
       gap: 6px;
       height: 100%;
+    }
+    @include breakpoint-M {
+      width: 80%;
+      padding: 5px;
     }
 
     span, p {
@@ -297,6 +304,10 @@
   
   .react-calendar__tile {
     font-size: 14px;
+
+    @include breakpoint-M {
+      font-size: 10px;
+    }
   }
 }
 
@@ -332,6 +343,10 @@
       font-size: 1em;
       padding: 0.2em;
     }
+    @include breakpoint-XL {
+      font-size: 1.2em;
+      padding: 0.2em;
+    }
   }
   
   p {
@@ -348,8 +363,8 @@
 
 .day-exercises {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   padding-bottom: 50px;
   justify-content: center;
   align-items: center;
@@ -362,6 +377,11 @@
   @include breakpoint-M {
     padding-top: 2em;
   }
+  @include breakpoint-XL{
+    padding-top: 6em;
+    width: 75%;
+    height: 75%;
+  }
 
   
   .exercise-item {
@@ -372,6 +392,15 @@
     flex: 1 1 auto;  /* Permite que el contenedor de cada icono crezca y se ajuste */
     max-width: 240px;  /* Limita el tamaño máximo de cada ejercicio (ajústalo según sea necesario) */
     margin: 10px;
+
+    @include breakpoint-M {
+      max-width: 110px;
+      padding: 1em;
+    }
+    @include breakpoint-XL {
+      max-width: 150px;
+      padding: 1em;
+    }
 
     .exercise-icon {
       width: 100%;  /* Asegura que el icono ocupe todo el espacio disponible en el contenedor */
@@ -469,8 +498,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     flex: 0 0 auto;
     padding: 0.5rem;
     border-radius: 8px;
@@ -481,6 +510,11 @@
     align-items: center;
     width: 4.2rem;
     height: 4.2rem;
+  }
+  @include breakpoint-XL {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 18px;
   }
 
   /************************* Estilo de cuando se está arrastrando *************************/
