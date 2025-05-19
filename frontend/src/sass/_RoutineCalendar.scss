@@ -127,6 +127,7 @@
     }
     @include breakpoint-M {
       gap: 0.2rem;
+      width: 100%; 
     }
   }
 
@@ -147,7 +148,7 @@
       height: 100%;
     }
     @include breakpoint-M {
-      width: 80%;
+      justify-content: center;
       padding: 5px;
     }
 
@@ -164,6 +165,10 @@
     @include breakpoint-S{
       width: 70px;
       max-width: 100%;
+    }
+    @include breakpoint-M {
+      width: 2.5em;
+      height: 2.5em;
     }
     }
   }
@@ -208,6 +213,9 @@
     font-size: 1.2em;
     padding: 0 2em;
     }
+    @include breakpoint-M {
+      font-size: 1em;
+    }
   }
 }
 
@@ -235,6 +243,10 @@
     font-size: 15px; 
     grid-column: 1 / 2; 
     justify-self: end;  
+  }
+  @include breakpoint-M {
+    width: 100px;
+    padding: 10px 35px;
   }
 }
 
