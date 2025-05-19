@@ -65,6 +65,12 @@
     scroll-snap-type: x mandatory; 
     height: 36em;
   }
+  @include breakpoint-M {
+    display: flex;
+    height: 300px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; 
+  }
 }
 
 .week-container {
@@ -77,6 +83,10 @@
     gap: 1rem;
     overflow-x: auto;
     padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+  @include breakpoint-M {
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
   }
 }
@@ -203,6 +213,9 @@
     gap: 20px;
     text-align: center;
     padding: 6%;
+  }
+  @include breakpoint-M {
+    padding: 2% 2% 4% 2%;
   }
 
   p{
