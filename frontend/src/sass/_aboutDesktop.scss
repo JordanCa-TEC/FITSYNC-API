@@ -1,10 +1,12 @@
 @import 'variables';
 
 .about {
-
   display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
   padding-top: 8%;
   justify-content: center;
+  align-items: center;
   background-color: $background-light;
 
   @include breakpoint-S {
@@ -16,24 +18,31 @@
   }
 
     &__mission {
-      width: 40%;
+      width: 80%;
       height: auto;
       display: flex;
       flex-direction: column;
       padding: 60px 0;
       text-align: center;
       align-items: center;
+      max-width: 80%;
 
       @include breakpoint-M {
-        width: 100%;
-        padding: 30px 30px 0;
+       width: 70%;
+        min-width: 40%;
+        padding: 30px 2% 0;
       }
 
       @include breakpoint-S {
         width: 100%;
         padding: 30px 0;
       }
-      
+      @include breakpoint-XL {
+        width: 70%;
+        height: auto;
+        padding: 30px 60px 70px;
+      }
+
       p {
         font-size: clamp(1rem, 2vw, 1.4rem);
         text-align: left;
@@ -67,7 +76,7 @@
       }
 
       @include breakpoint-S {
-        width: 40%;
+        width: 50%;
         padding-bottom: 2em;
       }
     }
@@ -77,7 +86,7 @@
       border-radius: 2em;
 
       @include breakpoint-XL {
-        width: 55%;
+        width: 85%;
       }
 
       @include breakpoint-M {

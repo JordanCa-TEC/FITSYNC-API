@@ -9,8 +9,14 @@
   background-color: #f9f9f9;
 
   @include breakpoint-S {
-    padding: 8rem 1rem 0;
+    padding: 8rem 0;
+    justify-self: center;
     width: 90%;
+  }
+  @include breakpoint-M{
+    width: 90%;
+    justify-self: center;
+    padding: 6rem 0;
   }
 
   h2 {

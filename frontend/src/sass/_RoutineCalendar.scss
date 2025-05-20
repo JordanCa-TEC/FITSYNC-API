@@ -27,6 +27,11 @@
     scroll-snap-type: x mandatory;
     overflow-x: auto;
   }
+
+  @include breakpoint-M {
+    gap:10px;
+    padding: 20px;
+  }
 }
 
 .header {
@@ -60,6 +65,12 @@
     scroll-snap-type: x mandatory; 
     height: 36em;
   }
+  @include breakpoint-M {
+    display: flex;
+    height: 300px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; 
+  }
 }
 
 .week-container {
@@ -72,6 +83,10 @@
     gap: 1rem;
     overflow-x: auto;
     padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+  @include breakpoint-M {
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
   }
 }
@@ -120,6 +135,10 @@
       flex-direction: row;
       gap: 0.5rem;
     }
+    @include breakpoint-M {
+      gap: 0.2rem;
+      width: 100%; 
+    }
   }
 
   .exercise-item {
@@ -138,6 +157,10 @@
       gap: 6px;
       height: 100%;
     }
+    @include breakpoint-M {
+      justify-content: center;
+      padding: 5px;
+    }
 
     span, p {
       display: none;
@@ -152,6 +175,10 @@
     @include breakpoint-S{
       width: 70px;
       max-width: 100%;
+    }
+    @include breakpoint-M {
+      width: 2.5em;
+      height: 2.5em;
     }
     }
   }
@@ -187,6 +214,9 @@
     text-align: center;
     padding: 6%;
   }
+  @include breakpoint-M {
+    padding: 2% 2% 4% 2%;
+  }
 
   p{
     font-size: 1.2em;
@@ -195,6 +225,9 @@
     grid-column: 1 / -1; 
     font-size: 1.2em;
     padding: 0 2em;
+    }
+    @include breakpoint-M {
+      font-size: 1em;
     }
   }
 }
@@ -223,6 +256,10 @@
     font-size: 15px; 
     grid-column: 1 / 2; 
     justify-self: end;  
+  }
+  @include breakpoint-M {
+    width: 100px;
+    padding: 10px 35px;
   }
 }
 
@@ -292,6 +329,10 @@
   
   .react-calendar__tile {
     font-size: 14px;
+
+    @include breakpoint-M {
+      font-size: 10px;
+    }
   }
 }
 
@@ -323,6 +364,14 @@
     @include breakpoint-S{
       font-size: 1.5em;
     }
+    @include breakpoint-M{
+      font-size: 1em;
+      padding: 0.2em;
+    }
+    @include breakpoint-XL {
+      font-size: 1.2em;
+      padding: 0.2em;
+    }
   }
   
   p {
@@ -339,8 +388,8 @@
 
 .day-exercises {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   padding-bottom: 50px;
   justify-content: center;
   align-items: center;
@@ -349,6 +398,14 @@
 
   @include breakpoint-S {
     gap: 5px;
+  }
+  @include breakpoint-M {
+    padding-top: 2em;
+  }
+  @include breakpoint-XL{
+    padding-top: 6em;
+    width: 75%;
+    height: 75%;
   }
 
   
@@ -360,6 +417,15 @@
     flex: 1 1 auto;  /* Permite que el contenedor de cada icono crezca y se ajuste */
     max-width: 240px;  /* Limita el tamaño máximo de cada ejercicio (ajústalo según sea necesario) */
     margin: 10px;
+
+    @include breakpoint-M {
+      max-width: 110px;
+      padding: 1em;
+    }
+    @include breakpoint-XL {
+      max-width: 150px;
+      padding: 1em;
+    }
 
     .exercise-icon {
       width: 100%;  /* Asegura que el icono ocupe todo el espacio disponible en el contenedor */
@@ -429,12 +495,15 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 8px;
 
   @include breakpoint-S {
     display: flex;
     flex-wrap: nowrap;
     gap: 15px; 
+  }
+  @include breakpoint-M {
+    gap: 8px;
   }
 }
 
@@ -454,13 +523,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     flex: 0 0 auto;
     padding: 0.5rem;
     border-radius: 8px;
   }
 
+  @include breakpoint-M {
+    padding: 0;
+    align-items: center;
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  @include breakpoint-XL {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 18px;
+  }
 
   /************************* Estilo de cuando se está arrastrando *************************/
   &.dragging {
@@ -474,6 +554,11 @@
     height: 100%;
     margin-bottom: 5px;
     object-fit: cover; 
+
+    @include breakpoint-M{
+      width: 50%;
+      height: 50%;
+    }
   }
   
   span {

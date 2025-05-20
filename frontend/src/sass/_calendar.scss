@@ -6,10 +6,15 @@
   background: #e0e0e0bb;
   border: 1px solid #a0a096;
   font-family: 'Arial', 'Helvetica', sans-serif;
-  line-height: 1.125em;
+  line-height: 0.7em;
 
   @include breakpoint-S {
     max-width: 95%;
+  }
+  @include breakpoint-M {
+    width: 95%;
+    height: auto;
+    line-height: scale(0.8);
   }
 }
 
@@ -50,13 +55,22 @@
   display: flex;
   height: 44px;
   margin-bottom: 1em;
+
+  @include breakpoint-M {
+    height: 0.5em;
+    margin-bottom: 1.2em;
+  }
 }
 
 .react-calendar__navigation button {
-  min-width: 44px;
+  //min-width: 44px;
   text-transform: capitalize;
   font-size: 1.40em;
   background: none;
+
+  @include breakpoint-M{
+    font-size: 0.8em;
+  }
 }
 
 .react-calendar__navigation button:disabled {
@@ -112,6 +126,10 @@
   text-align: center;
   font: inherit;
   font-size: 0.833em;
+
+  @include breakpoint-M {
+    padding: 7px 4px;
+  }
 }
 
 .react-calendar__tile:disabled {
