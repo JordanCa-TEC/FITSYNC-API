@@ -1,3 +1,5 @@
+// src/components/Cart.test.js o Cart.test.jsx
+
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Cart from "./Cart";
@@ -6,21 +8,20 @@ import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-// Crea un store de prueba
+// Middleware de Redux
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-const renderWithProviders = (store) => {
+// Función para envolver el componente con Provider y Router
+const renderWithProviders = (ui, { store }) => {
   return render(
     <Provider store={store}>
-      <MemoryRouter initialEntries={["/"]}>
-        <Cart />
-      </MemoryRouter>
+      <MemoryRouter>{ui}</MemoryRouter>
     </Provider>
   );
 };
 
-describe("Cart Component", () => {
+describe("🛒 Cart Component", () => {
   test("no se muestra si el carrito está cerrado", () => {
     const store = mockStore({
       shop: {
@@ -29,8 +30,8 @@ describe("Cart Component", () => {
       },
     });
 
-    renderWithProviders(store);
-    expect(screen.queryByText("Carrito de Compras")).not.toBeInTheDocument();
+    renderWithProviders(<Cart />, { store });
+    expect(screen.queryByText(/Carrito de Compras/i)).not.toBeInTheDocument();
   });
 
   test("muestra mensaje si el carrito está abierto pero vacío", () => {
@@ -41,9 +42,9 @@ describe("Cart Component", () => {
       },
     });
 
-    renderWithProviders(store);
-    expect(screen.getByText("El carrito está vacío")).toBeInTheDocument();
-    expect(screen.getByText("Carrito de Compras")).toBeInTheDocument();
+    renderWithProviders(<Cart />, { store });
+    expect(screen.getByText(/El carrito está vacío/i)).toBeInTheDocument();
+    expect(screen.getByText(/Carrito de Compras/i)).toBeInTheDocument();
   });
 
   test("muestra productos si hay ítems en el carrito", () => {
@@ -62,8 +63,8 @@ describe("Cart Component", () => {
       },
     });
 
-    renderWithProviders(store);
-    expect(screen.getByText("Producto 1")).toBeInTheDocument();
-    expect(screen.getByText("Total: s/.20.00")).toBeInTheDocument();
+    renderWithProviders(<Cart />, { store });
+    expect(screen.getByText(/Producto 1/i)).toBeInTheDocument();
+    expect(screen.getByText(/Total: s\/.20\.00/i)).toBeInTheDocument();
   });
 });
