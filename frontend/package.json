@@ -1,12 +1,9 @@
 {
   "name": "my-gym-fitsync",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
@@ -49,6 +46,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "babel-jest": "^29.7.0",
     "concurrently": "^9.1.0"
   }
 }

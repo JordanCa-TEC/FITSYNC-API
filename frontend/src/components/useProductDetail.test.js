@@ -1,44 +1,56 @@
-const { renderHook } = require('@testing-library/react-hooks');
-const axios = require('axios');
-const { useProductDetail } = require('./useProductDetail');
+const { render, screen } = require('@testing-library/react');
+const ProtectedRoute = require('./ProtectedRoute').default;
+const React = require('react');
+const { MemoryRouter, Routes, Route } = require('react-router-dom');
 
-jest.mock('axios');
-
-describe('useProductDetail', () => {
-  const mockProduct = {
-    id: 1,
-    name: 'Producto de prueba',
-    price: 50,
-    image: '/img.jpg',
+// Mock para Navigate
+jest.mock('react-router-dom', () => {
+  const originalModule = jest.requireActual('react-router-dom');
+  return {
+    __esModule: true,
+    ...originalModule,
+    Navigate: ({ to }) => <div>Redirected to {to}</div>,
   };
+});
 
+describe('ProtectedRoute', () => {
   afterEach(() => {
+    localStorage.clear();
     jest.clearAllMocks();
   });
 
-  test('debe obtener producto correctamente', async () => {
-    axios.get.mockResolvedValueOnce({ data: mockProduct });
+  test('redirige a /login si no hay usuario en localStorage', () => {
+    localStorage.removeItem('user');
 
-    const { result, waitForNextUpdate } = renderHook(() => useProductDetail(1));
+    render(
+      <MemoryRouter initialEntries={['/protected']}>
+        <Routes>
+          <Route path="/protected" element={<ProtectedRoute />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    expect(result.current.loading).toBe(true);
-
-    await waitForNextUpdate();
-
-    expect(result.current.product).toEqual(mockProduct);
-    expect(result.current.loading).toBe(false);
-    expect(result.current.error).toBeNull();
+    expect(screen.getByText('Redirected to /login')).toBeInTheDocument();
   });
 
-  test('debe manejar error al obtener producto', async () => {
-    axios.get.mockRejectedValueOnce(new Error('API error'));
+  test('renderiza el outlet con contexto cuando hay usuario', () => {
+    const user = { role: 'admin' };
+    localStorage.setItem('user', JSON.stringify(user));
 
-    const { result, waitForNextUpdate } = renderHook(() => useProductDetail(1));
+    const Child = () => {
+      return <div>Protected Content</div>;
+    };
 
-    await waitForNextUpdate();
+    render(
+      <MemoryRouter initialEntries={['/protected']}>
+        <Routes>
+          <Route path="/protected" element={<ProtectedRoute />}>
+            <Route index element={<Child />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    );
 
-    expect(result.current.product).toBeNull();
-    expect(result.current.loading).toBe(false);
-    expect(result.current.error).toBe('Error al cargar el producto. Intenta nuevamente más tarde.');
+    expect(screen.getByText('Protected Content')).toBeInTheDocument();
   });
 });
