@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Login from './Login';
+import Login from './LoginDesktop';
 import { BrowserRouter } from 'react-router-dom';
 
 // Mock del ícono y la imagen
@@ -13,6 +13,23 @@ jest.mock('../assets/assets', () => ({
 }));
 
 describe('Login Component', () => {
+  let originalWarn;
+
+  // Ocultar warnings específicos de React Router v7
+  beforeAll(() => {
+    originalWarn = console.warn;
+    jest.spyOn(console, 'warn').mockImplementation((msg, ...args) => {
+      if (typeof msg === 'string' && msg.includes('React Router Future Flag Warning')) {
+        return;
+      }
+      originalWarn(msg, ...args);
+    });
+  });
+
+  afterAll(() => {
+    console.warn.mockRestore();
+  });
+
   beforeEach(() => {
     // Limpiar localStorage y mocks antes de cada prueba
     localStorage.clear();

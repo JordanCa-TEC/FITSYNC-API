@@ -49,11 +49,21 @@
     "@babel/core": "^7.27.1",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "babel-jest": "^29.7.0",
     "concurrently": "^9.1.0",
     "identity-obj-proxy": "^3.0.0",
-    "redux-mock-store": "^1.5.5"
+    "redux-mock-store": "^1.5.5",
+    "redux-thunk": "^3.1.0"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(axios)/)"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
   }
 }

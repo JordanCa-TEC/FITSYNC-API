@@ -22,4 +22,14 @@ export default {
 
   // Archivos de prueba
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
+
+    preset: "ts-jest/presets/default-esm",
+  testEnvironment: "jsdom",
+  transformIgnorePatterns: [
+    "/node_modules/(?!axios)/", // transforma axios
+  ],
+  extensionsToTreatAsEsm: [".js"],
+  moduleNameMapper: {
+    "axios": "axios/dist/node/axios.cjs" // usa versión CJS para Jest
+  }
 };

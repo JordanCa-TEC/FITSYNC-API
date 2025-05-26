@@ -8,7 +8,10 @@
         "install-all": "npm install --prefix frontend && npm install --prefix backend"
     },
     "devDependencies": {
-        "concurrently": "^9.1.0"
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.3.0",
+        "concurrently": "^9.1.0",
+        "redux-mock-store": "^1.5.4"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.6.1",
