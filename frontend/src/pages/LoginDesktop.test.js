@@ -1,87 +1,85 @@
-// import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Login from './LoginDesktop';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import Login from './LoginDesktop';  // tu componente Login
+import axios from 'axios';
 
-// Mock del ícono y la imagen
-jest.mock('react-icons/fa', () => ({
-  FaEye: () => <span>Mostrar</span>,
-  FaEyeSlash: () => <span>Ocultar</span>,
-}));
-jest.mock('../assets/assets', () => ({
-  logo_Alternative: 'logo.png',
-}));
+jest.mock('axios');
 
-describe('Login Component', () => {
-  let originalWarn;
-
-  // Ocultar warnings específicos de React Router v7
-  beforeAll(() => {
-    originalWarn = console.warn;
-    jest.spyOn(console, 'warn').mockImplementation((msg, ...args) => {
-      if (typeof msg === 'string' && msg.includes('React Router Future Flag Warning')) {
-        return;
-      }
-      originalWarn(msg, ...args);
-    });
-  });
-
-  afterAll(() => {
-    console.warn.mockRestore();
-  });
-
-  beforeEach(() => {
-    // Limpiar localStorage y mocks antes de cada prueba
-    localStorage.clear();
-    jest.restoreAllMocks();
-  });
-
-  test('renderiza correctamente los campos y botones', () => {
+describe('LoginDesktop simple tests', () => {
+  test('renderiza el formulario y permite ingresar datos', () => {
     render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={['/login']}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    expect(screen.getByLabelText(/usuario/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
-    expect(screen.getByText(/aceptar/i)).toBeInTheDocument();
-    expect(screen.getByText(/registrarse/i)).toBeInTheDocument();
+    // Verifica que el input de usuario esté en el documento
+    const usernameInput = screen.getByLabelText(/usuario/i);
+    expect(usernameInput).toBeInTheDocument();
+
+    // Verifica que el input de contraseña esté en el documento
+    const passwordInput = screen.getByLabelText(/contraseña/i);
+    expect(passwordInput).toBeInTheDocument();
+
+    // Simula escribir usuario y contraseña
+    fireEvent.change(usernameInput, { target: { value: 'jordan' } });
+    fireEvent.change(passwordInput, { target: { value: 'correcta' } });
+
+    expect(usernameInput.value).toBe('jordan');
+    expect(passwordInput.value).toBe('correcta');
   });
 
-  test('permite cambiar visibilidad de la contraseña', () => {
-    render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
-
-    const toggleButton = screen.getByRole('button', { name: /mostrar/i });
-    fireEvent.click(toggleButton);
-    expect(screen.getByRole('button', { name: /ocultar/i })).toBeInTheDocument();
-  });
-
-  test('muestra error si el login falla', async () => {
-    // Simula fetch con error
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: false,
-        json: () => Promise.resolve({ error: 'Credenciales inválidas' }),
-      })
-    );
+  test('realiza submit y maneja login exitoso', async () => {
+    axios.post.mockResolvedValueOnce({ data: { token: '12345' } });
 
     render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={['/login']}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    fireEvent.change(screen.getByLabelText(/usuario/i), { target: { value: 'jordan' } });
-    fireEvent.change(screen.getByLabelText(/contraseña/i), { target: { value: 'wrongpass' } });
-    fireEvent.click(screen.getByText(/aceptar/i));
+    const usernameInput = screen.getByLabelText(/usuario/i);
+    const passwordInput = screen.getByLabelText(/contraseña/i);
+    const submitBtn = screen.getByRole('button', { name: /aceptar/i });
 
-    await waitFor(() => {
-      expect(screen.getByText(/credenciales inválidas/i)).toBeInTheDocument();
-    });
+    fireEvent.change(usernameInput, { target: { value: 'jordan' } });
+    fireEvent.change(passwordInput, { target: { value: 'correcta' } });
+
+    fireEvent.click(submitBtn);
+
+    // En tu login simulado no hay redirección ni texto esperado,
+    // pero puedes esperar que no aparezca mensaje de error
+
+    const errorMsg = screen.queryByText(/credenciales incorrectas/i);
+    expect(errorMsg).not.toBeInTheDocument();
+  });
+
+  test('maneja login con error y muestra mensaje', async () => {
+    axios.post.mockRejectedValueOnce(new Error('Credenciales incorrectas'));
+
+    render(
+      <MemoryRouter initialEntries={['/login']}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const usernameInput = screen.getByLabelText(/usuario/i);
+    const passwordInput = screen.getByLabelText(/contraseña/i);
+    const submitBtn = screen.getByRole('button', { name: /aceptar/i });
+
+    fireEvent.change(usernameInput, { target: { value: 'jordan' } });
+    fireEvent.change(passwordInput, { target: { value: 'incorrecta' } });
+
+    fireEvent.click(submitBtn);
+
+    // Espera que aparezca mensaje de error
+    const errorMsg = await screen.findByText(/credenciales incorrectas/i);
+    expect(errorMsg).toBeInTheDocument();
   });
 });

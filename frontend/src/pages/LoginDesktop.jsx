@@ -51,17 +51,19 @@ const Login = () => {
           <img src={logo_Alternative} alt="Logo__gym-fitsync" />
         </div>
         <form onSubmit={handleSubmit}>
-          <label>Usuario</label>
+          <label htmlFor="username">Usuario</label>
           <input
+            id="username"
             type="text"
             value={user}
             onChange={(e) => setUser(e.target.value)}
             required
           />
 
-          <label>Contraseña</label>
+          <label htmlFor="password">Contraseña</label>
           <div className="password-container">
             <input
+              id="password"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -77,9 +79,14 @@ const Login = () => {
           </div>
 
           {error && <p className="error">{error}</p>} {/* Mostrar error si existe */}
+
           <div className="buttons">
             <button type="submit" className="accept">Aceptar</button>
-            <button type="button" className="register" onClick={() => navigate("/record")}>
+            <button
+              type="button"
+              className="register"
+              onClick={() => navigate("/record")}
+            >
               Registrarse
             </button>
           </div>
