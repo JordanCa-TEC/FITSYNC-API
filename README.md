@@ -1,3 +1,5 @@
+/------------------- Para ejecutar el Proyecto-----------------------/
+
 1) Instalar Modulo principal del proyecto
 
 2) Instalar los modulos de cada carpeta:
@@ -14,7 +16,7 @@ Desde la carpeta Raiz, usando terminal
 CORRER backend + frontend: npm run dev
 
 
-Servidores configurados:
+/-----------------Servidores configurados ------------------------/
 
 Accede al Frontend en: http://localhost:3000
 
@@ -23,14 +25,15 @@ Accede al Backend en: http://localhost:5000 (o el puerto configurado).
 
 Si uso pawershell // $env:NODE_OPTIONS="--openssl-legacy-provider"; npm run dev
 
---------------------------------
-Cuentas admin de prueba:
+
+/------------------Cuentas admin de prueba -------------------------/
 
 [
   { "username": "admin", "password": "admin123", "role": "admin" }
 ]
 
-Para pruebas al detalle:
+
+/-----------------Pruebas al detalle con Jest------------------------/
 
 npm run test -- --coverage --watchAll=false
 
