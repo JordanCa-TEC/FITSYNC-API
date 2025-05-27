@@ -60,3 +60,4 @@ const purchasesSlice = createSlice({
 // 🟢 Exportaciones
 export const { resetPurchases, addPurchase } = purchasesSlice.actions;
 export default purchasesSlice.reducer;
+
