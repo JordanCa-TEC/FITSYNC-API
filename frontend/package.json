@@ -58,12 +58,19 @@
     "redux-mock-store": "^1.5.5",
     "redux-thunk": "^3.1.0"
   },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(axios)/)"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest"
-    }
+"jest": {
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/reportWebVitals.js",
+    "!src/setupTests.js"
+  ],
+  "transformIgnorePatterns": [
+    "/node_modules/(?!(axios)/)"
+  ],
+  "transform": {
+    "^.+\\.(js|jsx)$": "babel-jest"
   }
+}
+
 }
