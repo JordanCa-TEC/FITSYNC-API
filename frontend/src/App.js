@@ -4,8 +4,8 @@ import AppRoutes from './routes/AppRoutes';
 
 const App = () => {
   return (
-    <Router>  {/* Envuélvelo con BrowserRouter */}
-      <AppRoutes />  {/* Aquí llamamos a AppRoutes que contiene las rutas */}
+    <Router>  
+      <AppRoutes />  
     </Router>
   );
 };

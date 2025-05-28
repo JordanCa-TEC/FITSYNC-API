@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../sass/_shopDesktop.scss';
 import axios from 'axios';
 import { Banner_fitsyncMKT } from '../assets/assets';
 
-
 const ShopDesktop = () => {
-  // Estado para almacenar los productos
   const [products, setProducts] = useState([]);
 
-  // Llamada a la API cuando el componente se monta
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -26,11 +24,12 @@ const ShopDesktop = () => {
     <div className="shop">
       <section className="shop__desktop">
         <div className="parent">
-          {/* Renderizado dinámico de productos */}
           {products.map((product, index) => (
-            <div key={index} className={`shop__item--${index + 1} parent__content--div`}>
-              <img src={product.image} alt={product.name} />
-              <h2>{product.name}</h2>
+            <div key={product.id} className={`shop__item--${index + 1} parent__content--div`}>
+              <Link to={`/shop/product/${product.id}`}>
+                <img src={product.image} alt={product.name} />
+                <h2>{product.name}</h2>
+              </Link>
               <h3>{product.subCategory}</h3>
               <h2 className="item__price">s/.{product.price}</h2>
               <button>Agregar al carrito</button>
@@ -39,7 +38,7 @@ const ShopDesktop = () => {
         </div>
       </section>
       <section className="shop__banner">
-          <img src={Banner_fitsyncMKT} alt="Banner Promocional" />
+        <img src={Banner_fitsyncMKT} alt="Banner Promocional" />
       </section>
     </div>
   );
