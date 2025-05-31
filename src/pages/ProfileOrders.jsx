@@ -28,7 +28,7 @@ const ProfileOrders = () => {
             <ul>
               {purchase.productos?.map((item, index) => (
                 <li key={index}>
-                  <img src={item.image} alt={item.name} />
+                  <img src={`${process.env.REACT_APP_API_URL}/${item.image}`} alt={item.name} />
                   <div>
                     <span>{item.name}</span> <br />
                     <span>Cantidad: {item.quantity}</span> <br />

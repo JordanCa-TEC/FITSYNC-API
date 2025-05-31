@@ -15,11 +15,12 @@ const Login = () => {
     setError(""); // Limpiar errores anteriores
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: user, password }),
-      });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: user, password }),
+    });
+
 
       const data = await response.json();
       console.log("Respuesta del servidor:", data); // <-- LOG PARA DEPURAR
