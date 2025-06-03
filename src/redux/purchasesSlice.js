@@ -6,13 +6,15 @@ export const fetchUserPurchases = createAsyncThunk(
   "purchases/fetchUserPurchases",
   async (userId, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`/api/purchases/${userId}`);
+      // Aquí usas userId para traer sus compras
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/purchases/${userId}`);
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
+
 
 // 📦 Cargar compras guardadas desde localStorage
 const savedPurchases = localStorage.getItem("user_purchases");

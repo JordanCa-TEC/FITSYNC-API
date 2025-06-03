@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/shopSlice";
-import { addPurchase } from "../redux/purchasesSlice"; // NUEVO
+import { addPurchase } from "../redux/purchasesSlice";
 import "../sass/_checkout.scss";
 
 const CheckoutShop = () => {
@@ -31,6 +31,7 @@ const CheckoutShop = () => {
   };
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalWithDiscount = (subtotal * (1 - discount / 100)).toFixed(2);
 
   const applyPromoCode = () => {
     if (validPromoCodes[promoCode]) {
@@ -41,8 +42,6 @@ const CheckoutShop = () => {
       setError("Código inválido. Inténtalo de nuevo.");
     }
   };
-
-  const totalWithDiscount = (subtotal * (1 - discount / 100)).toFixed(2);
 
   const handleCancel = () => {
     dispatch(clearCart());
@@ -58,23 +57,27 @@ const CheckoutShop = () => {
     setFormError("");
     setShowPopup(true);
 
-    // NUEVO: crear objeto de orden
+    // ✅ Simplificar productos para almacenar solo lo necesario
+    const productosSimplificados = cart.map((item) => ({
+      id: item.id,
+      quantity: item.quantity
+    }));
+
     const nuevaOrden = {
       id: Date.now(),
-      productos: cart,
+      productos: productosSimplificados,
       total: totalWithDiscount,
       descuento: discount,
       fecha: new Date().toLocaleString(),
       datosEnvio: formData
     };
 
-    // NUEVO: guardar la orden en Redux y localStorage
     dispatch(addPurchase(nuevaOrden));
 
     setTimeout(() => {
       setShowPopup(false);
-      dispatch(clearCart()); // Limpiar el carrito después de la compra
-      navigate("/orders"); // Redirigir a la página de compras
+      dispatch(clearCart());
+      navigate("/orders");
     }, 1500);
   };
 
