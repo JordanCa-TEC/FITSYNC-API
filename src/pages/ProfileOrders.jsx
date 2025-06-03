@@ -1,21 +1,17 @@
+import React from "react";
 import { useSelector } from "react-redux";
+
+const fallbackImage = "/no-image.png"; 
 
 const ProfileOrders = () => {
   const purchases = useSelector((state) => state.purchases.items);
-  const baseUrl = process.env.REACT_APP_API_URL;
-
-  console.log("Base URL:", baseUrl);
-  console.log("Purchases:", purchases);
-
-  // Imagen fallback (puedes cambiar a cualquier URL válida)
-  const fallbackImage = "https://via.placeholder.com/80?text=No+Image";
 
   return (
     <div className="profile__orders">
       <h2>Mis Compras</h2>
       <ul>
         {purchases.map((purchase) => (
-          <li key={purchase.id || Math.random()}>
+          <li key={purchase.id}>
             <p>
               <strong>Fecha:</strong>{" "}
               {typeof purchase.fecha === "string"
@@ -24,7 +20,7 @@ const ProfileOrders = () => {
             </p>
 
             <p>
-              <strong>Total:</strong> s/. {purchase.total || "0.00"}
+              <strong>Total:</strong> s/. {purchase.total}
             </p>
 
             <p>
@@ -33,17 +29,20 @@ const ProfileOrders = () => {
 
             <ul>
               {purchase.productos?.map((item, index) => {
-                const imageUrl = item?.image
-                  ? `${baseUrl}/${item.image}`
-                  : fallbackImage;
+                // Cambié la extensión a .webp para cargar esas imágenes
+                const imageUrl = `/${item.id}.webp`;
 
                 return (
-                  <li key={item.id || index} >
+                  <li
+                    key={item.id || index}
+                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                  >
                     <img
                       src={imageUrl}
                       alt={item.name || "Producto"}
+                      style={{ width: 80, height: 80, objectFit: "cover" }}
                       onError={(e) => {
-                        console.error("Error cargando imagen:", imageUrl);
+                        e.target.onerror = null; // evitar loop infinito
                         e.target.src = fallbackImage;
                       }}
                     />
@@ -62,14 +61,12 @@ const ProfileOrders = () => {
               })}
             </ul>
 
-            {purchase.datosEnvio &&
-              typeof purchase.datosEnvio === "object" && (
-                <p>
-                  <strong>Enviado a:</strong>{" "}
-                  {purchase.datosEnvio.address}, {purchase.datosEnvio.city},{" "}
-                  {purchase.datosEnvio.province}
-                </p>
-              )}
+            {purchase.datosEnvio && typeof purchase.datosEnvio === "object" && (
+              <p>
+                <strong>Enviado a:</strong> {purchase.datosEnvio.address},{" "}
+                {purchase.datosEnvio.city}, {purchase.datosEnvio.province}
+              </p>
+            )}
           </li>
         ))}
       </ul>
