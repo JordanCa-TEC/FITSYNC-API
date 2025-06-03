@@ -8,14 +8,25 @@
     align-items: center;
     text-align: left;
     background-color: #f9f9f9;
+
+    @include breakpoint-S {
+      flex-direction: column;
+    }
   
     &__image {
       max-width: 30%;
       width: 100%;
       height: auto;
       margin-bottom: 1rem;
+
+      @include breakpoint-S {
+        max-width: none;
+        width: 70%;
+        height: none;
+      }
+
     }
-  
+    
     &__info {
       text-align: left;
   
@@ -23,6 +34,10 @@
         font-size: 3rem;
         color: $background-gray;
         margin-bottom: 0.5rem;
+
+        @include breakpoint-S {
+          font-size: 1.2rem;
+        }
       }
   
       h2 {
