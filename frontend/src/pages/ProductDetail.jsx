@@ -1,10 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useProductDetail } from '../components/ProductDetail';
-//import '../sass/_ProductDetail.scss';
+import { addToCart } from '../redux/shopSlice';
+// import '../sass/_ProductDetail.scss';
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch(); // ✅ Hook para despachar acciones
   const { product, loading, error } = useProductDetail(id);
 
   if (loading) return <p>Cargando información del producto...</p>;
@@ -20,19 +23,22 @@ const ProductDetail = () => {
         <p>{product.description}</p>
         <h2>s/.{product.price}</h2>
         <div className="product-detail__actions">
-          <button className="button--add">Agregar al carrito</button>
+          {/* ✅ Despachamos la acción al hacer clic */}
+          <button className="button--add" onClick={() => dispatch(addToCart(product))}>
+            Agregar al carrito
+          </button>
         </div>
         <div className="product-detail__Description">
-        <h3>Descripción</h3>
-        {product.info.split('\n\n').map((block, index) => (
-          <div key={index} style={{ marginBottom: '1rem' }}>
-            {block.split('\n').map((line, lineIndex) => (
-              <p key={lineIndex}>
-                • {line} {/* Aquí agregamos el punto antes de cada línea */}
-              </p>
-            ))}
-          </div>
-        ))}
+          <h3>Descripción</h3>
+          {product.info.split('\n\n').map((block, index) => (
+            <div key={index} style={{ marginBottom: '1rem' }}>
+              {block.split('\n').map((line, lineIndex) => (
+                <p key={lineIndex}>
+                  • {line}
+                </p>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
