@@ -1,57 +1,111 @@
 @import 'variables';
 
 .product-detail {
-    margin: 15em 0 20em 15em;    
+    margin: 15em 2em 12em 9em;    
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: left;
-    background-color: #f9f9f9;
-  
-    &__image {
-      max-width: 30%;
+
+    @include breakpoint-S {
+      flex-direction: column;
       width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
+      margin: 12em 0;
     }
-  
+
+    @include breakpoint-M {
+    margin:  10em 0 5em 1em;
+    }
+
+
+
+    &__image {
+      width: 43%;
+      height: auto;
+
+      @include breakpoint-S {
+        width: 70%;
+        height: none;
+      }
+
+      @include breakpoint-M {
+        width: calc(60% - 5px);
+        min-width: 45%;
+        height: auto;
+      }
+
+      @include breakpoint-XL {
+        width: 45%;
+      }
+    }
+    
     &__info {
       text-align: left;
-  
+      width: 100%;
+
       h1 {
-        font-size: 3rem;
+        font-size: 2.2rem;
+        width: 70%;
         color: $background-gray;
         margin-bottom: 0.5rem;
+
+        @include breakpoint-S {
+          font-size: 1.4rem;
+          padding-left: 4%;
+        }
+        @include breakpoint-M {
+          font-size: 1.4rem;
+        }
       }
   
       h2 {
         font-size: 3rem;
         color: $secondary-color;
         margin-bottom: 1rem;
+
+        @include breakpoint-S {
+          padding-left: 4%;
+        }
+        @include breakpoint-M {
+          font-size: 2rem;
+        }
       }
 
       h3 {
         font-size: 2rem;
         color: $background-light-02;
         margin-bottom: 1rem;
+         
+        @include breakpoint-S {
+          padding-left: 4%;
+        }
+        @include breakpoint-M {
+          font-size: 1.3rem;
+        }
       }
   
       p {
         font-size: 1rem;
         color: #666;
         line-height: 1.5;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
     }
   
     &__actions {
       display: flex;
       gap: 1rem;
+
+      @include breakpoint-S {
+        flex-direction: column;
+        align-items: center;
+        padding-left: none;
+      }
   
       button {
         width: auto;
-        font-size: 1.7em;
+        font-size: 1.4em;
         margin: 20px 0;
         padding: 16px 40px;
         background-color: $background-gray;
@@ -61,16 +115,47 @@
         cursor: pointer;
         font-weight: bold;
 
+        @include breakpoint-M {
+          font-size: 1em;
+        }
+        @include breakpoint-M {
+          font-size: 1.1em;
+        }
+       @include breakpoint-XL {
+          font-size: 1.2em;
+        }
       }
     }
     &__Description {
       width: 60%;
       
+       @include breakpoint-S {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-bottom: 2em;
+        }
+      @include breakpoint-M {
+        width: 85%;
+      }  
 
       p{
-        font-size: 1.5em;
+        font-size: 1em;
         color: $text-color-grey;
         font-weight: bold;
+
+        @include breakpoint-S {
+          width: 90%;
+          font-size: 1.3em;
+          text-align: justify;
+          padding-left: 4%;
+        }
+
+        @include breakpoint-M {
+          width: 100%;
+          font-size: clamp(0.4rem, 2vw, 0.8rem);
+        }
       }
       
 
