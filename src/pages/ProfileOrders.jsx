@@ -1,10 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserPurchases } from "../redux/purchasesSlice";
 
-const fallbackImage = "/no-image.png"; 
+const fallbackImage = "/no-image.png";
 
-const ProfileOrders = () => {
+const ProfileOrders = ({ userId }) => {
+  const dispatch = useDispatch();
   const purchases = useSelector((state) => state.purchases.items);
+  const status = useSelector((state) => state.purchases.status);
+  const error = useSelector((state) => state.purchases.error);
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchUserPurchases(userId));
+    }
+  }, [userId, dispatch]);
+
+  if (status === "loading") return <p>Cargando compras...</p>;
+  if (status === "failed") return <p>{error}</p>;
 
   return (
     <div className="profile__orders">
@@ -29,7 +42,6 @@ const ProfileOrders = () => {
 
             <ul>
               {purchase.productos?.map((item, index) => {
-                // Cambié la extensión a .webp para cargar esas imágenes
                 const imageUrl = `/${item.id}.webp`;
 
                 return (
@@ -42,7 +54,7 @@ const ProfileOrders = () => {
                       alt={item.name || "Producto"}
                       style={{ width: 80, height: 80, objectFit: "cover" }}
                       onError={(e) => {
-                        e.target.onerror = null; // evitar loop infinito
+                        e.target.onerror = null;
                         e.target.src = fallbackImage;
                       }}
                     />
