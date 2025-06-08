@@ -47,14 +47,14 @@ const ProfileOrders = () => {
                       }}
                     />
                     <div>
-                      <span>{item.name || "Sin nombre"}</span> <br />
-                      <span>Cantidad: {item.quantity || 0}</span> <br />
-                      <span className="price">
+                      <p>{item.name || "Sin nombre"}</p> <br />
+                      <p>Cantidad: {item.quantity || 0}</p> <br />
+                      <p className="price">
                         Total: s/.{" "}
                         {item.price && item.quantity
                           ? (item.price * item.quantity).toFixed(2)
                           : "0.00"}
-                      </span>
+                      </p>
                     </div>
                   </li>
                 );

@@ -7,6 +7,9 @@ export const useProductDetail = (id) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+
+     console.log("REACT_APP_API_URL:", process.env.REACT_APP_API_URL);
+
     const fetchProduct = async () => {
       setLoading(true);
       setError(null);
