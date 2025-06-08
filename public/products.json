@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Proteína Hidrolizada Hydrowhey 3.6lb – Optimum Nutrition",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2Fproduct-hydro-fitsync.webp?v=1748676039243",
+    "subCategory": "Proteínas",
+    "price": 365.90,
+    "info": "La Proteína Hidrolizada Hydrowhey 3.6 lb de Optimum Nutrition es un suplemento premium diseñado para atletas y personas que buscan maximizar su recuperación y desarrollo muscular. Su fórmula está compuesta por proteínas de suero hidrolizadas, lo que significa que han sido parcialmente descompuestas para facilitar una absorción más rápida y eficiente de los aminoácidos esenciales en el cuerpo. Esto la convierte en una excelente opción para después del entrenamiento, ayudando a reparar los tejidos musculares de manera óptima.\n\nCon un alto contenido proteico por porción, bajo en grasas y carbohidratos, Hydrowhey está formulada para apoyar objetivos de definición y crecimiento muscular sin añadir calorías innecesarias. Además, incluye un perfil completo de aminoácidos esenciales, incluyendo BCAA, que contribuyen a la síntesis proteica y la recuperación muscular. Su textura suave y fácil disolución, junto con una variedad de sabores agradables, la hacen conveniente y placentera de consumir."
+  },
+  {
+    "id": 2,
+    "name": "Amino-x EAAs 375g – BSN 375 gramos - Watermelon Smash",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2Famino_eaas-300x300.webp?v=1748676036839",
+    "subCategory": "Aminoácidos",
+    "price": 139.90,
+    "info": "El Amino-X EAAs 375g de BSN, en su presentación Watermelon Smash, es un suplemento diseñado para optimizar la síntesis proteica muscular, mejorar la recuperación y aumentar la resistencia durante los entrenamientos. Cada porción proporciona 10 gramos de aminoácidos esenciales (EAAs), incluyendo 5 gramos de aminoácidos de cadena ramificada (BCAAs), fundamentales para la reparación y el crecimiento muscular. \n\nEste producto se destaca por su fórmula sin azúcar ni cafeína, lo que lo hace adecuado para su consumo en cualquier momento del día sin afectar los niveles de energía o el descanso nocturno. Su delicioso sabor a sandía facilita su incorporación en la rutina diaria, ya sea antes, durante o después del entrenamiento. Para su preparación, se recomienda mezclar una cucharada con 10-12 onzas líquidas de agua u otra bebida de preferencia. \n\nAl integrar Amino-X EAAs en su régimen de ejercicios, los atletas y entusiastas del fitness pueden experimentar una mejora en la síntesis de proteínas musculares, una recuperación más rápida y una mayor resistencia, contribuyendo así al logro de sus objetivos de rendimiento y acondicionamiento físico. "
+  },
+  {
+    "id": 3,
+    "name": "BCAA 457g – Ultimate Nutrition",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2Fbcaa_457_naranja-768x768.webp?v=1748676037388",
+    "subCategory": "Aminoácidos",
+    "price": 189.90,
+    "info": "El BCAA 12,000 Powder 457g de Ultimate Nutrition es un suplemento diseñado para apoyar la recuperación muscular y mejorar el rendimiento deportivo. Cada porción proporciona 6 gramos de aminoácidos de cadena ramificada (BCAA) en una proporción óptima de 2:1:1, que incluye 3 gramos de L-leucina, 1.5 gramos de L-isoleucina y 1.5 gramos de L-valina.\n\nLos BCAA son esenciales para el mantenimiento y crecimiento muscular, especialmente durante períodos de estrés físico intenso, como el ejercicio. Este suplemento ayuda a prevenir la fatiga central al regular la entrada de triptófano en el cerebro, lo que puede mejorar el rendimiento y prolongar el tiempo hasta la fatiga. "
+  },
+  {
+    "id": 4,
+    "name": "Lipo 6 Black Intense UC – Nutrex",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2FPORTADA_LIPO_6_AMARILLO_NUTREX_NEW.webp?v=1748676038796",
+    "subCategory": "Quemador de grasa",
+    "price": 169.90,
+    "info": "El Lipo-6 Black Intense Ultra Concentrate de Nutrex es un quemador de grasa termogénico diseñado para quienes buscan una pérdida de peso extrema. Esta fórmula ultra concentrada ofrece una rápida absorción y efectos intensos que se sienten en minutos y son de larga duración.\n\nEntre sus beneficios destacan el aumento del metabolismo, proporcionando energía intensa sin caídas abruptas, y el control avanzado del apetito."
+  },
+  {
+    "id": 5,
+    "name": "Creatina Monohidratada 300gr – Ultimate Nutrition",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2Fcreatina_300g_un-768x768.webp?v=1748676037875",
+    "subCategory": "Creatina",
+    "price": 129.90,
+    "info": "La Creatina Monohidratada 300g de Ultimate Nutrition es un suplemento diseñado para mejorar el rendimiento deportivo, especialmente en actividades de alta intensidad y corta duración. La creatina es un compuesto derivado de aminoácidos almacenado en el músculo esquelético, que actúa como una fuente rápida de energía al facilitar la síntesis de ATP durante el ejercicio intenso.\n\nEste suplemento ha demostrado aumentar la resistencia, la masa muscular y la fuerza cuando se incorpora como parte de un régimen de entrenamiento."
+  },
+  {
+    "id": 6,
+    "name": "Proteína aislada Nectar Medical 2lb – Syntrax",
+    "image": "https://cdn.glitch.global/f3924efd-7580-4d7a-801b-8ba882bee6dd/images%2FNECTAR_SYNTRAX_2_LB-768x768.webp?v=1748676038322",
+    "subCategory": "Proteínas aislada",
+    "price": 229.90,
+    "info": "Aislado de proteína de suero de promina: Deriva de leche fresca sin rBST procedente de vacas locales alimentadas con pasto en los Estados Unidos.Se produce mediante filtrado en frío para eliminar todo el azúcar y la grasa, dejando solo proteína de suero nativa, pura, con el mejor sabor.\n\nDebido a que Nectar Medical tiene un sabor suave y es soluble y dispersable instantáneamente, se puede mezclar de forma imperceptible y fácil en casi cualquier bebida o alimento, como leche, té, jugo, agua saborizada, cereales, sopa, pudín o puré de papas.\n\nSin rellenos: Algunos fabricantes infunden sus productos proteicos con aminoácidos, como taurina, glutamina o glicina. Estos rellenos económicos se prueban como 100% de proteína, pero no mejoran la calidad general del producto. De hecho, estos ingredientes inferiores tienden a alterar el perfil de aminoácidos de la proteína de suero y en realidad disminuyen su estado nutricional. Nectar Medical está hecho de aislado de proteína de suero puro y no contiene rellenos de ningún tipo."
+  }
+]
