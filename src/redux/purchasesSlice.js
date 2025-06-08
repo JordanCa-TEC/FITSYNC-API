@@ -6,15 +6,18 @@ export const fetchUserPurchases = createAsyncThunk(
   "purchases/fetchUserPurchases",
   async (userId, { rejectWithValue }) => {
     try {
-      // Aquí usas userId para traer sus compras
       const res = await axios.get(`${process.env.REACT_APP_API_URL}/purchases/${userId}`);
+      // Guardar en localStorage para fallback
+      localStorage.setItem("user_purchases", JSON.stringify(res.data));
       return res.data;
     } catch (error) {
+      // Intentar cargar del localStorage si la API falla
+      const saved = localStorage.getItem("user_purchases");
+      if (saved) return JSON.parse(saved);
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
-
 
 // 📦 Cargar compras guardadas desde localStorage
 const savedPurchases = localStorage.getItem("user_purchases");
@@ -23,20 +26,17 @@ const initialLocalData = savedPurchases ? JSON.parse(savedPurchases) : [];
 const purchasesSlice = createSlice({
   name: "purchases",
   initialState: {
-    items: initialLocalData,      // Lista de compras
-    status: "idle",               // idle | loading | succeeded | failed
-    error: null                   // Errores de carga
+    items: initialLocalData,
+    status: "idle",
+    error: null
   },
   reducers: {
-    // 🧹 Limpiar compras
     resetPurchases: (state) => {
       state.items = [];
       state.status = "idle";
       state.error = null;
       localStorage.removeItem("user_purchases");
     },
-
-    // ➕ Agregar nueva compra y guardar en localStorage
     addPurchase: (state, action) => {
       state.items.push(action.payload);
       localStorage.setItem("user_purchases", JSON.stringify(state.items));
@@ -62,4 +62,3 @@ const purchasesSlice = createSlice({
 // 🟢 Exportaciones
 export const { resetPurchases, addPurchase } = purchasesSlice.actions;
 export default purchasesSlice.reducer;
-

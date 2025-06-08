@@ -4,8 +4,13 @@ import { fetchUserPurchases } from "../redux/purchasesSlice";
 
 const fallbackImage = "/no-image.png";
 
-const ProfileOrders = ({ userId }) => {
+const ProfileOrders = () => {
   const dispatch = useDispatch();
+
+  // Obtén el userId
+ const userId = useSelector((state) => state.profile?.user?.id);
+
+  // Obtén las compras y estado
   const purchases = useSelector((state) => state.purchases.items);
   const status = useSelector((state) => state.purchases.status);
   const error = useSelector((state) => state.purchases.error);
@@ -14,10 +19,10 @@ const ProfileOrders = ({ userId }) => {
     if (userId) {
       dispatch(fetchUserPurchases(userId));
     }
-  }, [userId, dispatch]);
+  }, [dispatch, userId]);
 
   if (status === "loading") return <p>Cargando compras...</p>;
-  if (status === "failed") return <p>{error}</p>;
+  if (status === "failed") return <p>Error: {error}</p>;
 
   return (
     <div className="profile__orders">
@@ -45,26 +50,26 @@ const ProfileOrders = ({ userId }) => {
                 const imageUrl = `/${item.id}.webp`;
 
                 return (
-                  <li
-                    key={item.id || index}
-                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
-                  >
+                  <li key={item.id || index}>
                     <img
                       src={imageUrl}
-                      alt={item.name || "Producto"}
-                      style={{ width: 80, height: 80, objectFit: "cover" }}
+                      alt={item.name || item.productoNombre || "Producto"}
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = fallbackImage;
                       }}
+                      width={80}
+                      height={80}
                     />
                     <div>
-                      <p>{item.name || "Sin nombre"}</p> <br />
-                      <p>Cantidad: {item.quantity || 0}</p> <br />
+                      <p>{item.name || item.productoNombre || "Sin nombre"}</p>
+                      <p>Cantidad: {item.quantity || item.cantidad || 0}</p>
                       <p className="price">
                         Total: s/.{" "}
                         {item.price && item.quantity
                           ? (item.price * item.quantity).toFixed(2)
+                          : item.precioUnitario && item.cantidad
+                          ? (item.precioUnitario * item.cantidad).toFixed(2)
                           : "0.00"}
                       </p>
                     </div>
