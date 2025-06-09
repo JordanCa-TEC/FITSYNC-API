@@ -4,9 +4,15 @@
   max-width: 500px;
   height: auto;
   margin: 0 auto;
-  padding: 8rem;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 0 8rem 0;
   color: #222;
 
+  @include breakpoint-S{
+    max-width: none;
+    width: 80%;
+  }
 
   h1 {
     text-align: center;
@@ -31,6 +37,7 @@
         padding: 0.5rem;
         border: 1px solid #ffd700;
         border-radius: 5px;
+        font-size: clamp(0.7rem, 2vw, 1rem);
       }
     }
   }

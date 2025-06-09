@@ -4,7 +4,20 @@
 
   width: 100%;
 
+  @include breakpoint-M{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include breakpoint-S{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__hero {
+    width: 100%;
     justify-content: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/Gymnasio-Fitsync.jpg');
     background-size: cover;
@@ -27,6 +40,10 @@
       @include breakpoint-S {
         font-size: 1.7rem;
         text-align: center;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
       }
     }
     p {
@@ -46,6 +63,7 @@
     }
 
     @include breakpoint-S {
+      width: 70%;
       display: flex;
       margin-top: 10em;
       flex-direction: column-reverse;
