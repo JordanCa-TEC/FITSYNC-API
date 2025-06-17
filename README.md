@@ -1,4 +1,5 @@
 Proyecto Final del curso de Diseñador Full Stack, archivos locales terminados.
+Al ejecutar la web en netlify, se debe esperar un tiempo para que el servidor de la API se ejecute.
 
 /------------------------------- Figma--------------------------------/
 
